@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="statik_two_lines_margin_top">8dp</dimen>
+    <dimen name="statik_two_lines_margin_bottom">8dp</dimen>
+    <dimen name="statik_two_lines_margin_start">16dp</dimen>
+    <dimen name="statik_two_lines_margin_end">8dp</dimen>
+
+    <dimen name="statik_two_lines_icon_margin">8dp</dimen>
+
+    <dimen name="statik_two_lines_widget_min_width">60dp</dimen>
+</resources>

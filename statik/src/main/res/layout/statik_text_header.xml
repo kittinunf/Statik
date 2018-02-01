@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+android:id/title"
+    style="@style/Widget.Statik.Base.HeaderTextItem"
+    tools:text="Header"
+    />
