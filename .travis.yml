@@ -6,13 +6,12 @@ sudo:
 android:
   components:
     - tools
-    - build-tools-27.0.2
     - android-27
     - extra-android-support
     - extra-android-m2repository
 
 before_install:
-  - yes | sdkmanager "platforms;android-27;build-tools;27.0.2"
+  - yes | sdkmanager "platforms;android-27"
 
 jdk:
   - oraclejdk8
