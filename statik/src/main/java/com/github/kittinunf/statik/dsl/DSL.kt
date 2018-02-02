@@ -13,7 +13,7 @@ import com.github.kittinunf.statik.model.ViewConfiguration
 
 class TextAttributeBuilder {
 
-    var color: String = ""
+    var color: String? = null
 
     var sizeSP: Float? = null
 
