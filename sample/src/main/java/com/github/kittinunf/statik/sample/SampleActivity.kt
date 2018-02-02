@@ -61,13 +61,9 @@ class SampleActivity : AppCompatActivity() {
                             accessory {
                                 layoutRes = R.layout.widget_checkbox
                                 configuration = {
-                                    it.findViewById<CheckBox>(android.R.id.checkbox)
-                                            .setOnCheckedChangeListener { _, checked ->
-                                                Toast.makeText(this@SampleActivity,
-                                                        "Checked is $checked",
-                                                        Toast.LENGTH_SHORT)
-                                                        .show()
-                                            }
+                                    it.find<CheckBox>(android.R.id.checkbox).setOnCheckedChangeListener { _, checked ->
+                                        toast("Checked is $checked")
+                                    }
                                 }
                             }
                         }
@@ -90,11 +86,11 @@ class SampleActivity : AppCompatActivity() {
                         row {
                             primaryText = "Adjustable Primary"
                             primaryTextAttribute {
-                                color = "#%06X".format(0xFFFFFF and resources.getColor(R.color.colorAccent))
+                                color = resources.getColor(R.color.colorAccent).toHexColor()
                             }
                             secondaryText = "Adjustable Secondary"
                             secondaryTextAttribute {
-                                color = "#%06X".format(0xFFFFFF and resources.getColor(android.R.color.holo_orange_dark))
+                                color = resources.getColor(android.R.color.holo_orange_dark).toHexColor()
                                 sizeSP = resources.getDimension(R.dimen.text_22)
                             }
                         }
@@ -102,10 +98,7 @@ class SampleActivity : AppCompatActivity() {
                             primaryText = "Clickable row"
                             secondaryText = "For toast"
                             clickHandler = {
-                                Toast.makeText(this@SampleActivity,
-                                        "You did good!",
-                                        Toast.LENGTH_SHORT)
-                                        .show()
+                                toast("You did good!")
                             }
                         }
                         footer {
@@ -114,7 +107,7 @@ class SampleActivity : AppCompatActivity() {
                                 gravity = Gravity.END
                             }
                             configuration = {
-                                it.findViewById<View>(android.R.id.title).setOnClickListener {
+                                it.find<View>(android.R.id.title).setOnClickListener {
                                     openBrowser("https://google.com")
                                 }
                             }
@@ -135,5 +128,13 @@ class SampleActivity : AppCompatActivity() {
             data = Uri.parse(url)
         })
     }
+
+    private fun toast(text: String) {
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun <T : View> View.find(id: Int): T = findViewById(id)
+
+    private fun Int.toHexColor() = "#%06X".format(0xFFFFFF and this)
 
 }
