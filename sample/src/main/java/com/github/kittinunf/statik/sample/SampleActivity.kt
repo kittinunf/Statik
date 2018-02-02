@@ -36,7 +36,7 @@ class SampleActivity : AppCompatActivity() {
                                         Row(primaryText = "Text", secondaryText = "With icon", iconRes = android.R.drawable.ic_delete),
                                         Row(primaryText = "Text", secondaryText = "With accessory text",
                                                 iconRes = android.R.drawable.ic_btn_speak_now,
-                                                accessory = Accessory.Title("Confirmed", TextAttribute("#dc0030"))),
+                                                accessory = Accessory.Title("Error", TextAttribute("#dc0030", textGravity = Gravity.END))),
                                         Row(primaryText = "Text", secondaryText = "With custom accessory widget",
                                                 accessory = Accessory.Custom(R.layout.widget_checkbox, viewConfiguration = {
                                                     it.findViewById<CheckBox>(android.R.id.checkbox).setOnCheckedChangeListener { _, isChecked ->
