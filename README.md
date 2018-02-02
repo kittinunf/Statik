@@ -46,13 +46,9 @@ statik {
             accessory {
                 layoutRes = R.layout.widget_checkbox
                 configuration = {
-                    it.findViewById<CheckBox>(android.R.id.checkbox)
-                            .setOnCheckedChangeListener { _, checked ->
-                                Toast.makeText(this@SampleActivity,
-                                        "Checked is $checked",
-                                        Toast.LENGTH_SHORT)
-                                        .show()
-                            }
+                    it.find<CheckBox>(android.R.id.checkbox).setOnCheckedChangeListener { _, checked ->
+                        toast("Checked is $checked")
+                    }
                 }
             }
         }
@@ -75,11 +71,11 @@ statik {
         row {
             primaryText = "Adjustable Primary"
             primaryTextAttribute {
-                color = "#%06X".format(0xFFFFFF and resources.getColor(R.color.colorAccent))
+                color = resources.getColor(R.color.colorAccent).toHexColor()
             }
             secondaryText = "Adjustable Secondary"
             secondaryTextAttribute {
-                color = "#%06X".format(0xFFFFFF and resources.getColor(android.R.color.holo_orange_dark))
+                color = resources.getColor(android.R.color.holo_orange_dark).toHexColor()
                 sizeSP = resources.getDimension(R.dimen.text_22)
             }
         }
@@ -87,10 +83,7 @@ statik {
             primaryText = "Clickable row"
             secondaryText = "For toast"
             clickHandler = {
-                Toast.makeText(this@SampleActivity,
-                        "You did good!",
-                        Toast.LENGTH_SHORT)
-                        .show()
+                toast("You did good!")
             }
         }
         footer {
@@ -99,7 +92,7 @@ statik {
                 gravity = Gravity.END
             }
             configuration = {
-                it.findViewById<View>(android.R.id.title).setOnClickListener {
+                it.find<View>(android.R.id.title).setOnClickListener {
                     openBrowser("https://google.com")
                 }
             }
@@ -111,3 +104,7 @@ statik {
 into this good-looking static list
 
 ![](docs/screenshots/features.png)
+
+### Usage
+
+<TBD>
