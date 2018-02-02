@@ -19,7 +19,7 @@ open class HeaderFooterSectionViewHolder(view: View) : StatikViewHolder(view) {
                         item.textAttribute?.let { attribute -> setTextAttribute(attribute) }
                     }
 
-                    item.viewConfiguration(view)
+                    item.viewConfiguration?.invoke(view)
                 }
             }
             is Accessory.Custom -> {

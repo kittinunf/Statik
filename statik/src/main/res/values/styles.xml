@@ -25,7 +25,7 @@
     <style name="Widget.Statik.Base.PrimaryTextItem" parent="TextAppearance.AppCompat.Medium">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
     </style>
 
     <style name="Widget.Statik.Base.SecondaryTextItem" parent="TextAppearance.AppCompat.Small">
@@ -36,7 +36,6 @@
     <style name="Widget.Statik.Base.AccessoryTextItem" parent="TextAppearance.AppCompat.Small">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center</item>
     </style>
 
 </resources>

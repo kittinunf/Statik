@@ -41,7 +41,7 @@ class RowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<Row
                     is Accessory.Title -> {
                         widgetFrame.inflate(R.layout.statik_text_accessory) {
                             setTextAttribute(it.findViewById(android.R.id.title), accessory.text, accessory.textAttribute)
-                            accessory.viewConfiguration(it)
+                            accessory.viewConfiguration?.invoke(it)
                         }
                     }
                     is Accessory.Custom -> {
