@@ -27,15 +27,6 @@ class TextAttributeBuilder {
 
 class RowBuilder {
 
-    @DrawableRes
-    var iconRes: Int? = null
-
-    private var accessory: Accessory? = null
-
-    var clickHandler: ClickHandler? = null
-
-    private var type: Row.Type? = null
-
     var primaryText: String = ""
 
     private var primaryTextAttribute: TextAttribute? = null
@@ -44,8 +35,17 @@ class RowBuilder {
 
     private var secondaryTextAttribute: TextAttribute? = null
 
+    private var type: Row.Type? = null
+
     @LayoutRes
     var layoutRes: Int? = null
+
+    @DrawableRes
+    var iconRes: Int? = null
+
+    private var accessory: Accessory? = null
+
+    var clickHandler: ClickHandler? = null
 
     var configuration: ViewConfiguration? = null
 
