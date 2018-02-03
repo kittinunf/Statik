@@ -37,7 +37,9 @@ class RowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<Row
                             type.secondaryText,
                             type.secondaryTextAttribute)
 
-                    view.setOnClickListener { row.clickHandler?.invoke(row) }
+                    row.clickHandler?.let { handler ->
+                        view.setOnClickListener { handler.invoke(row) }
+                    }
 
                     val accessory = row.accessory
                     val widgetFrame = view.findViewById<LinearLayout>(R.id.statik_row_widget_frame)
@@ -59,10 +61,9 @@ class RowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<Row
                 }
             }
             is Row.Type.Custom -> {
-                (item as ViewGroup).inflate(row.type.layoutRes, row.type.viewConfiguration)
+                (itemView as ViewGroup).inflate(row.type.layoutRes, row.type.viewConfiguration)
             }
         }
-
     }
 
     private fun setTextAttribute(textView: TextView, text: String?, textAttribute: TextAttribute?) {
