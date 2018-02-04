@@ -102,9 +102,6 @@ class SampleActivity : AppCompatActivity() {
                         }
                         row {
                             layoutRes = R.layout.widget_button
-                            clickHandler = {
-                                toast("You click button")
-                            }
                         }
                         footer {
                             text = "Visit Google here >"
