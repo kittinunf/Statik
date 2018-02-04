@@ -9,7 +9,6 @@ import android.view.Gravity
 import android.view.View
 import android.widget.CheckBox
 import android.widget.Toast
-import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.dsl.statik
 import kotlinx.android.synthetic.main.activity_sample.list
 
@@ -20,7 +19,7 @@ class SampleActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_sample)
 
-        val section =
+        val adapter =
                 statik {
                     section {
                         header {
@@ -77,7 +76,7 @@ class SampleActivity : AppCompatActivity() {
                     }
                     section {
                         header {
-                            text = "Adjustable Header"
+                            text = "Customization"
                             textAttribute {
                                 color = "#999999"
                                 sizeSP = resources.getDimension(R.dimen.text_24)
@@ -101,6 +100,9 @@ class SampleActivity : AppCompatActivity() {
                                 toast("You did good!")
                             }
                         }
+                        row {
+                            layoutRes = R.layout.widget_button
+                        }
                         footer {
                             text = "Visit Google here >"
                             textAttribute {
@@ -117,9 +119,7 @@ class SampleActivity : AppCompatActivity() {
 
         list.also {
             it.layoutManager = LinearLayoutManager(this)
-            it.adapter = StatikAdapter().apply {
-                sections = section
-            }
+            it.adapter = adapter
         }
     }
 

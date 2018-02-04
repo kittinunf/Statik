@@ -12,7 +12,7 @@ import com.github.kittinunf.statik.viewholder.BindableViewHolder
 import com.github.kittinunf.statik.viewholder.StatikViewHolder
 import kotlin.properties.Delegates
 
-class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFactory) : RecyclerView.Adapter<StatikViewHolder>() {
+open class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFactory) : RecyclerView.Adapter<StatikViewHolder>() {
 
     var sections by Delegates.observable(emptyList<Section>()) { _, _, value ->
         //calculate items

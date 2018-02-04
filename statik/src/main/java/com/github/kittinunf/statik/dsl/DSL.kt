@@ -4,6 +4,7 @@ import android.graphics.Typeface
 import android.support.annotation.DrawableRes
 import android.support.annotation.LayoutRes
 import android.view.Gravity
+import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.model.Accessory
 import com.github.kittinunf.statik.model.ClickHandler
 import com.github.kittinunf.statik.model.Row
@@ -26,7 +27,7 @@ class TextAttributeBuilder {
 
 class RowBuilder {
 
-    var primaryText: String? = null
+    var primaryText: String = ""
 
     private var primaryTextAttribute: TextAttribute? = null
 
@@ -34,12 +35,19 @@ class RowBuilder {
 
     private var secondaryTextAttribute: TextAttribute? = null
 
+    private var type: Row.Type? = null
+
+    @LayoutRes
+    var layoutRes: Int? = null
+
     @DrawableRes
     var iconRes: Int? = null
 
     private var accessory: Accessory? = null
 
     var clickHandler: ClickHandler? = null
+
+    var configuration: ViewConfiguration? = null
 
     fun primaryTextAttribute(block: TextAttributeBuilder.() -> Unit) {
         val builder = TextAttributeBuilder()
@@ -59,13 +67,19 @@ class RowBuilder {
         accessory = builder.build()
     }
 
-    fun build(): Row = Row(primaryText,
-            primaryTextAttribute,
-            secondaryText,
-            secondaryTextAttribute,
-            iconRes,
-            accessory,
-            clickHandler)
+    private fun buildType(): Row.Type {
+        val res = layoutRes
+        return if (res != null) {
+            Row.Type.Custom(res, configuration)
+        } else {
+            Row.Type.Text(primaryText, primaryTextAttribute, secondaryText, secondaryTextAttribute)
+        }
+    }
+
+    fun build(): Row {
+        type = buildType()
+        return Row(type, iconRes, accessory, clickHandler)
+    }
 }
 
 class AccessoryBuilder {
@@ -137,8 +151,13 @@ class StatikBuilder {
     fun build() = sections
 }
 
-fun statik(block: StatikBuilder.() -> Unit): List<Section> {
+fun sections(block: StatikBuilder.() -> Unit): List<Section> {
     val builder = StatikBuilder()
     builder.block()
     return builder.build()
 }
+
+fun statik(block: StatikBuilder.() -> Unit): StatikAdapter =
+        StatikAdapter().apply {
+            sections = sections(block)
+        }
