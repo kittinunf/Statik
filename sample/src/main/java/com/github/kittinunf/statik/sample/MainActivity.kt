@@ -28,7 +28,15 @@ class MainActivity : AppCompatActivity() {
             secondaryText = "With custom widget"
         }
 
-        val s1 = section { rows(r1, r2, r3) }
+        val s1 = section {
+            header {
+                text = "Text"
+                textAttribute {
+                    sizeSP = resources.getDimension(R.dimen.text_18)
+                }
+            }
+            rows(r1, r2, r3)
+        }
 
         val rf = row {
             primaryText = "Example 1"
@@ -39,9 +47,9 @@ class MainActivity : AppCompatActivity() {
 
         val s2 = section {
             header {
-                text = "Full Example"
+                text = "Advanced Example"
                 textAttribute {
-                    sizeSP = resources.getDimension(R.dimen.text_20)
+                    sizeSP = resources.getDimension(R.dimen.text_18)
                 }
             }
             rows(rf)
