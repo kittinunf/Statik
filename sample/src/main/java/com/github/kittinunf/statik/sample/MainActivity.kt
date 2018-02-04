@@ -40,6 +40,9 @@ class MainActivity : AppCompatActivity() {
         val s2 = section {
             header {
                 text = "Full Example"
+                textAttribute {
+                    sizeSP = resources.getDimension(R.dimen.text_20)
+                }
             }
             rows(rf)
         }
