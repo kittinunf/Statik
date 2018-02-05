@@ -123,6 +123,10 @@ class SectionBuilder {
         rows += builder.build()
     }
 
+    fun rows(vararg r: Row) {
+        rows += r.asList()
+    }
+
     fun header(block: AccessoryBuilder.() -> Unit) {
         val builder = AccessoryBuilder()
         builder.block()
@@ -148,11 +152,21 @@ class StatikBuilder {
         sections += builder.build()
     }
 
+    fun sections(vararg s: Section) {
+        sections += s.asList()
+    }
+
     fun build() = sections
 }
 
-fun sections(block: StatikBuilder.() -> Unit): List<Section> {
-    val builder = StatikBuilder()
+fun row(block: RowBuilder.() -> Unit): Row {
+    val builder = RowBuilder()
+    builder.block()
+    return builder.build()
+}
+
+fun section(block: SectionBuilder.() -> Unit): Section {
+    val builder = SectionBuilder()
     builder.block()
     return builder.build()
 }
@@ -161,3 +175,9 @@ fun statik(block: StatikBuilder.() -> Unit): StatikAdapter =
         StatikAdapter().apply {
             sections = sections(block)
         }
+
+private fun sections(block: StatikBuilder.() -> Unit): List<Section> {
+    val builder = StatikBuilder()
+    builder.block()
+    return builder.build()
+}

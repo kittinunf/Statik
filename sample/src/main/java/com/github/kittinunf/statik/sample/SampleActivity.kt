@@ -10,14 +10,14 @@ import android.view.View
 import android.widget.CheckBox
 import android.widget.Toast
 import com.github.kittinunf.statik.dsl.statik
-import kotlinx.android.synthetic.main.activity_sample.list
+import kotlinx.android.synthetic.main.activity_list.list
 
 class SampleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_sample)
+        setContentView(R.layout.activity_list)
 
         val adapter =
                 statik {
