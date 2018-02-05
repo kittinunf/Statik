@@ -25,7 +25,6 @@ dependencies {
 }
 ```
 
-
 ## TLDR;
 
 Statik turns this boring DSL setup
