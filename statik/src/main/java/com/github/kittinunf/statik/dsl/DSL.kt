@@ -77,9 +77,8 @@ class RowBuilder {
         return if (res != null) {
             Row.Type.Custom(res, configuration)
         } else if (hint != null) {
-            Row.Type.InputText(primaryText,hint ?: "", inputType)
-        }
-        else {
+            Row.Type.InputText(hint ?: "", primaryText, inputType)
+        } else {
             Row.Type.Text(primaryText, primaryTextAttribute, secondaryText, secondaryTextAttribute)
         }
     }

@@ -18,8 +18,8 @@ data class Row(val type: Row.Type?,
                    val secondaryText: String? = null,
                    val secondaryTextAttribute: TextAttribute? = null) : Type()
 
-        class InputText(val text: String,
-                        val hint: String,
+        class InputText(val hint: String,
+                        val text: String? = null,
                         val inputType: Int = InputType.TYPE_CLASS_TEXT) : Type()
 
         class Custom(@LayoutRes val layoutRes: Int, val viewConfiguration: ViewConfiguration? = null) : Type()
