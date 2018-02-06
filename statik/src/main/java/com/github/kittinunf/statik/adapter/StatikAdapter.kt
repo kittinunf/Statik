@@ -52,4 +52,8 @@ open class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFacto
         return items
     }
 
+    override fun onViewRecycled(holder: StatikViewHolder?) {
+        super.onViewRecycled(holder)
+        (holder?.itemView as ViewGroup).removeViewAt(0)
+    }
 }

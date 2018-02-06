@@ -1,41 +1,116 @@
 package com.github.kttinunf.statik
 
+import android.graphics.Typeface
+import android.text.InputType
+import android.view.Gravity
 import com.github.kittinunf.statik.dsl.row
 import com.github.kittinunf.statik.model.Row
-import io.kotlintest.matchers.instanceOf
-import io.kotlintest.matchers.shouldEqual
-import io.kotlintest.specs.StringSpec
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.CoreMatchers.isA
+import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
-class DSLTest : StringSpec({
+@RunWith(RobolectricTestRunner::class)
+class DSLTest {
 
-    "row command should produce correct row with Text type" {
+    @Test
+    fun rowCommand_shouldBuildTextType() {
         val r = row {
-            primaryText = "Foo"
+            primaryText = "foo"
         }
 
-        r.type shouldEqual instanceOf(Row.Type.Text::class)
-
+        assertThat(r.type as Row.Type.Text, isA(Row.Type.Text::class.java))
     }
 
-    "row command should produce correct row value - 1" {
+    @Test
+    fun rowCommand_shouldBuildTextTypeWithCorrectValue() {
         val r = row {
-            primaryText = "Foo"
+            primaryText = "foo"
+            secondaryText = "bar"
         }
 
-        val type = r.type as Row.Type.Text
+        val t = r.type as Row.Type.Text
 
-        type.primaryText shouldEqual "Foo"
+        assertThat(t.primaryText, equalTo("foo"))
+        assertThat(t.secondaryText, equalTo("bar"))
     }
 
-    "row command should produce correct row value - 2" {
+    @Test
+    fun rowCommand_shouldBuildTextTypeWithCorrectAttribute() {
         val r = row {
-            primaryText = "Foo"
-            secondaryText = "Bar"
+            primaryTextAttribute {
+                color = "#112233"
+                sizeSP = 10.0f
+                typeface = Typeface.DEFAULT_BOLD
+                gravity = Gravity.START
+            }
+
+            secondaryTextAttribute {
+                color = "#223344"
+                sizeSP = 20.0f
+                typeface = Typeface.SERIF
+                gravity = Gravity.END
+            }
         }
 
-        val type = r.type as Row.Type.Text
+        val t = r.type as Row.Type.Text
 
-        type.primaryText shouldEqual "Foo"
-        type.secondaryText shouldEqual "Bar"
+        assertThat(t.primaryTextAttribute?.textColor, equalTo("#112233"))
+        assertThat(t.secondaryTextAttribute?.textColor, equalTo("#223344"))
+        assertThat(t.primaryTextAttribute?.textSizeSP, equalTo(10.0f))
+        assertThat(t.secondaryTextAttribute?.textSizeSP, equalTo(20.0f))
+        assertThat(t.primaryTextAttribute?.typeface, equalTo(Typeface.DEFAULT_BOLD))
+        assertThat(t.secondaryTextAttribute?.typeface, equalTo(Typeface.SERIF))
+        assertThat(t.primaryTextAttribute?.textGravity, equalTo(Gravity.START))
+        assertThat(t.secondaryTextAttribute?.textGravity, equalTo(Gravity.END))
     }
-})
+
+    @Test
+    fun rowCommand_shouldBuildEditTextType() {
+        val r = row {
+            hint = "heyhey"
+        }
+
+        val t = r.type as Row.Type.InputText
+
+        assertThat(t, isA(Row.Type.InputText::class.java))
+    }
+
+    @Test
+    fun rowCommand_shouldBuildEditTextTypeWithCorrectValue() {
+        val r = row {
+            hint = "heyhey"
+            inputType = InputType.TYPE_CLASS_PHONE
+        }
+
+        val t = r.type as Row.Type.InputText
+
+        assertThat(t.hint, equalTo("heyhey"))
+        assertThat(t.inputType, equalTo(InputType.TYPE_CLASS_PHONE))
+        assertThat(t.text, equalTo(""))
+    }
+
+    @Test
+    fun rowCommand_shouldBuildCustomType() {
+        val r = row {
+            layoutRes = 1
+        }
+
+        val t = r.type as Row.Type.Custom
+
+        assertThat(t, isA(Row.Type.Custom::class.java))
+    }
+
+    @Test
+    fun rowCommand_shouldBuildCustomTypeWithCorrectValue() {
+        val r = row {
+            layoutRes = 1
+        }
+
+        val t = r.type as Row.Type.Custom
+
+        assertThat(t.layoutRes, equalTo(1))
+    }
+}
