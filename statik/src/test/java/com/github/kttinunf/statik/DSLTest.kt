@@ -1,6 +1,7 @@
 package com.github.kttinunf.statik
 
 import android.graphics.Typeface
+import android.text.InputType
 import android.view.Gravity
 import com.github.kittinunf.statik.dsl.row
 import com.github.kittinunf.statik.model.Row
@@ -32,7 +33,6 @@ class DSLTest {
 
         val t = r.type as Row.Type.Text
 
-        assertThat(t, isA(Row.Type.Text::class.java))
         assertThat(t.primaryText, equalTo("foo"))
         assertThat(t.secondaryText, equalTo("bar"))
     }
@@ -67,4 +67,50 @@ class DSLTest {
         assertThat(t.secondaryTextAttribute?.textGravity, equalTo(Gravity.END))
     }
 
+    @Test
+    fun rowCommand_shouldBuildEditTextType() {
+        val r = row {
+            hint = "heyhey"
+        }
+
+        val t = r.type as Row.Type.InputText
+
+        assertThat(t, isA(Row.Type.InputText::class.java))
+    }
+
+    @Test
+    fun rowCommand_shouldBuildEditTextTypeWithCorrectValue() {
+        val r = row {
+            hint = "heyhey"
+            inputType = InputType.TYPE_CLASS_PHONE
+        }
+
+        val t = r.type as Row.Type.InputText
+
+        assertThat(t.hint, equalTo("heyhey"))
+        assertThat(t.inputType, equalTo(InputType.TYPE_CLASS_PHONE))
+        assertThat(t.text, equalTo(""))
+    }
+
+    @Test
+    fun rowCommand_shouldBuildCustomType() {
+        val r = row {
+            layoutRes = 1
+        }
+
+        val t = r.type as Row.Type.Custom
+
+        assertThat(t, isA(Row.Type.Custom::class.java))
+    }
+
+    @Test
+    fun rowCommand_shouldBuildCustomTypeWithCorrectValue() {
+        val r = row {
+            layoutRes = 1
+        }
+
+        val t = r.type as Row.Type.Custom
+
+        assertThat(t.layoutRes, equalTo(1))
+    }
 }

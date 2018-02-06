@@ -3,6 +3,7 @@ package com.github.kittinunf.statik.dsl
 import android.graphics.Typeface
 import android.support.annotation.DrawableRes
 import android.support.annotation.LayoutRes
+import android.text.InputType
 import android.view.Gravity
 import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.model.Accessory
@@ -36,6 +37,10 @@ class RowBuilder {
     private var secondaryTextAttribute: TextAttribute? = null
 
     private var type: Row.Type? = null
+
+    var hint: String? = null
+
+    var inputType: Int = InputType.TYPE_CLASS_TEXT
 
     @LayoutRes
     var layoutRes: Int? = null
@@ -71,7 +76,10 @@ class RowBuilder {
         val res = layoutRes
         return if (res != null) {
             Row.Type.Custom(res, configuration)
-        } else {
+        } else if (hint != null) {
+            Row.Type.InputText(primaryText,hint ?: "", inputType)
+        }
+        else {
             Row.Type.Text(primaryText, primaryTextAttribute, secondaryText, secondaryTextAttribute)
         }
     }

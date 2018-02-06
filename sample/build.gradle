@@ -28,8 +28,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:27.0.2'
     compile 'com.android.support:recyclerview-v7:27.0.2'
 
-//    compile project(':statik')
-    compile 'com.github.kittinunf.statik:Statik:0.2.0'
+    compile project(':statik')
 
     testImplementation 'junit:junit:4.12'
 

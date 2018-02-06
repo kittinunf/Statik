@@ -67,6 +67,7 @@ class RowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<Row
                     val input = view.findViewById<TextInputLayout>(android.R.id.input)
                     input.hint = row.type.hint
                     input.editText?.inputType = row.type.inputType
+                    input.editText?.setText(row.type.text)
                 }
             }
 

@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.text.InputType
 import android.view.Gravity
 import android.view.View
 import android.widget.CheckBox
@@ -107,6 +108,19 @@ class SampleActivity : AppCompatActivity() {
                                     toast("You click on button")
                                 }
                             }
+                        }
+                        row {
+                            hint = "Username"
+                            primaryText = "kittinunf"
+                            inputType = InputType.TYPE_CLASS_TEXT
+                        }
+                        row {
+                            hint = "Password"
+                            inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                        }
+                        row {
+                            hint = "Confirm Password"
+                            inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
                         }
                         footer {
                             text = "Visit Google here >"
