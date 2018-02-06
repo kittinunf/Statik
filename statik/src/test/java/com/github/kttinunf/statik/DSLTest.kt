@@ -2,40 +2,56 @@ package com.github.kttinunf.statik
 
 import com.github.kittinunf.statik.dsl.row
 import com.github.kittinunf.statik.model.Row
-import io.kotlintest.matchers.instanceOf
-import io.kotlintest.matchers.shouldEqual
-import io.kotlintest.specs.StringSpec
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.CoreMatchers.isA
+import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
-class DSLTest : StringSpec({
+@RunWith(RobolectricTestRunner::class)
+class DSLTest {
 
-    "row command should produce correct row with Text type" {
+    @Test
+    fun rowCommand_shouldBuildTextType() {
         val r = row {
-            primaryText = "Foo"
+            primaryText = "foo"
         }
 
-        r.type shouldEqual instanceOf(Row.Type.Text::class)
-
+        assertThat(r.type as Row.Type.Text, isA(Row.Type.Text::class.java))
     }
 
-    "row command should produce correct row value - 1" {
+    @Test
+    fun rowCommand_shouldBuildTextTypeWithCorrectValue() {
         val r = row {
-            primaryText = "Foo"
+            primaryText = "foo"
+            secondaryText = "bar"
         }
 
-        val type = r.type as Row.Type.Text
+        val t = r.type as Row.Type.Text
 
-        type.primaryText shouldEqual "Foo"
+        assertThat(t, isA(Row.Type.Text::class.java))
+        assertThat(t.primaryText, equalTo("foo"))
+        assertThat(t.secondaryText, equalTo("bar"))
     }
 
-    "row command should produce correct row value - 2" {
+    @Test
+    fun rowCommand_shouldBuildTextTypeWithCorrectAttribute() {
         val r = row {
-            primaryText = "Foo"
-            secondaryText = "Bar"
+            primaryText = "foo"
+            primaryTextAttribute {
+                color = "#112233"
+            }
+
+            secondaryTextAttribute {
+                color = "#223344"
+            }
         }
 
-        val type = r.type as Row.Type.Text
+        val t = r.type as Row.Type.Text
 
-        type.primaryText shouldEqual "Foo"
-        type.secondaryText shouldEqual "Bar"
+        assertThat(t.primaryTextAttribute?.textColor, equalTo("#112233"))
+        assertThat(t.secondaryTextAttribute?.textColor, equalTo("#112233"))
     }
-})
+
+}

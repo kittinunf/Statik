@@ -17,6 +17,8 @@ data class Row(val type: Row.Type?,
                    val secondaryText: String? = null,
                    val secondaryTextAttribute: TextAttribute? = null) : Type()
 
+        class InputText(val hint: String, val inputType: Int) : Type()
+
         class Custom(@LayoutRes val layoutRes: Int, val viewConfiguration: ViewConfiguration? = null) : Type()
     }
 }

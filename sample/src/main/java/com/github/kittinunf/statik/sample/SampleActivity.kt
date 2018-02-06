@@ -102,6 +102,11 @@ class SampleActivity : AppCompatActivity() {
                         }
                         row {
                             layoutRes = R.layout.widget_button
+                            configuration = {
+                                it.find<View>(android.R.id.button1).setOnClickListener {
+                                    toast("You click on button")
+                                }
+                            }
                         }
                         footer {
                             text = "Visit Google here >"

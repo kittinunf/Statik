@@ -1,5 +1,6 @@
 package com.github.kittinunf.statik.viewholder
 
+import android.support.design.widget.TextInputLayout
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -60,6 +61,15 @@ class RowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<Row
                     }
                 }
             }
+
+            is Row.Type.InputText -> {
+                (itemView as ViewGroup).inflate(R.layout.statik_text_input) { view ->
+                    val input = view.findViewById<TextInputLayout>(android.R.id.input)
+                    input.hint = row.type.hint
+                    input.editText?.inputType = row.type.inputType
+                }
+            }
+
             is Row.Type.Custom -> {
                 (itemView as ViewGroup).inflate(row.type.layoutRes, row.type.viewConfiguration)
             }
