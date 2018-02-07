@@ -1,12 +1,11 @@
 package com.github.kittinunf.statik.sample
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import com.github.kittinunf.statik.dsl.row
 import com.github.kittinunf.statik.dsl.section
 import com.github.kittinunf.statik.dsl.statik
+import com.github.kittinunf.statik.dsl.textRow
 import kotlinx.android.synthetic.main.activity_list.list
 
 class MainActivity : AppCompatActivity() {
@@ -16,48 +15,57 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_list)
 
-        val r1 = row {
-            primaryText = "Simple List"
-        }
-        val r2 = row {
-            primaryText = "Simple List"
-            secondaryText = "With icon"
-        }
-        val r3 = row {
-            primaryText = "Simple List"
-            secondaryText = "With custom widget"
+//        val r1 = row {
+//            primaryText = "Simple List"
+//        }
+//        val r2 = row {
+//            primaryText = "Simple List"
+//            secondaryText = "With icon"
+//        }
+//        val r3 = row {
+//            primaryText = "Simple List"
+//            secondaryText = "With custom widget"
+//        }
+//
+//        val s1 = section {
+//            header {
+//                text = "Text"
+//                textAttribute {
+//                    sizeSP = resources.getDimension(R.dimen.text_18)
+//                }
+//            }
+//            rows(r1, r2, r3)
+//        }
+//
+//        val rf = row {
+//            primaryText = "Example 1"
+//            clickHandler = {
+//                startActivity(Intent(this@MainActivity, SampleActivity::class.java))
+//            }
+//        }
+//
+//        val s2 = section {
+//            header {
+//                text = "Advanced Example"
+//                textAttribute {
+//                    sizeSP = resources.getDimension(R.dimen.text_18)
+//                }
+//            }
+//            rows(rf)
+//        }
+
+        val r = textRow {
+            text = "One Line"
         }
 
         val s1 = section {
-            header {
-                text = "Text"
-                textAttribute {
-                    sizeSP = resources.getDimension(R.dimen.text_18)
-                }
-            }
-            rows(r1, r2, r3)
-        }
-
-        val rf = row {
-            primaryText = "Example 1"
-            clickHandler = {
-                startActivity(Intent(this@MainActivity, SampleActivity::class.java))
-            }
-        }
-
-        val s2 = section {
-            header {
-                text = "Advanced Example"
-                textAttribute {
-                    sizeSP = resources.getDimension(R.dimen.text_18)
-                }
-            }
-            rows(rf)
+            rows(r)
         }
 
         val adapter =
                 statik {
-                    sections(s1, s2)
+//                    sections(s1, s2)
+                    sections(s1)
                 }
 
         list.also {

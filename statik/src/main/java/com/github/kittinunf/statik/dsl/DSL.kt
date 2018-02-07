@@ -11,7 +11,10 @@ import com.github.kittinunf.statik.model.ClickHandler
 import com.github.kittinunf.statik.model.Row
 import com.github.kittinunf.statik.model.Section
 import com.github.kittinunf.statik.model.TextAttribute
+import com.github.kittinunf.statik.model.TextRow
 import com.github.kittinunf.statik.model.ViewConfiguration
+import com.github.kittinunf.statik.representable.ItemRepresentable
+import com.github.kittinunf.statik.representable.TextRowItemRepresentable
 
 class TextAttributeBuilder {
 
@@ -123,6 +126,7 @@ class SectionBuilder {
     private var footer: Accessory? = null
 
     private val rows = mutableListOf<Row>()
+    private val representables = mutableListOf<ItemRepresentable>()
 
     fun row(block: RowBuilder.() -> Unit) {
         val builder = RowBuilder()
@@ -132,6 +136,10 @@ class SectionBuilder {
 
     fun rows(vararg r: Row) {
         rows += r.asList()
+    }
+
+    fun rows(vararg r: ItemRepresentable) {
+        representables += r.asList()
     }
 
     fun header(block: AccessoryBuilder.() -> Unit) {
@@ -146,7 +154,7 @@ class SectionBuilder {
         footer = builder.build()
     }
 
-    fun build(): Section = Section(header, rows, footer)
+    fun build(): Section = Section(header, rows, representables, footer)
 }
 
 class StatikBuilder {
@@ -185,6 +193,22 @@ fun statik(block: StatikBuilder.() -> Unit): StatikAdapter =
 
 private fun sections(block: StatikBuilder.() -> Unit): List<Section> {
     val builder = StatikBuilder()
+    builder.block()
+    return builder.build()
+}
+
+class TextRowItemBuilder {
+
+    var text: String = ""
+
+    @DrawableRes
+    var iconRes: Int? = null
+
+    fun build(): TextRowItemRepresentable = TextRowItemRepresentable(TextRow(text, iconRes))
+}
+
+fun textRow(block: TextRowItemBuilder.() -> Unit): TextRowItemRepresentable {
+    val builder = TextRowItemBuilder()
     builder.block()
     return builder.build()
 }

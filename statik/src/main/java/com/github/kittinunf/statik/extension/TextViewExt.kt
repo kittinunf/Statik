@@ -6,6 +6,7 @@ import android.widget.TextView
 import com.github.kittinunf.statik.model.TextAttribute
 
 internal fun TextView.setTextAttribute(attribute: TextAttribute) {
+
     attribute.textColor?.let {
         setTextColor(Color.parseColor(it))
     }

@@ -16,8 +16,8 @@ open class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFacto
 
     var sections by Delegates.observable(emptyList<Section>()) { _, _, value ->
         //calculate items
-        items = value.flatMap(::createRepresentable)
-
+//        items = value.flatMap(::createRepresentable)
+        items = value.flatMap { it.representables }
         notifyDataSetChanged()
     }
 
