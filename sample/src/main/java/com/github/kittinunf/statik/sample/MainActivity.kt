@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.widget.TextViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Gravity
 import android.widget.TextView
 import com.github.kittinunf.statik.dsl.section
 import com.github.kittinunf.statik.dsl.statik
@@ -86,6 +87,7 @@ class MainActivity : AppCompatActivity() {
             text = "Footer"
             onSetupListener = {
                 val textView = it.find<TextView>(R.id.statik_row_text_primary)
+                textView.gravity = Gravity.END
                 TextViewCompat.setTextAppearance(textView, R.style.TextAppearance_AppCompat_Custom3)
             }
             onClickListener = { _, _, _ ->

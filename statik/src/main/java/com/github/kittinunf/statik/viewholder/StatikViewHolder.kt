@@ -5,7 +5,7 @@ import android.view.View
 
 abstract class StatikViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    abstract fun onViewRecycled()
+    open fun onViewRecycled() {}
 }
 
 interface BindableViewHolder<in T> {

@@ -50,7 +50,7 @@ interface ValueChangeListener<T> {
     var onChangedListener: OnValueChangedListener<T>?
 }
 
-data class TextSupplementaryItemRepresentable(internal val item: TextSupplementary = TextSupplementary()) : ItemRepresentable,
+data class TextSupplementaryItemRepresentable(private val item: TextSupplementary = TextSupplementary()) : ItemRepresentable,
         ViewSetupListener, ViewClickListener<TextSupplementaryItemRepresentable>, ValueChangeListener<TextSupplementary> {
 
     override var onSetupListener: OnSetupListener? = null
@@ -81,7 +81,7 @@ data class TextSupplementaryItemRepresentable(internal val item: TextSupplementa
     override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }
 
-data class TextRowItemRepresentable(internal val row: TextRow = TextRow()) : ItemRepresentable,
+data class TextRowItemRepresentable(private val row: TextRow = TextRow()) : ItemRepresentable,
         ViewSetupListener, ViewClickListener<TextRowItemRepresentable>, ValueChangeListener<TextRow> {
 
     override var onSetupListener: OnSetupListener? = null
@@ -112,7 +112,7 @@ data class TextRowItemRepresentable(internal val row: TextRow = TextRow()) : Ite
     override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }
 
-data class TwoTextRowItemRepresentable(internal val row: TwoTextRow = TwoTextRow()) : ItemRepresentable,
+data class TwoTextRowItemRepresentable(private val row: TwoTextRow = TwoTextRow()) : ItemRepresentable,
         ViewSetupListener, ViewClickListener<TwoTextRowItemRepresentable>, ValueChangeListener<TwoTextRow> {
 
     override var onSetupListener: OnSetupListener? = null

@@ -55,6 +55,4 @@ internal val defaultTypeFactory = object : TypeFactory {
             else -> error("You should not reach here")
         }
     }
-
 }
-
