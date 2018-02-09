@@ -4,9 +4,13 @@ import android.support.annotation.DrawableRes
 
 sealed class RowOf<T>(var value: T? = null)
 
-class TextRow(text: String, @DrawableRes val iconRes: Int?) : RowOf<String>(text)
+class TextRow(text: String = "", @DrawableRes iconRes: Int? = null) :
+        RowOf<Pair<String, Int?>>(text to iconRes)
 
-class TwoTextRow(primary: String, secondary: String) : RowOf<Pair<String, String>>(primary to secondary)
+class TwoTextRow(titleText: String = "",
+                 summaryText: String = "",
+                 @DrawableRes iconRes: Int? = null) :
+        RowOf<Triple<String, String, Int?>>(Triple(titleText, summaryText, iconRes))
 
 class CheckRow(value: Boolean) : RowOf<Boolean>(value)
 

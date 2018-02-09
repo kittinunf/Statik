@@ -1,10 +1,12 @@
 package com.github.kittinunf.statik.representable
 
+import android.view.View
 import com.github.kittinunf.statik.adapter.TypeFactory
 import com.github.kittinunf.statik.model.Accessory
 import com.github.kittinunf.statik.model.Row
 import com.github.kittinunf.statik.model.Section
 import com.github.kittinunf.statik.model.TextRow
+import com.github.kittinunf.statik.model.TwoTextRow
 import kotlin.properties.Delegates
 
 interface ItemRepresentable {
@@ -31,16 +33,86 @@ data class FooterSectionItemRepresentable(private val section: Section) : ItemRe
     override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }
 
-data class TextRowItemRepresentable(val row: TextRow) : ItemRepresentable {
+typealias OnValueChangedListener<T> = (T) -> Unit
+typealias OnSetupListener = (View) -> Unit
+typealias OnClickListener<T> = (View, Int, T) -> Unit
 
-    var onChangedListener: ((TextRow) -> Unit)? = null
+interface ViewSetupListener {
+    var onSetupListener: OnSetupListener?
+}
 
-    var value by Delegates.observable(row.value) { _, old, new ->
+interface ViewClickListener<T> {
+    var onClickListener: OnClickListener<T>?
+}
+
+interface ValueChangeListener<T> {
+    var onValueChangedListener: OnValueChangedListener<T>?
+}
+
+data class TextRowItemRepresentable(internal val row: TextRow = TextRow()) : ItemRepresentable,
+        ViewSetupListener, ViewClickListener<TextRowItemRepresentable> {
+
+    override var onSetupListener: OnSetupListener? = null
+
+    override var onClickListener: OnClickListener<TextRowItemRepresentable>? = null
+
+    var onChangedListener: OnValueChangedListener<TextRow>? = null
+
+    private var _value by Delegates.observable(row.value) { _, old, new ->
         if (old != new) {
             row.value = new
             onChangedListener?.invoke(row)
         }
     }
+
+    var text: String
+        set(value) {
+            _value = value to iconRes
+        }
+        get() = _value!!.first
+
+    var iconRes: Int?
+        set(value) {
+            _value = text to value
+        }
+        get() = _value?.second
+
+    override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
+}
+
+data class TwoTextRowItemRepresentable(internal val row: TwoTextRow = TwoTextRow()) : ItemRepresentable,
+        ViewSetupListener, ViewClickListener<TwoTextRowItemRepresentable> {
+
+    override var onSetupListener: OnSetupListener? = null
+
+    override var onClickListener: OnClickListener<TwoTextRowItemRepresentable>? = null
+
+    var onChangedListener: OnValueChangedListener<TwoTextRow>? = null
+
+    private var _value by Delegates.observable(row.value) { _, old, new ->
+        if (old != new) {
+            row.value = new
+            onChangedListener?.invoke(row)
+        }
+    }
+
+    var titleText: String
+        set(value) {
+            _value = Triple(value, summaryText, iconRes)
+        }
+        get() = _value!!.first
+
+    var summaryText: String
+        set(value) {
+            _value = Triple(titleText, value, iconRes)
+        }
+        get() = _value!!.second
+
+    var iconRes: Int?
+        set(value) {
+            _value = Triple(titleText, summaryText, value)
+        }
+        get() = _value!!.third
 
     override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }

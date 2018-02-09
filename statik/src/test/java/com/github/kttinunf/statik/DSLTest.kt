@@ -4,6 +4,8 @@ import android.graphics.Typeface
 import android.text.InputType
 import android.view.Gravity
 import com.github.kittinunf.statik.dsl.row
+import com.github.kittinunf.statik.dsl.textRow
+import com.github.kittinunf.statik.dsl.twoTextRow
 import com.github.kittinunf.statik.model.Row
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.CoreMatchers.isA
@@ -112,5 +114,51 @@ class DSLTest {
         val t = r.type as Row.Type.Custom
 
         assertThat(t.layoutRes, equalTo(1))
+    }
+
+
+    @Test
+    fun textRowCommand() {
+        val r = textRow {
+            text = "Foo"
+        }
+
+        assertThat(r.value, equalTo("Foo"))
+    }
+
+    @Test
+    fun textRowCommandWithIcon() {
+        val r = textRow {
+            text = "Foo"
+            iconRes = 11
+        }
+
+        assertThat(r.value, equalTo("Foo"))
+        assertThat(r.row.iconRes, equalTo(11))
+    }
+
+    @Test
+    fun twoTextRowCommand() {
+        val r = twoTextRow {
+            titleText = "FooFoo"
+            summaryText = "Barbar"
+        }
+
+        assertThat(r.value?.first, equalTo("FooFoo"))
+        assertThat(r.value?.second, equalTo("Barbar"))
+    }
+
+    @Test
+    fun twoTextRowCommandWithIcon() {
+        val r = twoTextRow {
+            titleText = "FooFoo"
+            summaryText = "Barbar"
+
+            iconRes = 123
+        }
+
+        assertThat(r.value?.first, equalTo("FooFoo"))
+        assertThat(r.value?.second, equalTo("Barbar"))
+        assertThat(r.row.iconRes, equalTo(123))
     }
 }

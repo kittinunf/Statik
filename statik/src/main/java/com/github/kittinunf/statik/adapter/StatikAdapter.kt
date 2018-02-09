@@ -25,7 +25,8 @@ open class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFacto
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): StatikViewHolder {
         val view = LayoutInflater.from(parent?.context).inflate(viewType, parent, false)
-        return typeFactory.viewHolder(viewType, view)
+        val viewHolder = typeFactory.viewHolder(viewType, view)
+        return viewHolder
     }
 
     @Suppress("unchecked_cast")
@@ -54,6 +55,6 @@ open class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFacto
 
     override fun onViewRecycled(holder: StatikViewHolder?) {
         super.onViewRecycled(holder)
-        (holder?.itemView as ViewGroup).removeViewAt(0)
+//        (holder?.itemView as ViewGroup).removeViewAt(0)
     }
 }

@@ -1,12 +1,16 @@
 package com.github.kittinunf.statik.sample
 
 import android.os.Bundle
+import android.support.v4.widget.TextViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.widget.TextView
 import com.github.kittinunf.statik.dsl.section
 import com.github.kittinunf.statik.dsl.statik
 import com.github.kittinunf.statik.dsl.textRow
+import com.github.kittinunf.statik.dsl.twoTextRow
 import kotlinx.android.synthetic.main.activity_list.list
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,56 +19,66 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_list)
 
-//        val r1 = row {
-//            primaryText = "Simple List"
-//        }
-//        val r2 = row {
-//            primaryText = "Simple List"
-//            secondaryText = "With icon"
-//        }
-//        val r3 = row {
-//            primaryText = "Simple List"
-//            secondaryText = "With custom widget"
-//        }
-//
-//        val s1 = section {
-//            header {
-//                text = "Text"
-//                textAttribute {
-//                    sizeSP = resources.getDimension(R.dimen.text_18)
-//                }
-//            }
-//            rows(r1, r2, r3)
-//        }
-//
-//        val rf = row {
-//            primaryText = "Example 1"
-//            clickHandler = {
-//                startActivity(Intent(this@MainActivity, SampleActivity::class.java))
-//            }
-//        }
-//
-//        val s2 = section {
-//            header {
-//                text = "Advanced Example"
-//                textAttribute {
-//                    sizeSP = resources.getDimension(R.dimen.text_18)
-//                }
-//            }
-//            rows(rf)
-//        }
-
-        val r = textRow {
+        val r1 = textRow {
             text = "One Line"
         }
 
+        val r2 = textRow {
+            text = "One Line with Icon"
+            iconRes = android.R.drawable.ic_delete
+        }
+
+        val r3 = twoTextRow {
+            titleText = "Two Lines"
+            summaryText = "This is two-line text"
+        }
+
+        val r4 = twoTextRow {
+            titleText = "Two Lines with Icon"
+            summaryText = "This is two-line text with icon"
+            iconRes = android.R.drawable.ic_menu_call
+        }
+
+        val r5 = textRow {
+            text = "You can customize the appearance"
+            onSetupListener = {
+                val textView = it.findViewById<TextView>(R.id.statik_row_text_primary)
+                TextViewCompat.setTextAppearance(textView, R.style.TextAppearance_AppCompat_Custom1)
+            }
+        }
+
+        val r6 = twoTextRow {
+            var count = 0
+            titleText = "Also, you can try to click this row"
+            summaryText = "Click"
+            iconRes = android.R.drawable.ic_input_add
+            onClickListener = { _, position, item ->
+                item.summaryText = "${++count} times"
+                item.iconRes = if (count % 2 == 0) android.R.drawable.ic_input_add else android.R.drawable.ic_delete
+                list.adapter.notifyItemChanged(position)
+            }
+        }
+
+        val r7 = textRow {
+            text = "You can observe changes, click here"
+            onClickListener = { _, position, item ->
+                item.text = "Next random: ${Random().nextInt(100)}"
+                list.adapter.notifyItemChanged(position)
+            }
+            onChangedListener = {
+                println(it.value)
+            }
+        }
+
         val s1 = section {
-            rows(r)
+            header {
+                text = "Something"
+            }
+            rows(r1, r2, r3, r4, r5, r6, r7)
         }
 
         val adapter =
                 statik {
-//                    sections(s1, s2)
                     sections(s1)
                 }
 

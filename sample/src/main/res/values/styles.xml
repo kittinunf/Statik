@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextAppearance.AppCompat.Custom1" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">?attr/colorAccent</item>
+    </style>
+
 </resources>

@@ -4,17 +4,22 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.github.kittinunf.statik.R
-import com.github.kittinunf.statik.representable.TextRowItemRepresentable
+import com.github.kittinunf.statik.representable.TwoTextRowItemRepresentable
 
-class TextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<TextRowItemRepresentable> {
+class TwoTextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<TwoTextRowItemRepresentable> {
 
-    override fun bind(item: TextRowItemRepresentable) {
+    override fun bind(item: TwoTextRowItemRepresentable) {
         item.onSetupListener?.invoke(itemView)
 
         //primary
-        val primaryTextView = itemView.findViewById<TextView>(R.id.statik_row_text_primary)
-        primaryTextView.apply {
-            text = item.text
+        val titleTextView = itemView.findViewById<TextView>(R.id.statik_row_text_primary)
+        titleTextView.apply {
+            text = item.titleText
+        }
+
+        val summaryTextView = itemView.findViewById<TextView>(R.id.statik_row_text_secondary)
+        summaryTextView.apply {
+            text = item.summaryText
         }
 
         //image
@@ -34,5 +39,4 @@ class TextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder
             item.onClickListener?.invoke(it, adapterPosition, item)
         }
     }
-
 }

@@ -9,8 +9,9 @@ import android.text.InputType
 import android.view.Gravity
 import android.view.View
 import android.widget.CheckBox
-import android.widget.Toast
 import com.github.kittinunf.statik.dsl.statik
+import com.github.kittinunf.statik.sample.util.find
+import com.github.kittinunf.statik.sample.util.toast
 import kotlinx.android.synthetic.main.activity_list.list
 
 class SampleActivity : AppCompatActivity() {
@@ -147,12 +148,6 @@ class SampleActivity : AppCompatActivity() {
             data = Uri.parse(url)
         })
     }
-
-    private fun toast(text: String) {
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-    }
-
-    private fun <T : View> View.find(id: Int): T = findViewById(id)
 
     private fun Int.toHexColor() = "#%06X".format(0xFFFFFF and this)
 
