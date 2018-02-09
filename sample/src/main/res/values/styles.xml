@@ -12,4 +12,12 @@
         <item name="android:textColor">?attr/colorAccent</item>
     </style>
 
+    <style name="TextAppearance.AppCompat.Custom2" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@android:color/holo_orange_dark</item>
+    </style>
+
+    <style name="TextAppearance.AppCompat.Custom3" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@android:color/holo_blue_dark</item>
+    </style>
+
 </resources>

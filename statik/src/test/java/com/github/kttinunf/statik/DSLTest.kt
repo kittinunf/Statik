@@ -4,6 +4,8 @@ import android.graphics.Typeface
 import android.text.InputType
 import android.view.Gravity
 import com.github.kittinunf.statik.dsl.row
+import com.github.kittinunf.statik.dsl.textFooter
+import com.github.kittinunf.statik.dsl.textHeader
 import com.github.kittinunf.statik.dsl.textRow
 import com.github.kittinunf.statik.dsl.twoTextRow
 import com.github.kittinunf.statik.model.Row
@@ -123,7 +125,7 @@ class DSLTest {
             text = "Foo"
         }
 
-        assertThat(r.value, equalTo("Foo"))
+        assertThat(r.text, equalTo("Foo"))
     }
 
     @Test
@@ -133,8 +135,8 @@ class DSLTest {
             iconRes = 11
         }
 
-        assertThat(r.value, equalTo("Foo"))
-        assertThat(r.row.iconRes, equalTo(11))
+        assertThat(r.text, equalTo("Foo"))
+        assertThat(r.iconRes, equalTo(11))
     }
 
     @Test
@@ -144,8 +146,8 @@ class DSLTest {
             summaryText = "Barbar"
         }
 
-        assertThat(r.value?.first, equalTo("FooFoo"))
-        assertThat(r.value?.second, equalTo("Barbar"))
+        assertThat(r.titleText, equalTo("FooFoo"))
+        assertThat(r.summaryText, equalTo("Barbar"))
     }
 
     @Test
@@ -157,8 +159,30 @@ class DSLTest {
             iconRes = 123
         }
 
-        assertThat(r.value?.first, equalTo("FooFoo"))
-        assertThat(r.value?.second, equalTo("Barbar"))
-        assertThat(r.row.iconRes, equalTo(123))
+        assertThat(r.titleText, equalTo("FooFoo"))
+        assertThat(r.summaryText, equalTo("Barbar"))
+        assertThat(r.iconRes, equalTo(123))
+    }
+
+    @Test
+    fun textHeaderCommand() {
+        val r = textHeader {
+            text = "FooFoo"
+            layoutRes = 111
+        }
+
+        assertThat(r.text, equalTo("FooFoo"))
+        assertThat(r.layoutRes, equalTo(111))
+    }
+
+    @Test
+    fun textFooterCommand() {
+        val r = textFooter {
+            text = "FooFoo"
+            layoutRes = 111
+        }
+
+        assertThat(r.text, equalTo("FooFoo"))
+        assertThat(r.layoutRes, equalTo(111))
     }
 }

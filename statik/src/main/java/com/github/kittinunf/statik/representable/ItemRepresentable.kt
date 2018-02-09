@@ -6,6 +6,7 @@ import com.github.kittinunf.statik.model.Accessory
 import com.github.kittinunf.statik.model.Row
 import com.github.kittinunf.statik.model.Section
 import com.github.kittinunf.statik.model.TextRow
+import com.github.kittinunf.statik.model.TextSupplementary
 import com.github.kittinunf.statik.model.TwoTextRow
 import kotlin.properties.Delegates
 
@@ -46,17 +47,48 @@ interface ViewClickListener<T> {
 }
 
 interface ValueChangeListener<T> {
-    var onValueChangedListener: OnValueChangedListener<T>?
+    var onChangedListener: OnValueChangedListener<T>?
+}
+
+data class TextSupplementaryItemRepresentable(internal val item: TextSupplementary = TextSupplementary()) : ItemRepresentable,
+        ViewSetupListener, ViewClickListener<TextSupplementaryItemRepresentable>, ValueChangeListener<TextSupplementary> {
+
+    override var onSetupListener: OnSetupListener? = null
+
+    override var onClickListener: OnClickListener<TextSupplementaryItemRepresentable>? = null
+
+    override var onChangedListener: OnValueChangedListener<TextSupplementary>? = null
+
+    private var _value by Delegates.observable(item.value) { _, old, new ->
+        if (old != new) {
+            item.value = new
+            onChangedListener?.invoke(item)
+        }
+    }
+
+    var text: String
+        set(value) {
+            _value = value to layoutRes
+        }
+        get() = _value.first
+
+    var layoutRes: Int?
+        set(value) {
+            _value = text to value
+        }
+        get() = _value.second
+
+    override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }
 
 data class TextRowItemRepresentable(internal val row: TextRow = TextRow()) : ItemRepresentable,
-        ViewSetupListener, ViewClickListener<TextRowItemRepresentable> {
+        ViewSetupListener, ViewClickListener<TextRowItemRepresentable>, ValueChangeListener<TextRow> {
 
     override var onSetupListener: OnSetupListener? = null
 
     override var onClickListener: OnClickListener<TextRowItemRepresentable>? = null
 
-    var onChangedListener: OnValueChangedListener<TextRow>? = null
+    override var onChangedListener: OnValueChangedListener<TextRow>? = null
 
     private var _value by Delegates.observable(row.value) { _, old, new ->
         if (old != new) {
@@ -69,25 +101,25 @@ data class TextRowItemRepresentable(internal val row: TextRow = TextRow()) : Ite
         set(value) {
             _value = value to iconRes
         }
-        get() = _value!!.first
+        get() = _value.first
 
     var iconRes: Int?
         set(value) {
             _value = text to value
         }
-        get() = _value?.second
+        get() = _value.second
 
     override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }
 
 data class TwoTextRowItemRepresentable(internal val row: TwoTextRow = TwoTextRow()) : ItemRepresentable,
-        ViewSetupListener, ViewClickListener<TwoTextRowItemRepresentable> {
+        ViewSetupListener, ViewClickListener<TwoTextRowItemRepresentable>, ValueChangeListener<TwoTextRow> {
 
     override var onSetupListener: OnSetupListener? = null
 
     override var onClickListener: OnClickListener<TwoTextRowItemRepresentable>? = null
 
-    var onChangedListener: OnValueChangedListener<TwoTextRow>? = null
+    override var onChangedListener: OnValueChangedListener<TwoTextRow>? = null
 
     private var _value by Delegates.observable(row.value) { _, old, new ->
         if (old != new) {
@@ -100,19 +132,19 @@ data class TwoTextRowItemRepresentable(internal val row: TwoTextRow = TwoTextRow
         set(value) {
             _value = Triple(value, summaryText, iconRes)
         }
-        get() = _value!!.first
+        get() = _value.first
 
     var summaryText: String
         set(value) {
             _value = Triple(titleText, value, iconRes)
         }
-        get() = _value!!.second
+        get() = _value.second
 
     var iconRes: Int?
         set(value) {
             _value = Triple(titleText, summaryText, value)
         }
-        get() = _value!!.third
+        get() = _value.third
 
     override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }

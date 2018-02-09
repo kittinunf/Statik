@@ -55,8 +55,6 @@
         android:gravity="end|center_vertical"
         android:minWidth="@dimen/statik_two_lines_widget_min_width"
         android:orientation="vertical"
-        >
-
-    </LinearLayout>
+        />
 
 </LinearLayout>

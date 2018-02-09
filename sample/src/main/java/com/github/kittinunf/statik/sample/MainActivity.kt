@@ -7,8 +7,11 @@ import android.support.v7.widget.LinearLayoutManager
 import android.widget.TextView
 import com.github.kittinunf.statik.dsl.section
 import com.github.kittinunf.statik.dsl.statik
+import com.github.kittinunf.statik.dsl.textFooter
+import com.github.kittinunf.statik.dsl.textHeader
 import com.github.kittinunf.statik.dsl.textRow
 import com.github.kittinunf.statik.dsl.twoTextRow
+import com.github.kittinunf.statik.sample.util.find
 import kotlinx.android.synthetic.main.activity_list.list
 import java.util.*
 
@@ -42,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         val r5 = textRow {
             text = "You can customize the appearance"
             onSetupListener = {
-                val textView = it.findViewById<TextView>(R.id.statik_row_text_primary)
+                val textView = it.find<TextView>(R.id.statik_row_text_primary)
                 TextViewCompat.setTextAppearance(textView, R.style.TextAppearance_AppCompat_Custom1)
             }
         }
@@ -54,7 +57,8 @@ class MainActivity : AppCompatActivity() {
             iconRes = android.R.drawable.ic_input_add
             onClickListener = { _, position, item ->
                 item.summaryText = "${++count} times"
-                item.iconRes = if (count % 2 == 0) android.R.drawable.ic_input_add else android.R.drawable.ic_delete
+                item.iconRes = if (count % 2 == 0) android.R.drawable.ic_input_add
+                else android.R.drawable.ic_delete
                 list.adapter.notifyItemChanged(position)
             }
         }
@@ -70,11 +74,29 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val s1 = section {
-            header {
-                text = "Something"
+        val h1 = textHeader {
+            text = "Header"
+            onSetupListener = {
+                val textView = it.find<TextView>(R.id.statik_row_text_primary)
+                TextViewCompat.setTextAppearance(textView, R.style.TextAppearance_AppCompat_Custom2)
             }
+        }
+
+        val f1 = textFooter {
+            text = "Footer"
+            onSetupListener = {
+                val textView = it.find<TextView>(R.id.statik_row_text_primary)
+                TextViewCompat.setTextAppearance(textView, R.style.TextAppearance_AppCompat_Custom3)
+            }
+            onClickListener = { _, _, _ ->
+                println("Footer is clicked")
+            }
+        }
+
+        val s1 = section {
+            header(h1)
             rows(r1, r2, r3, r4, r5, r6, r7)
+            footer(f1)
         }
 
         val adapter =

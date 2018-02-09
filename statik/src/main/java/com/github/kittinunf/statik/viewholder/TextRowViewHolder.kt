@@ -34,5 +34,4 @@ class TextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder
             item.onClickListener?.invoke(it, adapterPosition, item)
         }
     }
-
 }

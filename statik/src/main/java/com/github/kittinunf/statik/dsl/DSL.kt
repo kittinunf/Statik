@@ -14,6 +14,7 @@ import com.github.kittinunf.statik.model.TextAttribute
 import com.github.kittinunf.statik.model.ViewConfiguration
 import com.github.kittinunf.statik.representable.ItemRepresentable
 import com.github.kittinunf.statik.representable.TextRowItemRepresentable
+import com.github.kittinunf.statik.representable.TextSupplementaryItemRepresentable
 import com.github.kittinunf.statik.representable.TwoTextRowItemRepresentable
 
 class TextAttributeBuilder {
@@ -126,7 +127,12 @@ class SectionBuilder {
     private var footer: Accessory? = null
 
     private val rows = mutableListOf<Row>()
+
+    private var headerRepresentable: ItemRepresentable? = null
+
     private val representables = mutableListOf<ItemRepresentable>()
+
+    private var footerRepresentable: ItemRepresentable? = null
 
     fun row(block: RowBuilder.() -> Unit) {
         val builder = RowBuilder()
@@ -138,8 +144,8 @@ class SectionBuilder {
         rows += r.asList()
     }
 
-    fun rows(vararg r: ItemRepresentable) {
-        representables += r.asList()
+    fun rows(vararg item: ItemRepresentable) {
+        representables += item.asList()
     }
 
     fun header(block: AccessoryBuilder.() -> Unit) {
@@ -148,13 +154,21 @@ class SectionBuilder {
         header = builder.build()
     }
 
+    fun header(item: ItemRepresentable) {
+        headerRepresentable = item
+    }
+
+    fun footer(item: ItemRepresentable) {
+        footerRepresentable = item
+    }
+
     fun footer(block: AccessoryBuilder.() -> Unit) {
         val builder = AccessoryBuilder()
         builder.block()
         footer = builder.build()
     }
 
-    fun build(): Section = Section(header, rows, representables, footer)
+    fun build(): Section = Section(header, rows, headerRepresentable, representables, footerRepresentable, footer)
 }
 
 class StatikBuilder {
@@ -197,48 +211,14 @@ private fun sections(block: StatikBuilder.() -> Unit): List<Section> {
     return builder.build()
 }
 
-//class TextRowItemBuilder {
-//
-//    var text: String = ""
-//
-//    @DrawableRes
-//    var iconRes: Int? = null
-//
-//    var onSetupListener: OnSetupListener? = null
-//
-//    var onClickListener: OnClickListener<TextRowItemRepresentable>? = null
-//
-//    fun build(): TextRowItemRepresentable =
-//            TextRowItemRepresentable(TextRow(text, iconRes)).also {
-//                it.onSetupListener = onSetupListener
-//                it.onClickListener = onClickListener
-//            }
-//}
-//
-//class TwoTextRowItemBuilder {
-//
-//    var titleText: String = ""
-//
-//    var summaryText: String = ""
-//
-//    @DrawableRes
-//    var iconRes: Int? = null
-//
-//    var onSetupListener: OnSetupListener? = null
-//
-//    var onClickListener: OnClickListener<TwoTextRowItemRepresentable>? = null
-//
-//    fun build(): TwoTextRowItemRepresentable =
-//            TwoTextRowItemRepresentable(TwoTextRow(titleText, summaryText, iconRes)).also {
-//                it.onSetupListener = onSetupListener
-//                it.onClickListener = onClickListener
-//            }
-//}
+fun textRow(block: TextRowItemRepresentable.() -> Unit): TextRowItemRepresentable =
+        TextRowItemRepresentable().apply(block)
 
-fun textRow(block: TextRowItemRepresentable.() -> Unit): TextRowItemRepresentable {
-    return TextRowItemRepresentable().apply(block)
-}
+fun twoTextRow(block: TwoTextRowItemRepresentable.() -> Unit): TwoTextRowItemRepresentable =
+        TwoTextRowItemRepresentable().apply(block)
 
-fun twoTextRow(block: TwoTextRowItemRepresentable.() -> Unit): TwoTextRowItemRepresentable {
-    return TwoTextRowItemRepresentable().apply(block)
-}
+fun textHeader(block: TextSupplementaryItemRepresentable.() -> Unit): TextSupplementaryItemRepresentable =
+        TextSupplementaryItemRepresentable().apply(block)
+
+fun textFooter(block: TextSupplementaryItemRepresentable.() -> Unit): TextSupplementaryItemRepresentable =
+        TextSupplementaryItemRepresentable().apply(block)
