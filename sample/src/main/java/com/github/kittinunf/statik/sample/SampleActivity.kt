@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.text.InputType
-import android.view.Gravity
 import android.view.View
 import android.widget.CheckBox
 import com.github.kittinunf.statik.dsl.statik
@@ -26,10 +25,6 @@ class SampleActivity : AppCompatActivity() {
                     section {
                         header {
                             text = "Features"
-                            textAttribute {
-                                color = "#ff4081"
-                                sizeSP = resources.getDimension(R.dimen.text_20)
-                            }
                         }
                         row {
                             primaryText = "Simple Text"
@@ -49,10 +44,6 @@ class SampleActivity : AppCompatActivity() {
                             iconRes = android.R.drawable.ic_delete
                             accessory {
                                 text = "Error"
-                                textAttribute {
-                                    color = "#dc0030"
-                                    gravity = Gravity.END
-                                }
                             }
                         }
                         row {
@@ -70,30 +61,15 @@ class SampleActivity : AppCompatActivity() {
                         }
                         footer {
                             text = "Footer"
-                            textAttribute {
-                                color = "#333333"
-                                sizeSP = resources.getDimension(R.dimen.text_18)
-                            }
                         }
                     }
                     section {
                         header {
                             text = "Customization"
-                            textAttribute {
-                                color = "#999999"
-                                sizeSP = resources.getDimension(R.dimen.text_24)
-                            }
                         }
                         row {
                             primaryText = "Adjustable Primary"
-                            primaryTextAttribute {
-                                color = resources.getColor(R.color.colorAccent).toHexColor()
-                            }
                             secondaryText = "Adjustable Secondary"
-                            secondaryTextAttribute {
-                                color = resources.getColor(android.R.color.holo_orange_dark).toHexColor()
-                                sizeSP = resources.getDimension(R.dimen.text_22)
-                            }
                         }
                         row {
                             primaryText = "Clickable row"
@@ -125,9 +101,6 @@ class SampleActivity : AppCompatActivity() {
                         }
                         footer {
                             text = "Visit Google here >"
-                            textAttribute {
-                                gravity = Gravity.END
-                            }
                             configuration = {
                                 it.find<View>(android.R.id.title).setOnClickListener {
                                     openBrowser("https://google.com")

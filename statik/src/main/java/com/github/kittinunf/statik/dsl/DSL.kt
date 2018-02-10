@@ -1,44 +1,24 @@
 package com.github.kittinunf.statik.dsl
 
-import android.graphics.Typeface
 import android.support.annotation.DrawableRes
 import android.support.annotation.LayoutRes
 import android.text.InputType
-import android.view.Gravity
 import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.model.Accessory
 import com.github.kittinunf.statik.model.ClickHandler
 import com.github.kittinunf.statik.model.Row
 import com.github.kittinunf.statik.model.Section
-import com.github.kittinunf.statik.model.TextAttribute
 import com.github.kittinunf.statik.model.ViewConfiguration
 import com.github.kittinunf.statik.representable.ItemRepresentable
 import com.github.kittinunf.statik.representable.TextRowItemRepresentable
 import com.github.kittinunf.statik.representable.TextSupplementaryItemRepresentable
 import com.github.kittinunf.statik.representable.TwoTextRowItemRepresentable
 
-class TextAttributeBuilder {
-
-    var color: String? = null
-
-    var sizeSP: Float? = null
-
-    var typeface: Typeface = Typeface.DEFAULT
-
-    var gravity: Int = Gravity.START
-
-    fun build(): TextAttribute = TextAttribute(color, sizeSP, typeface, gravity)
-}
-
 class RowBuilder {
 
     var primaryText: String = ""
 
-    private var primaryTextAttribute: TextAttribute? = null
-
     var secondaryText: String? = null
-
-    private var secondaryTextAttribute: TextAttribute? = null
 
     private var type: Row.Type? = null
 
@@ -58,18 +38,6 @@ class RowBuilder {
 
     var configuration: ViewConfiguration? = null
 
-    fun primaryTextAttribute(block: TextAttributeBuilder.() -> Unit) {
-        val builder = TextAttributeBuilder()
-        builder.block()
-        primaryTextAttribute = builder.build()
-    }
-
-    fun secondaryTextAttribute(block: TextAttributeBuilder.() -> Unit) {
-        val builder = TextAttributeBuilder()
-        builder.block()
-        secondaryTextAttribute = builder.build()
-    }
-
     fun accessory(block: AccessoryBuilder.() -> Unit) {
         val builder = AccessoryBuilder()
         builder.block()
@@ -83,7 +51,7 @@ class RowBuilder {
         } else if (hint != null) {
             Row.Type.InputText(hint ?: "", primaryText, inputType)
         } else {
-            Row.Type.Text(primaryText, primaryTextAttribute, secondaryText, secondaryTextAttribute)
+            Row.Type.Text(primaryText, secondaryText)
         }
     }
 
@@ -97,25 +65,17 @@ class AccessoryBuilder {
 
     var text = ""
 
-    private var textAttribute: TextAttribute? = null
-
     @LayoutRes
     var layoutRes: Int? = null
 
     var configuration: ViewConfiguration? = null
-
-    fun textAttribute(block: TextAttributeBuilder.() -> Unit) {
-        val builder = TextAttributeBuilder()
-        builder.block()
-        textAttribute = builder.build()
-    }
 
     fun build(): Accessory {
         val res = layoutRes
         return if (res != null) {
             Accessory.Custom(res, configuration)
         } else {
-            Accessory.Title(text, textAttribute, configuration)
+            Accessory.Title(text, configuration)
         }
     }
 }

@@ -14,9 +14,7 @@ data class Row(val type: Row.Type?,
     sealed class Type {
 
         class Text(val primaryText: String,
-                   val primaryTextAttribute: TextAttribute? = null,
-                   val secondaryText: String? = null,
-                   val secondaryTextAttribute: TextAttribute? = null) : Type()
+                   val secondaryText: String? = null) : Type()
 
         class InputText(val hint: String,
                         val text: String? = null,
