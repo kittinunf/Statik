@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
     android:gravity="center_vertical"
-    android:paddingEnd="?android:scrollbarSize"
     >
 
     <TextView
