@@ -5,6 +5,7 @@ import android.support.v4.widget.TextViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Gravity
+import android.widget.CheckBox
 import android.widget.TextView
 import com.github.kittinunf.statik.dsl.section
 import com.github.kittinunf.statik.dsl.statik
@@ -13,6 +14,7 @@ import com.github.kittinunf.statik.dsl.textHeader
 import com.github.kittinunf.statik.dsl.textRow
 import com.github.kittinunf.statik.dsl.twoTextRow
 import com.github.kittinunf.statik.sample.util.find
+import com.github.kittinunf.statik.sample.util.toast
 import kotlinx.android.synthetic.main.activity_list.list
 import java.util.*
 
@@ -51,7 +53,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val r6 = twoTextRow {
+        val r6 = textRow {
+            text = "You can customize the appearance"
+            onSetupListener = {
+                val textView = it.find<TextView>(R.id.statik_row_text_primary)
+                TextViewCompat.setTextAppearance(textView, R.style.TextAppearance_AppCompat_Custom4)
+            }
+        }
+
+        val r7 = twoTextRow {
             var count = 0
             titleText = "Also, you can try to click this row"
             summaryText = "Click"
@@ -64,10 +74,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val r7 = textRow {
+        val r8 = textRow {
             text = "You can observe changes, click here"
             onClickListener = { _, position, item ->
-                item.text = "Next random: ${Random().nextInt(100)}"
+                item.text = "Next random: ${Random().nextInt(10)}"
                 list.adapter.notifyItemChanged(position)
             }
             onChangedListener = {
@@ -97,13 +107,29 @@ class MainActivity : AppCompatActivity() {
 
         val s1 = section {
             header(h1)
-            rows(r1, r2, r3, r4, r5, r6, r7)
+            rows(r1, r2, r3, r4, r5, r6, r7, r8)
             footer(f1)
+        }
+
+        val h2 = textHeader {
+            text = "Collapsable"
+            layoutRes = R.layout.widget_checkbox
+            onSetupListener = {
+                val checkBox = it.find<CheckBox>(android.R.id.checkbox)
+                checkBox.setOnCheckedChangeListener { _, isChecked ->
+                    toast("CheckBox is $isChecked")
+                }
+            }
+        }
+
+        val s2 = section {
+            header(h2)
+            rows(r1, r1, r1, r1, r1, r1, r1, r1, r1, r1)
         }
 
         val adapter =
                 statik {
-                    sections(s1)
+                    sections(s1, s2)
                 }
 
         list.also {

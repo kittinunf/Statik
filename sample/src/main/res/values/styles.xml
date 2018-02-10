@@ -16,8 +16,14 @@
         <item name="android:textColor">@android:color/holo_orange_dark</item>
     </style>
 
-    <style name="TextAppearance.AppCompat.Custom3" parent="TextAppearance.AppCompat.Small">
+    <style name="TextAppearance.AppCompat.Custom3" parent="TextAppearance.AppCompat.Large">
         <item name="android:textColor">@android:color/holo_blue_dark</item>
+    </style>
+
+    <style name="TextAppearance.AppCompat.Custom4" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@android:color/holo_green_dark</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">italic</item>
     </style>
 
 </resources>

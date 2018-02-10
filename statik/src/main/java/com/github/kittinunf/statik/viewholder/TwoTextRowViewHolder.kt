@@ -35,8 +35,10 @@ class TwoTextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHol
         }
 
         //click
-        itemView.setOnClickListener {
-            item.onClickListener?.invoke(it, adapterPosition, item)
+        item.onClickListener?.let { listener ->
+            itemView.setOnClickListener { view ->
+                listener.invoke(view, adapterPosition, item)
+            }
         }
     }
 }

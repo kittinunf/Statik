@@ -140,10 +140,6 @@ class SectionBuilder {
         rows += builder.build()
     }
 
-    fun rows(vararg r: Row) {
-        rows += r.asList()
-    }
-
     fun rows(vararg item: ItemRepresentable) {
         representables += item.asList()
     }
@@ -168,7 +164,7 @@ class SectionBuilder {
         footer = builder.build()
     }
 
-    fun build(): Section = Section(header, rows, headerRepresentable, representables, footerRepresentable, footer)
+    fun build(): Section = Section(rows, headerRepresentable, representables, footerRepresentable)
 }
 
 class StatikBuilder {
