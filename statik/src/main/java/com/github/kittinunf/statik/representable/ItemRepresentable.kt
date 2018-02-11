@@ -1,30 +1,127 @@
 package com.github.kittinunf.statik.representable
 
+import android.view.View
+import android.widget.TextView
 import com.github.kittinunf.statik.adapter.TypeFactory
-import com.github.kittinunf.statik.model.Accessory
-import com.github.kittinunf.statik.model.Row
-import com.github.kittinunf.statik.model.Section
+import com.github.kittinunf.statik.model.RowOf
+import com.github.kittinunf.statik.model.TextRow
+import com.github.kittinunf.statik.model.TextSupplementary
+import com.github.kittinunf.statik.model.TwoTextRow
+import kotlin.properties.Delegates
 
 interface ItemRepresentable {
     fun type(typeFactory: TypeFactory): Int
 }
 
-data class HeaderSectionItemRepresentable(private val section: Section) : ItemRepresentable {
+typealias OnValueChangedListener<T> = (T) -> Unit
 
-    val header: Accessory
-        get() = section.header ?: error("Header must not be null in HeaderSectionItem")
+typealias OnSetupListener = (View) -> Unit
+
+typealias OnClickListener<T> = (View, Int, T) -> Unit
+
+interface ViewSetupListener {
+    var onSetupListener: OnSetupListener?
+}
+
+interface ViewClickListener<T> {
+    var onClickListener: OnClickListener<T>?
+}
+
+interface ValueChangeListener<T> {
+    var onChangedListener: OnValueChangedListener<T>?
+}
+
+abstract class BaseItemRepresentable<T: ItemRepresentable, U: RowOf<*>> : ItemRepresentable, ViewSetupListener, ViewClickListener<T>, ValueChangeListener<U> {
+    override var onSetupListener: OnSetupListener? = null
+
+    override var onClickListener: OnClickListener<T>? = null
+
+    override var onChangedListener: OnValueChangedListener<U>? = null
+}
+
+data class TextSupplementaryItemRepresentable(private val item: TextSupplementary = TextSupplementary()) :
+        BaseItemRepresentable<TextSupplementaryItemRepresentable, TextSupplementary>() {
+
+    private var _value by Delegates.observable(item.value) { _, old, new ->
+        if (old != new) {
+            item.value = new
+            onChangedListener?.invoke(item)
+        }
+    }
+
+    var text: String
+        set(value) {
+            _value = value to layoutRes
+        }
+        get() = _value.first
+
+    var layoutRes: Int?
+        set(value) {
+            _value = text to value
+        }
+        get() = _value.second
 
     override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }
 
-data class RowItemRepresentable(val row: Row) : ItemRepresentable {
+data class TextRowItemRepresentable(private val row: TextRow = TextRow()) :
+        BaseItemRepresentable<TextRowItemRepresentable, TextRow>() {
+
+    var onTextSetupListener: ((TextView) -> Unit)? = null
+
+    private var _value by Delegates.observable(row.value) { _, old, new ->
+        if (old != new) {
+            row.value = new
+            onChangedListener?.invoke(row)
+        }
+    }
+
+    var text: String
+        set(value) {
+            _value = value to iconRes
+        }
+        get() = _value.first
+
+    var iconRes: Int?
+        set(value) {
+            _value = text to value
+        }
+        get() = _value.second
+
     override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }
 
-data class FooterSectionItemRepresentable(private val section: Section) : ItemRepresentable {
+data class TwoTextRowItemRepresentable(private val row: TwoTextRow = TwoTextRow()) :
+        BaseItemRepresentable<TwoTextRowItemRepresentable, TwoTextRow>() {
 
-    val footer: Accessory
-        get() = section.footer ?: error("Footer must not be null in FooterSectionItem")
+    var onTitleTextSetupListener: ((TextView) -> Unit)? = null
+
+    var onSummaryTextSetupListener: ((TextView) -> Unit)? = null
+
+    private var _value by Delegates.observable(row.value) { _, old, new ->
+        if (old != new) {
+            row.value = new
+            onChangedListener?.invoke(row)
+        }
+    }
+
+    var titleText: String
+        set(value) {
+            _value = Triple(value, summaryText, iconRes)
+        }
+        get() = _value.first
+
+    var summaryText: String
+        set(value) {
+            _value = Triple(titleText, value, iconRes)
+        }
+        get() = _value.second
+
+    var iconRes: Int?
+        set(value) {
+            _value = Triple(titleText, summaryText, value)
+        }
+        get() = _value.third
 
     override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }

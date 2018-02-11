@@ -1,13 +1,22 @@
 package com.github.kittinunf.statik.sample
 
-import android.content.Intent
 import android.os.Bundle
+import android.support.v4.widget.TextViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import com.github.kittinunf.statik.dsl.row
+import android.view.Gravity
+import android.widget.CheckBox
+import android.widget.TextView
 import com.github.kittinunf.statik.dsl.section
 import com.github.kittinunf.statik.dsl.statik
+import com.github.kittinunf.statik.dsl.textFooter
+import com.github.kittinunf.statik.dsl.textHeader
+import com.github.kittinunf.statik.dsl.textRow
+import com.github.kittinunf.statik.dsl.twoTextRow
+import com.github.kittinunf.statik.sample.util.find
+import com.github.kittinunf.statik.sample.util.toast
 import kotlinx.android.synthetic.main.activity_list.list
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,43 +25,104 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_list)
 
-        val r1 = row {
-            primaryText = "Simple List"
+        val r1 = textRow {
+            text = "One Line"
         }
-        val r2 = row {
-            primaryText = "Simple List"
-            secondaryText = "With icon"
+
+        val r2 = textRow {
+            text = "One Line with Icon"
+            iconRes = android.R.drawable.ic_delete
         }
-        val r3 = row {
-            primaryText = "Simple List"
-            secondaryText = "With custom widget"
+
+        val r3 = twoTextRow {
+            titleText = "Two Lines"
+            summaryText = "This is two-line text"
+        }
+
+        val r4 = twoTextRow {
+            titleText = "Two Lines with Icon"
+            summaryText = "This is two-line text with icon"
+            iconRes = android.R.drawable.ic_menu_call
+        }
+
+        val r5 = textRow {
+            text = "You can customize the appearance"
+            onTextSetupListener = {
+                TextViewCompat.setTextAppearance(it, R.style.TextAppearance_AppCompat_Custom1)
+            }
+        }
+
+        val r6 = textRow {
+            text = "You can customize the appearance"
+            onTextSetupListener = {
+                TextViewCompat.setTextAppearance(it, R.style.TextAppearance_AppCompat_Custom4)
+            }
+        }
+
+        val r7 = twoTextRow {
+            var count = 0
+            titleText = "Also, you can try to click this row"
+            summaryText = "Click"
+            iconRes = android.R.drawable.ic_input_add
+            onClickListener = { _, position, item ->
+                item.summaryText = "${++count} times"
+                item.iconRes = if (count % 2 == 0) android.R.drawable.ic_input_add
+                else android.R.drawable.ic_delete
+                list.adapter.notifyItemChanged(position)
+            }
+        }
+
+        val r8 = textRow {
+            text = "You can observe changes, click here"
+            onClickListener = { _, position, item ->
+                item.text = "Next random: ${Random().nextInt(10)}"
+                list.adapter.notifyItemChanged(position)
+            }
+            onChangedListener = {
+                println(it.value)
+            }
+        }
+
+        val h1 = textHeader {
+            text = "Header"
+            onSetupListener = {
+                val textView = it.find<TextView>(R.id.statik_row_text_primary)
+                TextViewCompat.setTextAppearance(textView, R.style.TextAppearance_AppCompat_Custom2)
+            }
+        }
+
+        val f1 = textFooter {
+            text = "Footer"
+            onSetupListener = {
+                val textView = it.find<TextView>(R.id.statik_row_text_primary)
+                textView.gravity = Gravity.END
+                TextViewCompat.setTextAppearance(textView, R.style.TextAppearance_AppCompat_Custom3)
+            }
+            onClickListener = { _, _, _ ->
+                println("Footer is clicked")
+            }
         }
 
         val s1 = section {
-            header {
-                text = "Text"
-                textAttribute {
-                    sizeSP = resources.getDimension(R.dimen.text_18)
-                }
-            }
-            rows(r1, r2, r3)
+            header(h1)
+            rows(r1, r2, r3, r4, r5, r6, r7, r8)
+            footer(f1)
         }
 
-        val rf = row {
-            primaryText = "Example 1"
-            clickHandler = {
-                startActivity(Intent(this@MainActivity, SampleActivity::class.java))
+        val h2 = textHeader {
+            text = "Collapsable"
+            layoutRes = R.layout.widget_checkbox
+            onSetupListener = {
+                val checkBox = it.find<CheckBox>(android.R.id.checkbox)
+                checkBox.setOnCheckedChangeListener { _, isChecked ->
+                    toast("CheckBox is $isChecked")
+                }
             }
         }
 
         val s2 = section {
-            header {
-                text = "Advanced Example"
-                textAttribute {
-                    sizeSP = resources.getDimension(R.dimen.text_18)
-                }
-            }
-            rows(rf)
+            header(h2)
+            rows(r1, r1, r1, r1, r1, r1, r1, r1, r1, r1)
         }
 
         val adapter =
