@@ -7,6 +7,7 @@ import com.github.kittinunf.statik.model.RowOf
 import com.github.kittinunf.statik.model.TextRow
 import com.github.kittinunf.statik.model.TextSupplementary
 import com.github.kittinunf.statik.model.TwoTextRow
+import com.github.kittinunf.statik.model.ViewSupplementary
 import kotlin.properties.Delegates
 
 interface ItemRepresentable {
@@ -31,7 +32,7 @@ interface ValueChangeListener<T> {
     var onChangedListener: OnValueChangedListener<T>?
 }
 
-abstract class BaseItemRepresentable<T: ItemRepresentable, U: RowOf<*>> : ItemRepresentable, ViewSetupListener, ViewClickListener<T>, ValueChangeListener<U> {
+abstract class BaseItemRepresentable<T : ItemRepresentable, U : RowOf<*>> : ItemRepresentable, ViewSetupListener, ViewClickListener<T>, ValueChangeListener<U> {
     override var onSetupListener: OnSetupListener? = null
 
     override var onClickListener: OnClickListener<T>? = null
@@ -60,6 +61,26 @@ data class TextSupplementaryItemRepresentable(private val item: TextSupplementar
             _value = text to value
         }
         get() = _value.second
+
+    override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
+}
+
+data class ViewSupplementaryItemRepresentable(private val item: ViewSupplementary = ViewSupplementary()) :
+        BaseItemRepresentable<ViewSupplementaryItemRepresentable, ViewSupplementary>() {
+
+    private var _value by Delegates.observable(item.value) { _, old, new ->
+        if (old != new) {
+            item.value = new
+            onChangedListener?.invoke(item)
+        }
+    }
+
+    var layoutRes: Int
+        set(value) {
+            _value = value
+        }
+        get() = item.value
+
 
     override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }

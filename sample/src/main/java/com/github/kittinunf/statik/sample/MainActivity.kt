@@ -5,6 +5,7 @@ import android.support.v4.widget.TextViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Gravity
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import com.github.kittinunf.statik.dsl.section
@@ -13,6 +14,7 @@ import com.github.kittinunf.statik.dsl.textFooter
 import com.github.kittinunf.statik.dsl.textHeader
 import com.github.kittinunf.statik.dsl.textRow
 import com.github.kittinunf.statik.dsl.twoTextRow
+import com.github.kittinunf.statik.dsl.viewFooter
 import com.github.kittinunf.statik.sample.util.find
 import com.github.kittinunf.statik.sample.util.toast
 import kotlinx.android.synthetic.main.activity_list.list
@@ -120,9 +122,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val f2 = viewFooter {
+            layoutRes = R.layout.widget_button
+            onSetupListener = {
+                it.find<Button>(android.R.id.button1).setOnClickListener {
+                    toast("Button is clicked")
+                }
+            }
+        }
+
         val s2 = section {
             header(h2)
             rows(r1, r1, r1, r1, r1, r1, r1, r1, r1, r1)
+            footer(f2)
         }
 
         val adapter =

@@ -12,6 +12,7 @@ import com.github.kittinunf.statik.representable.ItemRepresentable
 import com.github.kittinunf.statik.representable.TextRowItemRepresentable
 import com.github.kittinunf.statik.representable.TextSupplementaryItemRepresentable
 import com.github.kittinunf.statik.representable.TwoTextRowItemRepresentable
+import com.github.kittinunf.statik.representable.ViewSupplementaryItemRepresentable
 
 class RowBuilder {
 
@@ -134,3 +135,9 @@ fun textHeader(block: TextSupplementaryItemRepresentable.() -> Unit): TextSupple
 
 fun textFooter(block: TextSupplementaryItemRepresentable.() -> Unit): TextSupplementaryItemRepresentable =
         TextSupplementaryItemRepresentable().apply(block)
+
+fun viewHeader(block: ViewSupplementaryItemRepresentable.() -> Unit): ViewSupplementaryItemRepresentable =
+        ViewSupplementaryItemRepresentable().apply(block)
+
+fun viewFooter(block: ViewSupplementaryItemRepresentable.() -> Unit) : ViewSupplementaryItemRepresentable =
+        ViewSupplementaryItemRepresentable().apply(block)
