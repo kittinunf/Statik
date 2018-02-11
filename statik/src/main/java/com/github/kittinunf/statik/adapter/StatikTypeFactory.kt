@@ -27,7 +27,7 @@ internal val defaultTypeFactory = object : TypeFactory {
 
     override fun type(header: TextSupplementaryItemRepresentable): Int = R.layout.statik_text_supplementary
 
-    override fun type(view: ViewSupplementaryItemRepresentable): Int = R.layout.statik_view_placeholder
+    override fun type(view: ViewSupplementaryItemRepresentable): Int = R.layout.statik_view_supplementary
 
     override fun type(textRow: TextRowItemRepresentable): Int = R.layout.statik_row_one_line
 
@@ -36,7 +36,7 @@ internal val defaultTypeFactory = object : TypeFactory {
     override fun viewHolder(type: Int, view: View): StatikViewHolder {
         return when (type) {
             R.layout.statik_text_supplementary -> TextSupplementaryViewHolder(view)
-            R.layout.statik_view_placeholder -> ViewSupplementaryViewHolder(view)
+            R.layout.statik_view_supplementary -> ViewSupplementaryViewHolder(view)
 
             R.layout.statik_row_one_line -> TextRowViewHolder(view)
             R.layout.statik_row_two_lines -> TwoTextRowViewHolder(view)
