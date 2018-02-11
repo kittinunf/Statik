@@ -2,6 +2,7 @@ package com.github.kittinunf.statik.representable
 
 import android.view.View
 import com.github.kittinunf.statik.adapter.TypeFactory
+import com.github.kittinunf.statik.model.RowOf
 import com.github.kittinunf.statik.model.TextRow
 import com.github.kittinunf.statik.model.TextSupplementary
 import com.github.kittinunf.statik.model.TwoTextRow
@@ -12,7 +13,9 @@ interface ItemRepresentable {
 }
 
 typealias OnValueChangedListener<T> = (T) -> Unit
+
 typealias OnSetupListener = (View) -> Unit
+
 typealias OnClickListener<T> = (View, Int, T) -> Unit
 
 interface ViewSetupListener {
@@ -27,16 +30,16 @@ interface ValueChangeListener<T> {
     var onChangedListener: OnValueChangedListener<T>?
 }
 
-abstract class BaseItemRepresentable<T, U> : ItemRepresentable, ViewSetupListener, ViewClickListener<T>, ValueChangeListener<U>
+abstract class BaseItemRepresentable<T: ItemRepresentable, U: RowOf<*>> : ItemRepresentable, ViewSetupListener, ViewClickListener<T>, ValueChangeListener<U> {
+    override var onSetupListener: OnSetupListener? = null
+
+    override var onClickListener: OnClickListener<T>? = null
+
+    override var onChangedListener: OnValueChangedListener<U>? = null
+}
 
 data class TextSupplementaryItemRepresentable(private val item: TextSupplementary = TextSupplementary()) :
         BaseItemRepresentable<TextSupplementaryItemRepresentable, TextSupplementary>() {
-
-    override var onSetupListener: OnSetupListener? = null
-
-    override var onClickListener: OnClickListener<TextSupplementaryItemRepresentable>? = null
-
-    override var onChangedListener: OnValueChangedListener<TextSupplementary>? = null
 
     private var _value by Delegates.observable(item.value) { _, old, new ->
         if (old != new) {
@@ -63,12 +66,6 @@ data class TextSupplementaryItemRepresentable(private val item: TextSupplementar
 data class TextRowItemRepresentable(private val row: TextRow = TextRow()) :
         BaseItemRepresentable<TextRowItemRepresentable, TextRow>() {
 
-    override var onSetupListener: OnSetupListener? = null
-
-    override var onClickListener: OnClickListener<TextRowItemRepresentable>? = null
-
-    override var onChangedListener: OnValueChangedListener<TextRow>? = null
-
     private var _value by Delegates.observable(row.value) { _, old, new ->
         if (old != new) {
             row.value = new
@@ -93,12 +90,6 @@ data class TextRowItemRepresentable(private val row: TextRow = TextRow()) :
 
 data class TwoTextRowItemRepresentable(private val row: TwoTextRow = TwoTextRow()) :
         BaseItemRepresentable<TwoTextRowItemRepresentable, TwoTextRow>() {
-
-    override var onSetupListener: OnSetupListener? = null
-
-    override var onClickListener: OnClickListener<TwoTextRowItemRepresentable>? = null
-
-    override var onChangedListener: OnValueChangedListener<TwoTextRow>? = null
 
     private var _value by Delegates.observable(row.value) { _, old, new ->
         if (old != new) {
