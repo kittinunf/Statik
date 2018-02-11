@@ -2,7 +2,6 @@ package com.github.kittinunf.statik.representable
 
 import android.view.View
 import com.github.kittinunf.statik.adapter.TypeFactory
-import com.github.kittinunf.statik.model.Row
 import com.github.kittinunf.statik.model.TextRow
 import com.github.kittinunf.statik.model.TextSupplementary
 import com.github.kittinunf.statik.model.TwoTextRow
@@ -10,10 +9,6 @@ import kotlin.properties.Delegates
 
 interface ItemRepresentable {
     fun type(typeFactory: TypeFactory): Int
-}
-
-data class RowItemRepresentable(val row: Row) : ItemRepresentable {
-    override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }
 
 typealias OnValueChangedListener<T> = (T) -> Unit

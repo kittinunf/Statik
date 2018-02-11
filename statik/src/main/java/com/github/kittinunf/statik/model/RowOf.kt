@@ -2,7 +2,7 @@ package com.github.kittinunf.statik.model
 
 import android.support.annotation.DrawableRes
 
-sealed class RowOf<T>(var value: T)
+sealed class RowOf<T>(var value: T, val section: Section? = null)
 
 class TextRow(text: String = "", @DrawableRes iconRes: Int? = null) :
         RowOf<Pair<String, Int?>>(text to iconRes)
