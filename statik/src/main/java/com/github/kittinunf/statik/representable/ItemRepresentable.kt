@@ -3,7 +3,7 @@ package com.github.kittinunf.statik.representable
 import android.view.View
 import android.widget.TextView
 import com.github.kittinunf.statik.adapter.TypeFactory
-import com.github.kittinunf.statik.model.RowOf
+import com.github.kittinunf.statik.model.Row
 import com.github.kittinunf.statik.model.TextRow
 import com.github.kittinunf.statik.model.TextSupplementary
 import com.github.kittinunf.statik.model.TwoTextRow
@@ -32,7 +32,7 @@ interface ValueChangeListener<T> {
     var onChangedListener: OnValueChangedListener<T>?
 }
 
-abstract class BaseItemRepresentable<T : ItemRepresentable, U : RowOf<*>> : ItemRepresentable, ViewSetupListener, ViewClickListener<T>, ValueChangeListener<U> {
+abstract class BaseItemRepresentable<T : ItemRepresentable, U : Row<*>> : ItemRepresentable, ViewSetupListener, ViewClickListener<T>, ValueChangeListener<U> {
     override var onSetupListener: OnSetupListener? = null
 
     override var onClickListener: OnClickListener<T>? = null

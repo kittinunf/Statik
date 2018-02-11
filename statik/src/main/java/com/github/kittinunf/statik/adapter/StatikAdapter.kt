@@ -37,14 +37,14 @@ open class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFacto
     private fun createRepresentable(section: Section): List<ItemRepresentable> {
         val items = mutableListOf<ItemRepresentable>()
 
-        if (section.headerRepresentable != null) {
-            items.add(section.headerRepresentable)
+        if (section.header != null) {
+            items.add(section.header)
         }
 
-        items.addAll(section.representables)
+        items.addAll(section.rows)
 
-        if (section.footerRepresentable != null) {
-            items.add(section.footerRepresentable)
+        if (section.footer != null) {
+            items.add(section.footer)
         }
         return items
     }
