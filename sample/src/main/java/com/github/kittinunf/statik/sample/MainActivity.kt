@@ -47,17 +47,15 @@ class MainActivity : AppCompatActivity() {
 
         val r5 = textRow {
             text = "You can customize the appearance"
-            onSetupListener = {
-                val textView = it.find<TextView>(R.id.statik_row_text_primary)
-                TextViewCompat.setTextAppearance(textView, R.style.TextAppearance_AppCompat_Custom1)
+            onTextSetupListener = {
+                TextViewCompat.setTextAppearance(it, R.style.TextAppearance_AppCompat_Custom1)
             }
         }
 
         val r6 = textRow {
             text = "You can customize the appearance"
-            onSetupListener = {
-                val textView = it.find<TextView>(R.id.statik_row_text_primary)
-                TextViewCompat.setTextAppearance(textView, R.style.TextAppearance_AppCompat_Custom4)
+            onTextSetupListener = {
+                TextViewCompat.setTextAppearance(it, R.style.TextAppearance_AppCompat_Custom4)
             }
         }
 

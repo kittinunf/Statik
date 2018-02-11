@@ -19,7 +19,7 @@
         />
 
     <TextView
-        android:id="@+id/statik_row_text_primary"
+        android:id="@+id/statik_row_text"
         style="@style/Widget.Statik.Base.PrimaryTextItem"
         android:layout_marginBottom="@dimen/statik_two_lines_margin_bottom"
         android:layout_marginEnd="@dimen/statik_two_lines_margin_end"

@@ -1,7 +1,5 @@
 package com.github.kittinunf.statik.sample
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -86,13 +84,4 @@ class SampleActivity : AppCompatActivity() {
             it.adapter = adapter
         }
     }
-
-    private fun openBrowser(url: String) {
-        startActivity(Intent(Intent.ACTION_VIEW).apply {
-            data = Uri.parse(url)
-        })
-    }
-
-    private fun Int.toHexColor() = "#%06X".format(0xFFFFFF and this)
-
 }

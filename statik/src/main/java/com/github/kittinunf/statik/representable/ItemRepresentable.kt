@@ -1,6 +1,7 @@
 package com.github.kittinunf.statik.representable
 
 import android.view.View
+import android.widget.TextView
 import com.github.kittinunf.statik.adapter.TypeFactory
 import com.github.kittinunf.statik.model.RowOf
 import com.github.kittinunf.statik.model.TextRow
@@ -66,6 +67,8 @@ data class TextSupplementaryItemRepresentable(private val item: TextSupplementar
 data class TextRowItemRepresentable(private val row: TextRow = TextRow()) :
         BaseItemRepresentable<TextRowItemRepresentable, TextRow>() {
 
+    var onTextSetupListener: ((TextView) -> Unit)? = null
+
     private var _value by Delegates.observable(row.value) { _, old, new ->
         if (old != new) {
             row.value = new
@@ -90,6 +93,10 @@ data class TextRowItemRepresentable(private val row: TextRow = TextRow()) :
 
 data class TwoTextRowItemRepresentable(private val row: TwoTextRow = TwoTextRow()) :
         BaseItemRepresentable<TwoTextRowItemRepresentable, TwoTextRow>() {
+
+    var onTitleTextSetupListener: ((TextView) -> Unit)? = null
+
+    var onSummaryTextSetupListener: ((TextView) -> Unit)? = null
 
     private var _value by Delegates.observable(row.value) { _, old, new ->
         if (old != new) {

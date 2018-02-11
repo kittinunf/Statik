@@ -1,5 +1,6 @@
 package com.github.kittinunf.statik.viewholder
 
+import android.support.v4.widget.TextViewCompat
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -20,6 +21,20 @@ class TwoTextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHol
         val summaryTextView = itemView.findViewById<TextView>(R.id.statik_row_text_secondary)
         summaryTextView.apply {
             text = item.summaryText
+        }
+
+        val titleTextSetup = item.onTitleTextSetupListener
+        if (titleTextSetup == null) {
+            TextViewCompat.setTextAppearance(titleTextView, R.style.Widget_Statik_Base_PrimaryTextItem)
+        } else {
+            titleTextSetup(titleTextView)
+        }
+
+        val summaryTextSetup = item.onSummaryTextSetupListener
+        if (summaryTextSetup == null) {
+            TextViewCompat.setTextAppearance(summaryTextView, R.style.Widget_Statik_Base_SecondaryTextItem)
+        } else {
+            summaryTextSetup(summaryTextView)
         }
 
         //image
