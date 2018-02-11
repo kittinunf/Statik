@@ -3,12 +3,11 @@ package com.github.kittinunf.statik.dsl
 import android.support.annotation.DrawableRes
 import android.support.annotation.LayoutRes
 import android.text.InputType
+import android.view.View
 import com.github.kittinunf.statik.adapter.StatikAdapter
-import com.github.kittinunf.statik.model.Accessory
 import com.github.kittinunf.statik.model.ClickHandler
 import com.github.kittinunf.statik.model.Row
 import com.github.kittinunf.statik.model.Section
-import com.github.kittinunf.statik.model.ViewConfiguration
 import com.github.kittinunf.statik.representable.ItemRepresentable
 import com.github.kittinunf.statik.representable.TextRowItemRepresentable
 import com.github.kittinunf.statik.representable.TextSupplementaryItemRepresentable
@@ -32,17 +31,9 @@ class RowBuilder {
     @DrawableRes
     var iconRes: Int? = null
 
-    private var accessory: Accessory? = null
-
     var clickHandler: ClickHandler? = null
 
-    var configuration: ViewConfiguration? = null
-
-    fun accessory(block: AccessoryBuilder.() -> Unit) {
-        val builder = AccessoryBuilder()
-        builder.block()
-        accessory = builder.build()
-    }
+    var configuration: ((View) -> Unit)? = null
 
     private fun buildType(): Row.Type {
         val res = layoutRes
@@ -57,34 +48,11 @@ class RowBuilder {
 
     fun build(): Row {
         type = buildType()
-        return Row(type, iconRes, accessory, clickHandler)
-    }
-}
-
-class AccessoryBuilder {
-
-    var text = ""
-
-    @LayoutRes
-    var layoutRes: Int? = null
-
-    var configuration: ViewConfiguration? = null
-
-    fun build(): Accessory {
-        val res = layoutRes
-        return if (res != null) {
-            Accessory.Custom(res, configuration)
-        } else {
-            Accessory.Title(text, configuration)
-        }
+        return Row(type, iconRes, clickHandler)
     }
 }
 
 class SectionBuilder {
-
-    private var header: Accessory? = null
-
-    private var footer: Accessory? = null
 
     private val rows = mutableListOf<Row>()
 
@@ -104,24 +72,12 @@ class SectionBuilder {
         representables += item.asList()
     }
 
-    fun header(block: AccessoryBuilder.() -> Unit) {
-        val builder = AccessoryBuilder()
-        builder.block()
-        header = builder.build()
-    }
-
     fun header(item: ItemRepresentable) {
         headerRepresentable = item
     }
 
     fun footer(item: ItemRepresentable) {
         footerRepresentable = item
-    }
-
-    fun footer(block: AccessoryBuilder.() -> Unit) {
-        val builder = AccessoryBuilder()
-        builder.block()
-        footer = builder.build()
     }
 
     fun build(): Section = Section(rows, headerRepresentable, representables, footerRepresentable)
