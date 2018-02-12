@@ -2,25 +2,26 @@ package com.github.kittinunf.statik.model
 
 import android.support.annotation.DrawableRes
 import android.support.annotation.LayoutRes
-import android.text.InputType
-import android.view.View
-import android.view.ViewConfiguration
 
-typealias ClickHandler = (Row) -> Unit
+sealed class Row<T>(var value: T, val section: Section? = null)
 
-data class Row(val type: Row.Type?,
-               @DrawableRes val iconRes: Int? = null,
-               val clickHandler: ClickHandler? = null
-) {
-    sealed class Type {
+// Supplementary
+class TextSupplementary(text: String = "", @LayoutRes widgetRes: Int? = null) :
+        Row<Pair<String, Int?>>(text to widgetRes)
 
-        class Text(val primaryText: String,
-                   val secondaryText: String? = null) : Type()
+class ViewSupplementary(@LayoutRes layoutRes: Int = 0) : Row<Int>(layoutRes)
 
-        class InputText(val hint: String,
-                        val text: String? = null,
-                        val inputType: Int = InputType.TYPE_CLASS_TEXT) : Type()
+// Row
+class TextRow(text: String = "", @DrawableRes iconRes: Int? = null) :
+        Row<Pair<String, Int?>>(text to iconRes)
 
-        class Custom(@LayoutRes val layoutRes: Int, val viewConfiguration: ((View) -> Unit)? = null) : Type()
-    }
-}
+class TwoTextRow(titleText: String = "",
+                 summaryText: String = "",
+                 @DrawableRes iconRes: Int? = null) :
+        Row<Triple<String, String, Int?>>(Triple(titleText, summaryText, iconRes))
+
+class ViewRow(@LayoutRes layoutRes: Int = 0) : Row<Int>(layoutRes)
+
+class CheckRow(value: Boolean) : Row<Boolean>(value)
+
+

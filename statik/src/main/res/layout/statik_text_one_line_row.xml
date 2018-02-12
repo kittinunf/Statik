@@ -30,14 +30,4 @@
         tools:text="Primary"
         />
 
-    <LinearLayout
-        android:id="@+id/statik_row_widget_frame"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="@dimen/statik_two_lines_margin_end"
-        android:gravity="end|center_vertical"
-        android:minWidth="@dimen/statik_two_lines_widget_min_width"
-        android:orientation="vertical"
-        />
-
 </LinearLayout>
