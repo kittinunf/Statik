@@ -8,7 +8,6 @@ import android.view.Gravity
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
-import android.widget.TextView
 import com.github.kittinunf.statik.dsl.section
 import com.github.kittinunf.statik.dsl.statik
 import com.github.kittinunf.statik.dsl.textFooter
@@ -90,18 +89,16 @@ class MainActivity : AppCompatActivity() {
 
         val h1 = textHeader {
             text = "Header"
-            onSetupListener = {
-                val textView = it.find<TextView>(R.id.statik_row_text_primary)
-                TextViewCompat.setTextAppearance(textView, R.style.TextAppearance_AppCompat_Custom2)
+            onTextSetupListener = {
+                TextViewCompat.setTextAppearance(it, R.style.TextAppearance_AppCompat_Custom2)
             }
         }
 
         val f1 = textFooter {
             text = "Footer"
-            onSetupListener = {
-                val textView = it.find<TextView>(R.id.statik_row_text_primary)
-                textView.gravity = Gravity.END
-                TextViewCompat.setTextAppearance(textView, R.style.TextAppearance_AppCompat_Custom3)
+            onTextSetupListener = {
+                it.gravity = Gravity.END
+                TextViewCompat.setTextAppearance(it, R.style.TextAppearance_AppCompat_Custom3)
             }
             onClickListener = { _, _, _ ->
                 println("Footer is clicked")

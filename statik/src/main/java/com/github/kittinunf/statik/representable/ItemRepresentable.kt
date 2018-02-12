@@ -48,6 +48,8 @@ abstract class BaseItemRepresentable<T : ItemRepresentable, U : Row<*>> : ItemRe
 data class TextSupplementaryItemRepresentable(override val item: TextSupplementary = TextSupplementary()) :
         BaseItemRepresentable<TextSupplementaryItemRepresentable, TextSupplementary>() {
 
+    var onTextSetupListener: ((TextView) -> Unit)? = null
+
     private var _value by Delegates.observable(item.value) { _, old, new ->
         if (old != new) {
             item.value = new

@@ -10,7 +10,7 @@
 
     <TextView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/statik_row_text_primary"
+        android:id="@+id/statik_row_text"
         style="@style/Widget.Statik.Base.HeaderTextItem"
         android:layout_width="0dp"
         android:layout_weight="1"

@@ -1,5 +1,6 @@
 package com.github.kittinunf.statik.viewholder
 
+import android.support.v4.widget.TextViewCompat
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -23,9 +24,16 @@ class TextSupplementaryViewHolder(view: View) : StatikViewHolder(view), Bindable
         item.onSetupListener?.invoke(itemView)
 
         //primary
-        val primaryTextView = itemView.findViewById<TextView>(R.id.statik_row_text_primary)
-        primaryTextView.apply {
+        val textView = itemView.findViewById<TextView>(R.id.statik_row_text)
+        textView.apply {
             text = item.text
+        }
+
+        val textSetup = item.onTextSetupListener
+        if (textSetup == null) {
+            TextViewCompat.setTextAppearance(textView, R.style.Widget_Statik_Base_HeaderTextItem)
+        } else {
+            textSetup(textView)
         }
 
         //click
