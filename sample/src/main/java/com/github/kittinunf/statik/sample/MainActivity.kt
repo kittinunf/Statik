@@ -68,19 +68,20 @@ class MainActivity : AppCompatActivity() {
             titleText = "Also, you can try to click this row"
             summaryText = "Click"
             iconRes = android.R.drawable.ic_input_add
-            onClickListener = { _, position, item ->
-                item.summaryText = "${++count} times"
-                item.iconRes = if (count % 2 == 0) android.R.drawable.ic_input_add
+            onClickListener = { _, position ->
+                summaryText = "${++count} times"
+                iconRes = if (count % 2 == 0) android.R.drawable.ic_input_add
                 else android.R.drawable.ic_delete
-                list.adapter.notifyItemChanged(position)
+
+                updateList(position)
             }
         }
 
         val r8 = textRow {
             text = "You can observe changes, click here"
-            onClickListener = { _, position, item ->
-                item.text = "Next random: ${Random().nextInt(10)}"
-                list.adapter.notifyItemChanged(position)
+            onClickListener = { _, position ->
+                text = "Next random: ${Random().nextInt(10)}"
+                updateList(position)
             }
             onChangedListener = {
                 println(it.value)
@@ -100,7 +101,7 @@ class MainActivity : AppCompatActivity() {
                 it.gravity = Gravity.END
                 TextViewCompat.setTextAppearance(it, R.style.TextAppearance_AppCompat_Custom3)
             }
-            onClickListener = { _, _, _ ->
+            onClickListener = { _, _ ->
                 println("Footer is clicked")
             }
         }
@@ -114,7 +115,7 @@ class MainActivity : AppCompatActivity() {
         val h2 = textHeader {
             text = "Collapsable"
             layoutRes = R.layout.widget_checkbox
-            onSetupListener = {
+            onViewSetupListener = {
                 val checkBox = it.find<CheckBox>(android.R.id.checkbox)
                 checkBox.setOnCheckedChangeListener { _, isChecked ->
                     toast("CheckBox is $isChecked")
@@ -124,7 +125,7 @@ class MainActivity : AppCompatActivity() {
 
         val f2 = viewFooter {
             layoutRes = R.layout.widget_button
-            onSetupListener = {
+            onViewSetupListener = {
                 it.find<Button>(android.R.id.button1).setOnClickListener {
                     toast("Button is clicked")
                 }
@@ -139,7 +140,7 @@ class MainActivity : AppCompatActivity() {
 
         val r9 = viewRow {
             layoutRes = R.layout.widget_two_image_view
-            onSetupListener = {
+            onViewSetupListener = {
                 val image1 = it.find<ImageView>(android.R.id.icon1)
                 val image2 = it.find<ImageView>(android.R.id.icon2)
 
@@ -163,4 +164,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun updateList(at: Int) {
+        list.adapter.notifyItemChanged(at)
+    }
 }

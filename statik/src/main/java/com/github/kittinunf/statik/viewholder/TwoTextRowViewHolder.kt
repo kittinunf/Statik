@@ -10,7 +10,7 @@ import com.github.kittinunf.statik.representable.TwoTextRowItemRepresentable
 class TwoTextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<TwoTextRowItemRepresentable> {
 
     override fun bind(item: TwoTextRowItemRepresentable) {
-        item.onSetupListener?.invoke(itemView)
+        item.onViewSetupListener?.invoke(itemView)
 
         //primary
         val titleTextView = itemView.findViewById<TextView>(R.id.statik_row_text_primary)
@@ -52,7 +52,7 @@ class TwoTextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHol
         //click
         item.onClickListener?.let { listener ->
             itemView.setOnClickListener { view ->
-                listener.invoke(view, adapterPosition, item)
+                listener.invoke(view, adapterPosition)
             }
         }
     }

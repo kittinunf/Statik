@@ -9,12 +9,12 @@ class ViewSupplementaryViewHolder(view: View) : StatikViewHolder(view), Bindable
 
     override fun bind(item: ViewSupplementaryItemRepresentable) {
         (itemView as ViewGroup).inflate(item.layoutRes)
-        item.onSetupListener?.invoke(itemView)
+        item.onViewSetupListener?.invoke(itemView)
 
         //click
         item.onClickListener?.let { listener ->
             itemView.setOnClickListener { view ->
-                listener.invoke(view, adapterPosition, item)
+                listener.invoke(view, adapterPosition)
             }
         }
     }

@@ -17,36 +17,36 @@ interface ItemRepresentable {
 
 typealias OnValueChangedListener<T> = (T) -> Unit
 
-typealias OnSetupListener = (View) -> Unit
+typealias OnViewSetupListener = (View) -> Unit
 
-typealias OnClickListener<T> = (View, Int, T) -> Unit
+typealias OnClickListener = (View, Int) -> Unit
 
 interface ViewSetupListener {
-    var onSetupListener: OnSetupListener?
+    var onViewSetupListener: OnViewSetupListener?
 }
 
-interface ViewClickListener<T> {
-    var onClickListener: OnClickListener<T>?
+interface ViewClickListener {
+    var onClickListener: OnClickListener?
 }
 
 interface ValueChangeListener<T> {
     var onChangedListener: OnValueChangedListener<T>?
 }
 
-abstract class BaseItemRepresentable<T : ItemRepresentable, U : Row<*>> : ItemRepresentable,
-        ViewSetupListener, ViewClickListener<T>, ValueChangeListener<U> {
+abstract class BaseItemRepresentable : ItemRepresentable,
+        ViewSetupListener, ViewClickListener, ValueChangeListener<Row<*>> {
 
-    override var onSetupListener: OnSetupListener? = null
+    override var onViewSetupListener: OnViewSetupListener? = null
 
-    override var onClickListener: OnClickListener<T>? = null
+    override var onClickListener: OnClickListener? = null
 
-    override var onChangedListener: OnValueChangedListener<U>? = null
+    override var onChangedListener: OnValueChangedListener<Row<*>>? = null
 
-    protected abstract val item: U
+    protected abstract val item: Row<*>
 }
 
 data class TextSupplementaryItemRepresentable(override val item: TextSupplementary = TextSupplementary()) :
-        BaseItemRepresentable<TextSupplementaryItemRepresentable, TextSupplementary>() {
+        BaseItemRepresentable() {
 
     var onTextSetupListener: ((TextView) -> Unit)? = null
 
@@ -73,7 +73,7 @@ data class TextSupplementaryItemRepresentable(override val item: TextSupplementa
 }
 
 data class ViewSupplementaryItemRepresentable(override val item: ViewSupplementary = ViewSupplementary()) :
-        BaseItemRepresentable<ViewSupplementaryItemRepresentable, ViewSupplementary>() {
+        BaseItemRepresentable() {
 
     private var _value by Delegates.observable(item.value) { _, old, new ->
         if (old != new) {
@@ -92,7 +92,7 @@ data class ViewSupplementaryItemRepresentable(override val item: ViewSupplementa
 }
 
 data class TextRowItemRepresentable(override val item: TextRow = TextRow()) :
-        BaseItemRepresentable<TextRowItemRepresentable, TextRow>() {
+        BaseItemRepresentable() {
 
     var onTextSetupListener: ((TextView) -> Unit)? = null
 
@@ -119,7 +119,7 @@ data class TextRowItemRepresentable(override val item: TextRow = TextRow()) :
 }
 
 data class TwoTextRowItemRepresentable(override val item: TwoTextRow = TwoTextRow()) :
-        BaseItemRepresentable<TwoTextRowItemRepresentable, TwoTextRow>() {
+        BaseItemRepresentable() {
 
     var onTitleTextSetupListener: ((TextView) -> Unit)? = null
 
@@ -154,7 +154,7 @@ data class TwoTextRowItemRepresentable(override val item: TwoTextRow = TwoTextRo
 }
 
 data class ViewRowItemRepresentable(override val item: ViewRow = ViewRow()) :
-        BaseItemRepresentable<ViewRowItemRepresentable, ViewRow>() {
+        BaseItemRepresentable() {
 
     private var _value by Delegates.observable(item.value) { _, old, new ->
         if (old != new) {

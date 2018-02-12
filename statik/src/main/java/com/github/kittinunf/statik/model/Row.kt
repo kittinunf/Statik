@@ -3,7 +3,7 @@ package com.github.kittinunf.statik.model
 import android.support.annotation.DrawableRes
 import android.support.annotation.LayoutRes
 
-sealed class Row<T>(var value: T, val section: Section? = null)
+sealed class Row<T>(var value: T)
 
 // Supplementary
 class TextSupplementary(text: String = "", @LayoutRes widgetRes: Int? = null) :

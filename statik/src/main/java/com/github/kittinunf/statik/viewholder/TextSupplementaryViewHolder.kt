@@ -21,7 +21,7 @@ class TextSupplementaryViewHolder(view: View) : StatikViewHolder(view), Bindable
             widgetFrame.inflate(layoutRes)
         }
 
-        item.onSetupListener?.invoke(itemView)
+        item.onViewSetupListener?.invoke(itemView)
 
         //primary
         val textView = itemView.findViewById<TextView>(R.id.statik_row_text)
@@ -39,7 +39,7 @@ class TextSupplementaryViewHolder(view: View) : StatikViewHolder(view), Bindable
         //click
         item.onClickListener?.let { listener ->
             itemView.setOnClickListener { view ->
-                listener.invoke(view, adapterPosition, item)
+                listener.invoke(view, adapterPosition)
             }
         }
     }
