@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Gravity
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.TextView
 import com.github.kittinunf.statik.dsl.section
 import com.github.kittinunf.statik.dsl.statik
@@ -15,7 +16,9 @@ import com.github.kittinunf.statik.dsl.textHeader
 import com.github.kittinunf.statik.dsl.textRow
 import com.github.kittinunf.statik.dsl.twoTextRow
 import com.github.kittinunf.statik.dsl.viewFooter
+import com.github.kittinunf.statik.dsl.viewRow
 import com.github.kittinunf.statik.sample.util.find
+import com.github.kittinunf.statik.sample.util.load
 import com.github.kittinunf.statik.sample.util.toast
 import kotlinx.android.synthetic.main.activity_list.list
 import java.util.*
@@ -137,9 +140,24 @@ class MainActivity : AppCompatActivity() {
             footer(f2)
         }
 
+        val r9 = viewRow {
+            layoutRes = R.layout.widget_two_image_view
+            onSetupListener = {
+                val image1 = it.find<ImageView>(android.R.id.icon1)
+                val image2 = it.find<ImageView>(android.R.id.icon2)
+
+                image1.load("https://source.unsplash.com/200x200/?nature")
+                image2.load("https://source.unsplash.com/200x200/?building")
+            }
+        }
+
+        val s3 = section {
+            rows(r9)
+        }
+
         val adapter =
                 statik {
-                    sections(s1, s2)
+                    sections(s1, s2, s3)
                 }
 
         list.also {
@@ -147,4 +165,5 @@ class MainActivity : AppCompatActivity() {
             it.adapter = adapter
         }
     }
+
 }

@@ -20,6 +20,8 @@ class TwoTextRow(titleText: String = "",
                  @DrawableRes iconRes: Int? = null) :
         Row<Triple<String, String, Int?>>(Triple(titleText, summaryText, iconRes))
 
+class ViewRow(@LayoutRes layoutRes: Int = 0) : Row<Int>(layoutRes)
+
 class CheckRow(value: Boolean) : Row<Boolean>(value)
 
-class ButtonRow(enabled: Boolean) : Row<Boolean>(enabled)
+

@@ -6,6 +6,7 @@ import com.github.kittinunf.statik.dsl.textRow
 import com.github.kittinunf.statik.dsl.twoTextRow
 import com.github.kittinunf.statik.dsl.viewFooter
 import com.github.kittinunf.statik.dsl.viewHeader
+import com.github.kittinunf.statik.dsl.viewRow
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
@@ -16,7 +17,7 @@ import org.robolectric.RobolectricTestRunner
 class DSLTest {
 
     @Test
-    fun textRowCommand() {
+    fun textRow() {
         val r = textRow {
             text = "Foo"
         }
@@ -25,7 +26,7 @@ class DSLTest {
     }
 
     @Test
-    fun textRowCommandWithIcon() {
+    fun textRowWithIcon() {
         val r = textRow {
             text = "Foo"
             iconRes = 11
@@ -36,7 +37,7 @@ class DSLTest {
     }
 
     @Test
-    fun twoTextRowCommand() {
+    fun twoTextRow() {
         val r = twoTextRow {
             titleText = "FooFoo"
             summaryText = "Barbar"
@@ -47,7 +48,7 @@ class DSLTest {
     }
 
     @Test
-    fun twoTextRowCommandWithIcon() {
+    fun twoTextRowWithIcon() {
         val r = twoTextRow {
             titleText = "FooFoo"
             summaryText = "Barbar"
@@ -61,7 +62,7 @@ class DSLTest {
     }
 
     @Test
-    fun textHeaderCommand() {
+    fun textHeader() {
         val r = textHeader {
             text = "FooFoo"
             layoutRes = 111
@@ -72,7 +73,7 @@ class DSLTest {
     }
 
     @Test
-    fun textFooterCommand() {
+    fun textFooter() {
         val r = textFooter {
             text = "FooFoo"
             layoutRes = 111
@@ -83,7 +84,7 @@ class DSLTest {
     }
 
     @Test
-    fun viewHeaderCommand() {
+    fun viewHeader() {
         val h = viewHeader {
             layoutRes = 123
         }
@@ -92,11 +93,20 @@ class DSLTest {
     }
 
     @Test
-    fun viewFooterCommand() {
+    fun viewFooter() {
         val f = viewFooter {
             layoutRes = 321
         }
 
         assertThat(f.layoutRes, equalTo(321))
+    }
+
+    @Test
+    fun viewRow() {
+        val r = viewRow {
+            layoutRes = 12345
+        }
+
+        assertThat(r.layoutRes, equalTo(12345))
     }
 }
