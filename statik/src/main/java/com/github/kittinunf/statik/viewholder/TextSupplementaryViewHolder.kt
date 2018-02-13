@@ -1,6 +1,5 @@
 package com.github.kittinunf.statik.viewholder
 
-import android.support.v4.widget.TextViewCompat
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -8,7 +7,7 @@ import com.github.kittinunf.statik.R
 import com.github.kittinunf.statik.extension.inflate
 import com.github.kittinunf.statik.representable.TextSupplementaryItemRepresentable
 
-class TextSupplementaryViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<TextSupplementaryItemRepresentable> {
+open class TextSupplementaryViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<TextSupplementaryItemRepresentable> {
 
     override fun bind(item: TextSupplementaryItemRepresentable) {
         //widget frame
@@ -25,16 +24,7 @@ class TextSupplementaryViewHolder(view: View) : StatikViewHolder(view), Bindable
 
         //primary
         val textView = itemView.findViewById<TextView>(R.id.statik_row_text)
-        textView.apply {
-            text = item.text
-        }
-
-        val textSetup = item.onTextSetupListener
-        if (textSetup == null) {
-            TextViewCompat.setTextAppearance(textView, R.style.Widget_Statik_Base_HeaderTextItem)
-        } else {
-            textSetup(textView)
-        }
+        textView.text = item.text
 
         //click
         item.onClickListener?.let { listener ->

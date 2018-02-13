@@ -14,14 +14,10 @@ class TwoTextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHol
 
         //primary
         val titleTextView = itemView.findViewById<TextView>(R.id.statik_row_text_primary)
-        titleTextView.apply {
-            text = item.titleText
-        }
+        titleTextView.text = item.titleText
 
         val summaryTextView = itemView.findViewById<TextView>(R.id.statik_row_text_secondary)
-        summaryTextView.apply {
-            text = item.summaryText
-        }
+        summaryTextView.text = item.summaryText
 
         val titleTextSetup = item.onTitleTextSetupListener
         if (titleTextSetup == null) {

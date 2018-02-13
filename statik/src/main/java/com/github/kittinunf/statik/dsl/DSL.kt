@@ -2,6 +2,8 @@ package com.github.kittinunf.statik.dsl
 
 import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.model.Section
+import com.github.kittinunf.statik.representable.FooterTextSupplementaryRepresentable
+import com.github.kittinunf.statik.representable.HeaderTextSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.ItemRepresentable
 import com.github.kittinunf.statik.representable.TextRowItemRepresentable
 import com.github.kittinunf.statik.representable.TextSupplementaryItemRepresentable
@@ -66,11 +68,11 @@ private fun sections(block: StatikBuilder.() -> Unit): List<Section> {
     return builder.build()
 }
 
-fun textHeader(block: TextSupplementaryItemRepresentable.() -> Unit): TextSupplementaryItemRepresentable =
-        TextSupplementaryItemRepresentable().apply(block)
+fun textHeader(block: TextSupplementaryItemRepresentable.() -> Unit): HeaderTextSupplementaryRepresentable =
+        HeaderTextSupplementaryRepresentable().apply(block)
 
-fun textFooter(block: TextSupplementaryItemRepresentable.() -> Unit): TextSupplementaryItemRepresentable =
-        TextSupplementaryItemRepresentable().apply(block)
+fun textFooter(block: TextSupplementaryItemRepresentable.() -> Unit): FooterTextSupplementaryRepresentable =
+        FooterTextSupplementaryRepresentable().apply(block)
 
 fun viewHeader(block: ViewSupplementaryItemRepresentable.() -> Unit): ViewSupplementaryItemRepresentable =
         ViewSupplementaryItemRepresentable().apply(block)

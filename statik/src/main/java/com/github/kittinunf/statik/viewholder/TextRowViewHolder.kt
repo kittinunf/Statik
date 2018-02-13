@@ -14,9 +14,7 @@ class TextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder
 
         //primary
         val textView = itemView.findViewById<TextView>(R.id.statik_row_text)
-        textView.apply {
-            text = item.text
-        }
+        textView.text = item.text
 
         val textSetup = item.onTextSetupListener
         if (textSetup == null) {

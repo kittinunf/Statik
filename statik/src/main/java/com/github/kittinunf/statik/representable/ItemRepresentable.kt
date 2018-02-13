@@ -33,29 +33,28 @@ interface ValueChangeListener<T> {
     var onChangedListener: OnValueChangedListener<T>?
 }
 
-abstract class BaseItemRepresentable : ItemRepresentable,
-        ViewSetupListener, ViewClickListener, ValueChangeListener<Row<*>> {
+abstract class BaseItemRepresentable<T : Row<U>, U>(protected val item: T) : ItemRepresentable,
+
+        ViewSetupListener, ViewClickListener, ValueChangeListener<T> {
 
     override var onViewSetupListener: OnViewSetupListener? = null
 
     override var onClickListener: OnClickListener? = null
 
-    override var onChangedListener: OnValueChangedListener<Row<*>>? = null
+    override var onChangedListener: OnValueChangedListener<T>? = null
 
-    protected abstract val item: Row<*>
-}
-
-data class TextSupplementaryItemRepresentable(override val item: TextSupplementary = TextSupplementary()) :
-        BaseItemRepresentable() {
-
-    var onTextSetupListener: ((TextView) -> Unit)? = null
-
-    private var _value by Delegates.observable(item.value) { _, old, new ->
+    protected var _value by Delegates.observable(item.value) { _, old, new ->
         if (old != new) {
             item.value = new
             onChangedListener?.invoke(item)
         }
     }
+}
+
+abstract class TextSupplementaryItemRepresentable :
+        BaseItemRepresentable<TextSupplementary, Pair<String, Int?>>(TextSupplementary()) {
+
+    var onTextSetupListener: ((TextView) -> Unit)? = null
 
     var text: String
         set(value) {
@@ -69,18 +68,19 @@ data class TextSupplementaryItemRepresentable(override val item: TextSupplementa
         }
         get() = _value.second
 
+}
+
+class HeaderTextSupplementaryRepresentable : TextSupplementaryItemRepresentable() {
+
     override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }
 
-data class ViewSupplementaryItemRepresentable(override val item: ViewSupplementary = ViewSupplementary()) :
-        BaseItemRepresentable() {
+class FooterTextSupplementaryRepresentable : TextSupplementaryItemRepresentable() {
 
-    private var _value by Delegates.observable(item.value) { _, old, new ->
-        if (old != new) {
-            item.value = new
-            onChangedListener?.invoke(item)
-        }
-    }
+    override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
+}
+
+class ViewSupplementaryItemRepresentable : BaseItemRepresentable<ViewSupplementary, Int>(ViewSupplementary()) {
 
     var layoutRes: Int
         set(value) {
@@ -91,17 +91,9 @@ data class ViewSupplementaryItemRepresentable(override val item: ViewSupplementa
     override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }
 
-data class TextRowItemRepresentable(override val item: TextRow = TextRow()) :
-        BaseItemRepresentable() {
+class TextRowItemRepresentable : BaseItemRepresentable<TextRow, Pair<String, Int?>>(TextRow()) {
 
     var onTextSetupListener: ((TextView) -> Unit)? = null
-
-    private var _value by Delegates.observable(item.value) { _, old, new ->
-        if (old != new) {
-            item.value = new
-            onChangedListener?.invoke(item)
-        }
-    }
 
     var text: String
         set(value) {
@@ -118,19 +110,11 @@ data class TextRowItemRepresentable(override val item: TextRow = TextRow()) :
     override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }
 
-data class TwoTextRowItemRepresentable(override val item: TwoTextRow = TwoTextRow()) :
-        BaseItemRepresentable() {
+class TwoTextRowItemRepresentable : BaseItemRepresentable<TwoTextRow, Triple<String, String, Int?>>(TwoTextRow()) {
 
     var onTitleTextSetupListener: ((TextView) -> Unit)? = null
 
     var onSummaryTextSetupListener: ((TextView) -> Unit)? = null
-
-    private var _value by Delegates.observable(item.value) { _, old, new ->
-        if (old != new) {
-            item.value = new
-            onChangedListener?.invoke(item)
-        }
-    }
 
     var titleText: String
         set(value) {
@@ -153,15 +137,7 @@ data class TwoTextRowItemRepresentable(override val item: TwoTextRow = TwoTextRo
     override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }
 
-data class ViewRowItemRepresentable(override val item: ViewRow = ViewRow()) :
-        BaseItemRepresentable() {
-
-    private var _value by Delegates.observable(item.value) { _, old, new ->
-        if (old != new) {
-            item.value = new
-            onChangedListener?.invoke(item)
-        }
-    }
+class ViewRowItemRepresentable : BaseItemRepresentable<ViewRow, Int>(ViewRow()) {
 
     var layoutRes: Int
         set(value) {
