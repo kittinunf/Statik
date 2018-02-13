@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.github.kittinunf.statik.model.Section
+import com.github.kittinunf.statik.representable.BaseItemRepresentable
 import com.github.kittinunf.statik.representable.ItemRepresentable
 import com.github.kittinunf.statik.viewholder.BindableViewHolder
 import com.github.kittinunf.statik.viewholder.StatikViewHolder
@@ -13,8 +14,7 @@ open class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFacto
 
     var sections by Delegates.observable(emptyList<Section>()) { _, _, value ->
         //calculate items
-        items = value.flatMap(::createRepresentable)
-        notifyDataSetChanged()
+        update()
     }
 
     private var items = emptyList<ItemRepresentable>()
@@ -46,7 +46,12 @@ open class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFacto
         if (section.footer != null) {
             items.add(section.footer)
         }
-        return items
+        return items.onEach { (it as? BaseItemRepresentable)?.section = section }
+    }
+
+    fun update() {
+        items = sections.flatMap(::createRepresentable)
+        notifyDataSetChanged()
     }
 
     override fun onViewRecycled(holder: StatikViewHolder?) {
