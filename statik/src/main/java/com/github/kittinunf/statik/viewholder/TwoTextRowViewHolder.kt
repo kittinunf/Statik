@@ -5,23 +5,19 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.github.kittinunf.statik.R
-import com.github.kittinunf.statik.representable.TwoTextRowItemRepresentable
+import com.github.kittinunf.statik.representable.TwoTextRowRepresentable
 
-class TwoTextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<TwoTextRowItemRepresentable> {
+class TwoTextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<TwoTextRowRepresentable> {
 
-    override fun bind(item: TwoTextRowItemRepresentable) {
-        item.onSetupListener?.invoke(itemView)
+    override fun bind(item: TwoTextRowRepresentable) {
+        item.onViewSetupListener?.invoke(itemView)
 
         //primary
         val titleTextView = itemView.findViewById<TextView>(R.id.statik_row_text_primary)
-        titleTextView.apply {
-            text = item.titleText
-        }
+        titleTextView.text = item.titleText
 
         val summaryTextView = itemView.findViewById<TextView>(R.id.statik_row_text_secondary)
-        summaryTextView.apply {
-            text = item.summaryText
-        }
+        summaryTextView.text = item.summaryText
 
         val titleTextSetup = item.onTitleTextSetupListener
         if (titleTextSetup == null) {
@@ -52,7 +48,7 @@ class TwoTextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHol
         //click
         item.onClickListener?.let { listener ->
             itemView.setOnClickListener { view ->
-                listener.invoke(view, adapterPosition, item)
+                listener.invoke(view, adapterPosition)
             }
         }
     }
