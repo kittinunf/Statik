@@ -8,6 +8,7 @@ import android.view.Gravity
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
+import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.dsl.section
 import com.github.kittinunf.statik.dsl.statik
 import com.github.kittinunf.statik.dsl.textFooter
@@ -23,6 +24,8 @@ import kotlinx.android.synthetic.main.activity_list.list
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var statikAdapter: StatikAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -112,14 +115,27 @@ class MainActivity : AppCompatActivity() {
             footer(f1)
         }
 
+        val rs = (1..10).map { r1 }
+
+        var savedCheckState = false
+
         val h2 = textHeader {
             text = "Collapsable"
             layoutRes = R.layout.widget_checkbox
             onViewSetupListener = {
-                val checkBox = it.find<CheckBox>(android.R.id.checkbox)
-                checkBox.setOnCheckedChangeListener { _, isChecked ->
-                    toast("CheckBox is $isChecked")
+                it.find<CheckBox>(android.R.id.checkbox).apply {
+                    isChecked = savedCheckState
+                    setOnCheckedChangeListener { _, checked ->
+                        savedCheckState = checked
+                        if (checked) {
+                            section?.rows?.clear()
+                        } else {
+                            section?.rows?.addAll(rs)
+                        }
+                        statikAdapter.update()
+                    }
                 }
+
             }
         }
 
@@ -134,7 +150,7 @@ class MainActivity : AppCompatActivity() {
 
         val s2 = section {
             header(h2)
-            rows(r1, r1, r1, r1, r1, r1, r1, r1, r1, r1)
+            rows(rs)
             footer(f2)
         }
 
@@ -153,14 +169,14 @@ class MainActivity : AppCompatActivity() {
             rows(r9)
         }
 
-        val adapter =
+        statikAdapter =
                 statik {
                     sections(s1, s2, s3)
                 }
 
         list.also {
             it.layoutManager = LinearLayoutManager(this)
-            it.adapter = adapter
+            it.adapter = statikAdapter
         }
     }
 

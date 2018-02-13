@@ -3,6 +3,7 @@ package com.github.kittinunf.statik.representable
 import android.view.View
 import com.github.kittinunf.statik.adapter.TypeFactory
 import com.github.kittinunf.statik.model.Row
+import com.github.kittinunf.statik.model.Section
 import kotlin.properties.Delegates
 
 interface ItemRepresentable {
@@ -27,8 +28,12 @@ interface ValueChangeListener<T> {
     var onChangedListener: OnValueChangedListener<T>?
 }
 
+typealias BaseItemRepresentable = BaseRepresentable<*, *>
+
 abstract class BaseRepresentable<T : Row<U>, U>(protected val item: T) : ItemRepresentable,
         ViewSetupListener, ViewClickListener, ValueChangeListener<T> {
+
+    var section: Section? = null
 
     override var onViewSetupListener: OnViewSetupListener? = null
 

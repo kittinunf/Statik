@@ -25,6 +25,10 @@ class SectionBuilder {
         rows += item.asList()
     }
 
+    fun rows(items: List<ItemRepresentable>) {
+        rows += items
+    }
+
     fun header(item: ItemRepresentable) {
         header = item
     }
