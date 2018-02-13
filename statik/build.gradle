@@ -50,7 +50,7 @@ dependencies {
 }
 
 publish {
-    artifactId = 'Statik'
+    artifactId = 'statik'
     autoPublish = true
     desc = 'A simple static list information backed by RecyclerView for Android in Kotlin'
     groupId = 'com.github.kittinunf.statik'
