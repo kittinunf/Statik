@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var statikAdapter: StatikAdapter
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
