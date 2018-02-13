@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.github.kittinunf.statik.R
 import com.github.kittinunf.statik.extension.inflate
-import com.github.kittinunf.statik.representable.TextSupplementaryItemRepresentable
+import com.github.kittinunf.statik.representable.TextSupplementaryRepresentable
 
-open class TextSupplementaryViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<TextSupplementaryItemRepresentable> {
+open class TextSupplementaryViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<TextSupplementaryRepresentable> {
 
-    override fun bind(item: TextSupplementaryItemRepresentable) {
+    override fun bind(item: TextSupplementaryRepresentable) {
         //widget frame
         val widgetFrame = itemView.findViewById<ViewGroup>(R.id.statik_row_widget_frame)
         val layoutRes = item.layoutRes

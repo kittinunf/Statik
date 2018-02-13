@@ -5,11 +5,11 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.github.kittinunf.statik.R
-import com.github.kittinunf.statik.representable.TwoTextRowItemRepresentable
+import com.github.kittinunf.statik.representable.TwoTextRowRepresentable
 
-class TwoTextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<TwoTextRowItemRepresentable> {
+class TwoTextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<TwoTextRowRepresentable> {
 
-    override fun bind(item: TwoTextRowItemRepresentable) {
+    override fun bind(item: TwoTextRowRepresentable) {
         item.onViewSetupListener?.invoke(itemView)
 
         //primary

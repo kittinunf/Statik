@@ -3,13 +3,15 @@ package com.github.kittinunf.statik.dsl
 import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.model.Section
 import com.github.kittinunf.statik.representable.FooterTextSupplementaryRepresentable
+import com.github.kittinunf.statik.representable.FooterViewSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.HeaderTextSupplementaryRepresentable
+import com.github.kittinunf.statik.representable.HeaderViewSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.ItemRepresentable
-import com.github.kittinunf.statik.representable.TextRowItemRepresentable
-import com.github.kittinunf.statik.representable.TextSupplementaryItemRepresentable
-import com.github.kittinunf.statik.representable.TwoTextRowItemRepresentable
-import com.github.kittinunf.statik.representable.ViewRowItemRepresentable
-import com.github.kittinunf.statik.representable.ViewSupplementaryItemRepresentable
+import com.github.kittinunf.statik.representable.TextRowRepresentable
+import com.github.kittinunf.statik.representable.TextSupplementaryRepresentable
+import com.github.kittinunf.statik.representable.TwoTextRowRepresentable
+import com.github.kittinunf.statik.representable.ViewRowRepresentable
+import com.github.kittinunf.statik.representable.ViewSupplementaryRepresentable
 
 class SectionBuilder {
 
@@ -68,23 +70,23 @@ private fun sections(block: StatikBuilder.() -> Unit): List<Section> {
     return builder.build()
 }
 
-fun textHeader(block: TextSupplementaryItemRepresentable.() -> Unit): HeaderTextSupplementaryRepresentable =
+fun textHeader(block: TextSupplementaryRepresentable.() -> Unit): HeaderTextSupplementaryRepresentable =
         HeaderTextSupplementaryRepresentable().apply(block)
 
-fun textFooter(block: TextSupplementaryItemRepresentable.() -> Unit): FooterTextSupplementaryRepresentable =
+fun textFooter(block: TextSupplementaryRepresentable.() -> Unit): FooterTextSupplementaryRepresentable =
         FooterTextSupplementaryRepresentable().apply(block)
 
-fun viewHeader(block: ViewSupplementaryItemRepresentable.() -> Unit): ViewSupplementaryItemRepresentable =
-        ViewSupplementaryItemRepresentable().apply(block)
+fun viewHeader(block: ViewSupplementaryRepresentable.() -> Unit): HeaderViewSupplementaryRepresentable =
+        HeaderViewSupplementaryRepresentable().apply(block)
 
-fun viewFooter(block: ViewSupplementaryItemRepresentable.() -> Unit): ViewSupplementaryItemRepresentable =
-        ViewSupplementaryItemRepresentable().apply(block)
+fun viewFooter(block: ViewSupplementaryRepresentable.() -> Unit): FooterViewSupplementaryRepresentable =
+        FooterViewSupplementaryRepresentable().apply(block)
 
-fun textRow(block: TextRowItemRepresentable.() -> Unit): TextRowItemRepresentable =
-        TextRowItemRepresentable().apply(block)
+fun textRow(block: TextRowRepresentable.() -> Unit): TextRowRepresentable =
+        TextRowRepresentable().apply(block)
 
-fun twoTextRow(block: TwoTextRowItemRepresentable.() -> Unit): TwoTextRowItemRepresentable =
-        TwoTextRowItemRepresentable().apply(block)
+fun twoTextRow(block: TwoTextRowRepresentable.() -> Unit): TwoTextRowRepresentable =
+        TwoTextRowRepresentable().apply(block)
 
-fun viewRow(block: ViewRowItemRepresentable.() -> Unit): ViewRowItemRepresentable =
-        ViewRowItemRepresentable().apply(block)
+fun viewRow(block: ViewRowRepresentable.() -> Unit): ViewRowRepresentable =
+        ViewRowRepresentable().apply(block)
