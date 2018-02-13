@@ -22,7 +22,6 @@ abstract class TextSupplementaryRepresentable :
             _value = text to value
         }
         get() = _value.second
-
 }
 
 //Header
