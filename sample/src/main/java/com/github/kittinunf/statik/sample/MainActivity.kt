@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v4.widget.TextViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.Gravity
 import android.widget.Button
 import android.widget.CheckBox
@@ -178,12 +177,6 @@ class MainActivity : AppCompatActivity() {
             it.layoutManager = LinearLayoutManager(this)
             it.adapter = statikAdapter
         }
-
-        statikAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
-            override fun onChanged() {
-                statikAdapter.sections.flatMap { it.rows }.withIndex().onEach { println("index: ${it.index}, id: ${it.value.stableId}") }
-            }
-        })
     }
 
     private fun updateList(at: Int) {
