@@ -8,7 +8,11 @@ import com.github.kittinunf.statik.representable.ViewSupplementaryRepresentable
 class ViewSupplementaryViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<ViewSupplementaryRepresentable> {
 
     override fun bind(item: ViewSupplementaryRepresentable) {
-        (itemView as ViewGroup).inflate(item.layoutRes)
+        val frame = itemView as ViewGroup
+        if (frame.childCount == 0) {
+            frame.inflate(item.layoutRes)
+        }
+
         item.onViewSetupListener?.invoke(itemView)
 
         //click

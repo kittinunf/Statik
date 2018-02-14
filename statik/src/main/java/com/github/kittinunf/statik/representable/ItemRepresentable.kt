@@ -4,10 +4,13 @@ import android.view.View
 import com.github.kittinunf.statik.adapter.TypeFactory
 import com.github.kittinunf.statik.model.Row
 import com.github.kittinunf.statik.model.Section
+import com.github.kittinunf.statik.util.IdGenerator
 import kotlin.properties.Delegates
 
 interface ItemRepresentable {
     fun type(typeFactory: TypeFactory): Int
+
+    val stableId: Long
 }
 
 typealias OnValueChangedListener<T> = (T) -> Unit
@@ -34,6 +37,8 @@ abstract class BaseRepresentable<T : Row<U>, U>(protected val item: T) : ItemRep
         ViewSetupListener, ViewClickListener, ValueChangeListener<T> {
 
     var section: Section? = null
+
+    override var stableId: Long = item.stableId ?: IdGenerator.generate()
 
     override var onViewSetupListener: OnViewSetupListener? = null
 

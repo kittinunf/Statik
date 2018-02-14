@@ -19,6 +19,10 @@ open class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFacto
 
     private var items = emptyList<ItemRepresentable>()
 
+    init {
+        setHasStableIds(true)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): StatikViewHolder {
         val view = LayoutInflater.from(parent?.context).inflate(viewType, parent, false)
         val viewHolder = typeFactory.viewHolder(viewType, view)
@@ -33,6 +37,8 @@ open class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFacto
     override fun getItemViewType(position: Int): Int = items[position].type(typeFactory)
 
     override fun getItemCount(): Int = items.size
+
+    override fun getItemId(position: Int): Long = items[position].stableId
 
     private fun createRepresentable(section: Section): List<ItemRepresentable> {
         val items = mutableListOf<ItemRepresentable>()
