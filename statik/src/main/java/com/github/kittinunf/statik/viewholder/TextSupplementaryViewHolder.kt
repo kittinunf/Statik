@@ -17,7 +17,9 @@ open class TextSupplementaryViewHolder(view: View) : StatikViewHolder(view), Bin
             widgetFrame.visibility = View.GONE
         } else {
             widgetFrame.visibility = View.VISIBLE
-            widgetFrame.inflate(layoutRes)
+            if (widgetFrame.childCount == 0) {
+                widgetFrame.inflate(layoutRes)
+            }
         }
 
         item.onViewSetupListener?.invoke(itemView)

@@ -169,10 +169,9 @@ class MainActivity : AppCompatActivity() {
             rows(r9)
         }
 
-        statikAdapter =
-                statik {
-                    sections(s1, s2, s3)
-                }
+        statikAdapter = statik {
+            sections(s1, s2, s3)
+        }
 
         list.also {
             it.layoutManager = LinearLayoutManager(this)
