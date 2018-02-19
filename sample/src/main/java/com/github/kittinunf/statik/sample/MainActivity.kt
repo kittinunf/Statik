@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
                 text = "Next random: ${Random().nextInt(10)}"
                 updateList(position)
             }
-            onChangedListener = {
+            onValueChangedListener = {
                 println(it.value)
             }
         }
@@ -170,7 +170,7 @@ class MainActivity : AppCompatActivity() {
             titleText = "This is check box row"
             summaryText = "Camera"
             iconRes = android.R.drawable.ic_menu_camera
-            onChangedListener = {
+            onValueChangedListener = {
                 println(it.value)
             }
         }

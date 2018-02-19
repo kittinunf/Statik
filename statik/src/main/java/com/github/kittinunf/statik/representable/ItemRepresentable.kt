@@ -24,5 +24,5 @@ interface ViewClickListener {
 }
 
 interface ValueChangeListener<T> {
-    var onChangedListener: OnValueChangedListener<T>?
+    var onValueChangedListener: OnValueChangedListener<T>?
 }

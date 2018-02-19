@@ -17,6 +17,7 @@ class CheckRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolde
         val titleTextView = itemView.findViewById<TextView>(R.id.statik_row_text_primary)
         titleTextView.text = item.titleText
 
+        //summary
         val summaryTextView = itemView.findViewById<TextView>(R.id.statik_row_text_secondary)
         if (item.summaryText == null) {
             summaryTextView.visibility = View.GONE

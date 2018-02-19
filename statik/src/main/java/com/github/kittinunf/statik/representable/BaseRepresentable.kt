@@ -18,12 +18,12 @@ abstract class BaseRepresentable<T : Row<U>, U>(protected val item: T) : ItemRep
 
     override var onClickListener: OnClickListener? = null
 
-    override var onChangedListener: OnValueChangedListener<T>? = null
+    override var onValueChangedListener: OnValueChangedListener<T>? = null
 
     protected var _value by Delegates.observable(item.value) { _, old, new ->
         if (old != new) {
             item.value = new
-            onChangedListener?.invoke(item)
+            onValueChangedListener?.invoke(item)
         }
     }
 }
