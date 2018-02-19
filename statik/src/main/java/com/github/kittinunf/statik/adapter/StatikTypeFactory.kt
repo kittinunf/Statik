@@ -2,6 +2,7 @@ package com.github.kittinunf.statik.adapter
 
 import android.view.View
 import com.github.kittinunf.statik.R
+import com.github.kittinunf.statik.representable.CheckRowRepresentable
 import com.github.kittinunf.statik.representable.FooterTextSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.FooterViewSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.HeaderTextSupplementaryRepresentable
@@ -9,6 +10,7 @@ import com.github.kittinunf.statik.representable.HeaderViewSupplementaryRepresen
 import com.github.kittinunf.statik.representable.TextRowRepresentable
 import com.github.kittinunf.statik.representable.TwoTextRowRepresentable
 import com.github.kittinunf.statik.representable.ViewRowRepresentable
+import com.github.kittinunf.statik.viewholder.CheckRowViewHolder
 import com.github.kittinunf.statik.viewholder.FooterTextSupplementaryViewHolder
 import com.github.kittinunf.statik.viewholder.HeaderTextSupplementaryViewHolder
 import com.github.kittinunf.statik.viewholder.StatikViewHolder
@@ -26,6 +28,7 @@ interface TypeFactory {
 
     fun type(textRow: TextRowRepresentable): Int
     fun type(twoTextRow: TwoTextRowRepresentable): Int
+    fun type(checkRow: CheckRowRepresentable): Int
     fun type(viewRow: ViewRowRepresentable): Int
 
     fun viewHolder(type: Int, view: View): StatikViewHolder
@@ -41,6 +44,7 @@ internal val defaultTypeFactory = object : TypeFactory {
     override fun type(textRow: TextRowRepresentable): Int = R.layout.statik_text_one_line_row
     override fun type(twoTextRow: TwoTextRowRepresentable): Int = R.layout.statik_text_two_line_row
     override fun type(viewRow: ViewRowRepresentable): Int = R.layout.statik_view_row
+    override fun type(checkRow: CheckRowRepresentable): Int = R.layout.statik_check_two_line_row
 
     override fun viewHolder(type: Int, view: View): StatikViewHolder {
         return when (type) {
@@ -51,6 +55,7 @@ internal val defaultTypeFactory = object : TypeFactory {
 
             R.layout.statik_text_one_line_row -> TextRowViewHolder(view)
             R.layout.statik_text_two_line_row -> TwoTextRowViewHolder(view)
+            R.layout.statik_check_two_line_row -> CheckRowViewHolder(view)
             R.layout.statik_view_row -> ViewRowViewHolder(view)
             else -> error("You should not reach here")
         }

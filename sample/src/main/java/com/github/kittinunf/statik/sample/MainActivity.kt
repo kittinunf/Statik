@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
 import com.github.kittinunf.statik.adapter.StatikAdapter
+import com.github.kittinunf.statik.dsl.checkRow
 import com.github.kittinunf.statik.dsl.section
 import com.github.kittinunf.statik.dsl.statik
 import com.github.kittinunf.statik.dsl.textFooter
@@ -86,7 +87,7 @@ class MainActivity : AppCompatActivity() {
                 text = "Next random: ${Random().nextInt(10)}"
                 updateList(position)
             }
-            onChangedListener = {
+            onValueChangedListener = {
                 println(it.value)
             }
         }
@@ -128,9 +129,9 @@ class MainActivity : AppCompatActivity() {
                     setOnCheckedChangeListener { _, checked ->
                         savedCheckState = checked
                         if (checked) {
-                            section?.rows?.clear()
+                            section.rows.clear()
                         } else {
-                            section?.rows?.addAll(rs)
+                            section.rows.addAll(rs)
                         }
                         statikAdapter.update()
                     }
@@ -165,8 +166,18 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val r10 = checkRow {
+            titleText = "This is check box row"
+            summaryText = "Camera"
+            iconRes = android.R.drawable.ic_menu_camera
+            checked = true
+            onValueChangedListener = {
+                println(it.value)
+            }
+        }
+
         val s3 = section {
-            rows(r9)
+            rows(r9, r10)
         }
 
         statikAdapter = statik {

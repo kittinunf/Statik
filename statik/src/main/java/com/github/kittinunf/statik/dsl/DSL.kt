@@ -2,6 +2,7 @@ package com.github.kittinunf.statik.dsl
 
 import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.model.Section
+import com.github.kittinunf.statik.representable.CheckRowRepresentable
 import com.github.kittinunf.statik.representable.FooterTextSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.FooterViewSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.HeaderTextSupplementaryRepresentable
@@ -94,3 +95,6 @@ fun twoTextRow(block: TwoTextRowRepresentable.() -> Unit): TwoTextRowRepresentab
 
 fun viewRow(block: ViewRowRepresentable.() -> Unit): ViewRowRepresentable =
         ViewRowRepresentable().apply(block)
+
+fun checkRow(block: CheckRowRepresentable.() -> Unit): CheckRowRepresentable =
+        CheckRowRepresentable().apply(block)

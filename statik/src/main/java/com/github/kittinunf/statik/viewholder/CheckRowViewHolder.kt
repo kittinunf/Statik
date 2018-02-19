@@ -2,14 +2,15 @@ package com.github.kittinunf.statik.viewholder
 
 import android.support.v4.widget.TextViewCompat
 import android.view.View
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import com.github.kittinunf.statik.R
-import com.github.kittinunf.statik.representable.TwoTextRowRepresentable
+import com.github.kittinunf.statik.representable.CheckRowRepresentable
 
-class TwoTextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<TwoTextRowRepresentable> {
+class CheckRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<CheckRowRepresentable> {
 
-    override fun bind(item: TwoTextRowRepresentable) {
+    override fun bind(item: CheckRowRepresentable) {
         item.onViewSetupListener?.invoke(itemView)
 
         //primary
@@ -18,7 +19,11 @@ class TwoTextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHol
 
         //summary
         val summaryTextView = itemView.findViewById<TextView>(R.id.statik_row_text_secondary)
-        summaryTextView.text = item.summaryText
+        if (item.summaryText == null) {
+            summaryTextView.visibility = View.GONE
+        } else {
+            summaryTextView.text = item.summaryText
+        }
 
         val titleTextSetup = item.onTitleTextSetupListener
         if (titleTextSetup == null) {
@@ -44,6 +49,14 @@ class TwoTextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHol
                 visibility = View.VISIBLE
                 setImageResource(iconRes)
             }
+        }
+
+        //checkbox
+        val checkBox = itemView.findViewById<CheckBox>(R.id.statik_row_checkbox)
+        checkBox.isChecked = item.checked
+        checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
+            item.onCheckBoxCheckedChangeListener?.invoke(buttonView, isChecked)
+            item.checked = isChecked
         }
 
         //click

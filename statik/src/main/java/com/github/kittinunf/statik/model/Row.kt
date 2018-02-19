@@ -27,6 +27,7 @@ class TwoTextRow(titleText: String = "",
 class ViewRow(@LayoutRes layoutRes: Int = 0,
               stableId: Long? = null) : Row<Int>(layoutRes, stableId)
 
-class CheckRow(value: Boolean) : Row<Boolean>(value)
+class CheckRow(value: Boolean = false,
+               stableId: Long? = null) : Row<Boolean>(value, stableId)
 
 
