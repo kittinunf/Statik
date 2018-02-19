@@ -7,21 +7,17 @@ import com.github.kittinunf.statik.model.TextSupplementary
 import com.github.kittinunf.statik.model.TwoTextRow
 
 abstract class TextSupplementaryRepresentable :
-        BaseRepresentable<TextSupplementary, Pair<String, Int?>>(TextSupplementary()) {
+        BaseRepresentable<TextSupplementary, String>(TextSupplementary()) {
 
     var onTextSetupListener: ((TextView) -> Unit)? = null
 
     var text: String
         set(value) {
-            _value = value to layoutRes
+            _value = value
         }
-        get() = _value.first
+        get() = _value
 
-    var layoutRes: Int?
-        set(value) {
-            _value = text to value
-        }
-        get() = _value.second
+    var layoutRes: Int? = null
 }
 
 //Header
@@ -37,26 +33,22 @@ class FooterTextSupplementaryRepresentable : TextSupplementaryRepresentable() {
 }
 
 //Row
-class TextRowRepresentable : BaseRepresentable<TextRow, Pair<String, Int?>>(TextRow()) {
+class TextRowRepresentable : BaseRepresentable<TextRow, String>(TextRow()) {
 
     var onTextSetupListener: ((TextView) -> Unit)? = null
 
     var text: String
         set(value) {
-            _value = value to iconRes
+            _value = value
         }
-        get() = _value.first
+        get() = _value
 
-    var iconRes: Int?
-        set(value) {
-            _value = text to value
-        }
-        get() = _value.second
+    var iconRes: Int? = null
 
     override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }
 
-class TwoTextRowRepresentable : BaseRepresentable<TwoTextRow, Triple<String, String, Int?>>(TwoTextRow()) {
+class TwoTextRowRepresentable : BaseRepresentable<TwoTextRow, Pair<String, String>>(TwoTextRow()) {
 
     var onTitleTextSetupListener: ((TextView) -> Unit)? = null
 
@@ -64,21 +56,17 @@ class TwoTextRowRepresentable : BaseRepresentable<TwoTextRow, Triple<String, Str
 
     var titleText: String
         set(value) {
-            _value = Triple(value, summaryText, iconRes)
+            _value = value to summaryText
         }
         get() = _value.first
 
     var summaryText: String
         set(value) {
-            _value = Triple(titleText, value, iconRes)
+            _value = titleText to value
         }
         get() = _value.second
 
-    var iconRes: Int?
-        set(value) {
-            _value = Triple(titleText, summaryText, value)
-        }
-        get() = _value.third
+    var iconRes: Int? = null
 
     override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }
