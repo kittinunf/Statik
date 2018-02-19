@@ -20,3 +20,8 @@ fun ImageView.load(url: String) {
             .centerCrop()
             .into(this)
 }
+
+fun String.isValidEmailAddress(): Boolean {
+    val regex = "^[a-zA-Z0-9#_~!$&'()*+,;=:.\"(),:;<>@\\[\\]\\\\]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*$".toRegex()
+    return regex.matches(this)
+}

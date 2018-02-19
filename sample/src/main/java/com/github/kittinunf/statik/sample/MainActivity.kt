@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.support.v4.widget.TextViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.text.InputType
 import android.view.Gravity
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
 import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.dsl.checkRow
+import com.github.kittinunf.statik.dsl.inputRow
 import com.github.kittinunf.statik.dsl.section
 import com.github.kittinunf.statik.dsl.statik
 import com.github.kittinunf.statik.dsl.textFooter
@@ -19,6 +21,7 @@ import com.github.kittinunf.statik.dsl.twoTextRow
 import com.github.kittinunf.statik.dsl.viewFooter
 import com.github.kittinunf.statik.dsl.viewRow
 import com.github.kittinunf.statik.sample.util.find
+import com.github.kittinunf.statik.sample.util.isValidEmailAddress
 import com.github.kittinunf.statik.sample.util.load
 import com.github.kittinunf.statik.sample.util.toast
 import kotlinx.android.synthetic.main.activity_list.list
@@ -176,8 +179,25 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val r11 = inputRow {
+            hint = "Username"
+            onValueChangedListener = {
+                error = if (it.value.isValidEmailAddress()) null else "Not a valid email address"
+                statikAdapter.update()
+            }
+        }
+
+        val r12 = inputRow {
+            hint = "Password"
+            inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD or InputType.TYPE_CLASS_TEXT
+            onValueChangedListener = {
+                error = if (it.value.length <= 6) "Password must be at least 6" else null
+                statikAdapter.update()
+            }
+        }
+
         val s3 = section {
-            rows(r9, r10)
+            rows(r9, r10, r11, r12)
         }
 
         statikAdapter = statik {

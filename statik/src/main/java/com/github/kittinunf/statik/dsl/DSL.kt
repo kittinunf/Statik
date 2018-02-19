@@ -7,6 +7,7 @@ import com.github.kittinunf.statik.representable.FooterTextSupplementaryRepresen
 import com.github.kittinunf.statik.representable.FooterViewSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.HeaderTextSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.HeaderViewSupplementaryRepresentable
+import com.github.kittinunf.statik.representable.InputRowRepresentable
 import com.github.kittinunf.statik.representable.ItemRepresentable
 import com.github.kittinunf.statik.representable.TextRowRepresentable
 import com.github.kittinunf.statik.representable.TextSupplementaryRepresentable
@@ -98,3 +99,6 @@ fun viewRow(block: ViewRowRepresentable.() -> Unit): ViewRowRepresentable =
 
 fun checkRow(block: CheckRowRepresentable.() -> Unit): CheckRowRepresentable =
         CheckRowRepresentable().apply(block)
+
+fun inputRow(block: InputRowRepresentable.() -> Unit): InputRowRepresentable =
+        InputRowRepresentable().apply(block)
