@@ -170,6 +170,7 @@ class MainActivity : AppCompatActivity() {
             titleText = "This is check box row"
             summaryText = "Camera"
             iconRes = android.R.drawable.ic_menu_camera
+            checked = true
             onValueChangedListener = {
                 println(it.value)
             }
