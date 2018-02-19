@@ -1,5 +1,6 @@
 package com.github.kttinunf.statik
 
+import com.github.kittinunf.statik.dsl.checkRow
 import com.github.kittinunf.statik.dsl.textFooter
 import com.github.kittinunf.statik.dsl.textHeader
 import com.github.kittinunf.statik.dsl.textRow
@@ -108,5 +109,20 @@ class DSLTest {
         }
 
         assertThat(r.layoutRes, equalTo(12345))
+    }
+
+    @Test
+    fun checkRow() {
+        val r = checkRow {
+            titleText = "hello"
+            summaryText = "world"
+            iconRes = 1111
+            checked = true
+        }
+
+        assertThat(r.titleText, equalTo("hello"))
+        assertThat(r.summaryText, equalTo("world"))
+        assertThat(r.iconRes, equalTo(1111))
+        assertThat(r.checked, equalTo(true))
     }
 }
