@@ -181,18 +181,25 @@ class MainActivity : AppCompatActivity() {
 
         val r11 = inputRow {
             hint = "Username"
-            onValueChangedListener = {
-                error = if (it.value.isValidEmailAddress()) null else "Not a valid email address"
-                statikAdapter.update()
+            error = "Must be a valid email address"
+            onValidateInput = {
+                it.toString().isValidEmailAddress()
             }
         }
 
         val r12 = inputRow {
             hint = "Password"
+            error = "Must be at least 6 characters"
             inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD or InputType.TYPE_CLASS_TEXT
+            onInputLayoutSetupListener = {
+                it.isPasswordVisibilityToggleEnabled = true
+            }
+            onValidateInput = {
+                val size = it?.length ?: 0
+                size >= 6
+            }
             onValueChangedListener = {
-                error = if (it.value.length <= 6) "Password must be at least 6" else null
-                statikAdapter.update()
+                println(it.value)
             }
         }
 
