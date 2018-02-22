@@ -5,6 +5,8 @@ buildscript {
         publishVersion = '0.4.0'
 
         kotlinVersion = '1.2.21'
+
+        supportLibVersion = '27.0.2'
     }
 
     repositories {
