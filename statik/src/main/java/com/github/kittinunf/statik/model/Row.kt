@@ -17,8 +17,8 @@ class TextRow(text: String = "",
               stableId: Long? = null) : Row<String>(text, stableId)
 
 class TwoTextRow(titleText: String = "",
-                 summaryText: String = "",
-                 stableId: Long? = null) : Row<Pair<String, String>>(titleText to summaryText, stableId)
+                 summaryText: String? = null,
+                 stableId: Long? = null) : Row<Pair<String, String?>>(titleText to summaryText, stableId)
 
 class ViewRow(@LayoutRes layoutRes: Int = 0,
               stableId: Long? = null) : Row<Int>(layoutRes, stableId)

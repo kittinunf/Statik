@@ -18,7 +18,14 @@ class TwoTextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHol
 
         //summary
         val summaryTextView = itemView.findViewById<TextView>(R.id.statik_row_text_secondary)
-        summaryTextView.text = item.summaryText
+        if (item.summaryText == null) {
+            summaryTextView.visibility = View.GONE
+        } else {
+            summaryTextView.apply {
+                visibility = View.VISIBLE
+                text = item.summaryText
+            }
+        }
 
         val titleTextSetup = item.onTitleTextSetupListener
         if (titleTextSetup == null) {

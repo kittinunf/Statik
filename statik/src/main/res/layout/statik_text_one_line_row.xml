@@ -26,7 +26,6 @@
         android:layout_marginStart="@dimen/statik_two_lines_margin_start"
         android:layout_marginTop="@dimen/statik_two_lines_margin_top"
         android:layout_weight="1"
-        android:singleLine="true"
         tools:text="Primary"
         />
 

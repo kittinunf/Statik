@@ -48,7 +48,7 @@ class TextRowRepresentable : BaseRepresentable<TextRow, String>(TextRow()) {
     override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }
 
-class TwoTextRowRepresentable : BaseRepresentable<TwoTextRow, Pair<String, String>>(TwoTextRow()) {
+class TwoTextRowRepresentable : BaseRepresentable<TwoTextRow, Pair<String, String?>>(TwoTextRow()) {
 
     var onTitleTextSetupListener: ((TextView) -> Unit)? = null
 
@@ -60,7 +60,7 @@ class TwoTextRowRepresentable : BaseRepresentable<TwoTextRow, Pair<String, Strin
         }
         get() = _value.first
 
-    var summaryText: String
+    var summaryText: String?
         set(value) {
             _value = titleText to value
         }
