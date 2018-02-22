@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Statik</string>
+
+    <string name="user_verification">User Verification</string>
+    <string name="upload_documents">Upload documents for user verification</string>
+    <string name="upload_documents_detail">Documents that include name/address/date of birth is needed for verification purposes. One of the following is required: driver’s license/health insurance card/passport/resident certificate.
+After uploading, we will be sending documents with regards to the transaction to the registered address.</string>
+    <string name="about_upload_documents">About uploading documents for user verification > </string>
 </resources>

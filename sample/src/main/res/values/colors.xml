@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#333333</color>
+    <color name="colorPrimary">#fafafa</color>
     <color name="color">#dc0030</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    
+    <color name="charcoal_gray">#efefef</color>
+    <color name="choco_black">#333333</color>
+    <color name="dolphin_gray">#666666</color>
+    <color name="coral_red">#dc0030</color>
 </resources>
