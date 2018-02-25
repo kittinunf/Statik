@@ -1,6 +1,7 @@
 package com.github.kittinunf.statik.sample.util
 
 import android.content.Context
+import android.content.Intent
 import android.support.annotation.IdRes
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -14,6 +15,11 @@ fun <T : View> AppCompatActivity.find(@IdRes id: Int): T = findViewById(id)
 
 fun Context.toast(text: String) {
     Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+}
+
+inline fun <reified T : AppCompatActivity> Context.navigate() {
+    val intent = Intent(this, T::class.java)
+    startActivity(intent)
 }
 
 fun ImageView.load(url: String) {

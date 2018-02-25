@@ -7,39 +7,35 @@ import android.support.v4.widget.TextViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Gravity
+import android.view.MenuItem
 import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.dsl.section
 import com.github.kittinunf.statik.dsl.statik
 import com.github.kittinunf.statik.dsl.textFooter
 import com.github.kittinunf.statik.dsl.textRow
 import com.github.kittinunf.statik.dsl.twoTextRow
-import com.github.kittinunf.statik.dsl.viewHeader
-import kotlinx.android.synthetic.main.activity_user_verification.list
-import kotlinx.android.synthetic.main.activity_user_verification.toolbar
+import com.github.kittinunf.statik.sample.behavior.ChildActionBarBehavior
+import com.github.kittinunf.statik.sample.behavior.HomeOptionsItemSelectedBehavior
+import com.github.kittinunf.statik.sample.util.configureWhiteRow
+import kotlinx.android.synthetic.main.activity_kyc_list_template.list
+import kotlinx.android.synthetic.main.activity_kyc_list_template.toolbar
 
-class UserVerificationActivity : AppCompatActivity() {
+class UserVerificationActivity : AppCompatActivity(), ChildActionBarBehavior, HomeOptionsItemSelectedBehavior {
 
     private lateinit var statikAdapter: StatikAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_verification)
+        setContentView(R.layout.activity_kyc_list_template)
 
-        setSupportActionBar(toolbar)
-
-        setUpRecyclerView()
+        configureChildActionBar(this, toolbar)
+        configureRecyclerView()
     }
 
-    private fun setUpRecyclerView() {
-        val spaceHeader = viewHeader {
-            layoutRes = R.layout.layout_space
-        }
-
+    private fun configureRecyclerView() {
         val mainRow = twoTextRow {
             titleText = getString(R.string.upload_documents)
-            onViewSetupListener = {
-                it.setBackgroundResource(android.R.color.white)
-            }
+            onViewSetupListener = configureWhiteRow()
             onTitleTextSetupListener = {
                 TextViewCompat.setTextAppearance(it, R.style.TextAppearance_Row_Title)
             }
@@ -65,7 +61,6 @@ class UserVerificationActivity : AppCompatActivity() {
         }
 
         val section = section {
-            header(spaceHeader)
             rows(mainRow, descriptionRow)
             footer(aboutFooter)
         }
@@ -76,7 +71,11 @@ class UserVerificationActivity : AppCompatActivity() {
 
         list.also {
             it.layoutManager = LinearLayoutManager(this)
+            it.addItemDecoration(TopSpaceDecoration(resources.getDimensionPixelOffset(R.dimen.dp_16)))
             it.adapter = statikAdapter
         }
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean =
+            onHomeOptionItemSelected(this, item) ?: super.onOptionsItemSelected(item)
 }

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Button
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/statik_button"
+    android:id="@+id/tosButton"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/statik_margin_8dp"
+    android:text="Agree"
+    android:layout_margin="@dimen/dp_8"
     />

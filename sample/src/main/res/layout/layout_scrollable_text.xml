@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tosContent"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:background="@android:color/white"
+    android:layout_margin="@dimen/dp_16"
+    >
+
+    <TextView
+        style="@style/TextAppearance.Row.Detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_8"
+        android:scrollbars="vertical"
+        android:text="@string/terms_of_service_content"
+        />
+
+</android.support.v4.widget.NestedScrollView>
+

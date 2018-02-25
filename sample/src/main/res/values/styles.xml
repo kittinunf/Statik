@@ -14,14 +14,16 @@
         <item name="android:textColor">@color/choco_black</item>
     </style>
 
+    <style name="TextAppearance.Row.Header.Small" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/choco_black</item>
+    </style>
+
     <style name="TextAppearance.Row.Detail" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/dolphin_gray</item>
     </style>
 
     <style name="TextAppearance.Row.About" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/coral_red</item>
-        <item name="android:gravity">end</item>
-        <item name="android:textAlignment">textEnd</item>
     </style>
 
     <style name="TextAppearance.AppCompat.Custom1" parent="TextAppearance.AppCompat.Large">
