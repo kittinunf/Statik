@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    >
+
+    <ViewSwitcher
+        android:id="@+id/frontContainer"
+        android:layout_width="0dp"
+        android:layout_height="176dp"
+        android:layout_weight="1"
+        android:paddingEnd="@dimen/dp_8"
+        android:paddingStart="@dimen/dp_16"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            >
+
+            <ImageView
+                android:id="@+id/uploadIconCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                app:srcCompat="@drawable/ic_camera_alt_dim_gray_48dp"
+                />
+
+            <TextView
+                android:id="@+id/frontImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/uploadIconCamera"
+                android:layout_centerInParent="true"
+                android:text="@string/front"
+                android:textColor="@color/choco_black"
+                />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </ViewSwitcher>
+
+    <ViewSwitcher
+        android:id="@+id/backContainer"
+        android:layout_width="0dp"
+        android:layout_height="176dp"
+        android:layout_weight="1"
+        android:paddingEnd="@dimen/dp_16"
+        android:paddingStart="@dimen/dp_8"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            >
+
+            <ImageView
+                android:id="@id/uploadIconCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                app:srcCompat="@drawable/ic_camera_alt_dim_gray_48dp"
+                />
+
+            <TextView
+                android:id="@+id/backImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/uploadIconCamera"
+                android:layout_centerInParent="true"
+                android:text="@string/back"
+                android:textColor="@color/choco_black"
+                />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </ViewSwitcher>
+
+</LinearLayout>

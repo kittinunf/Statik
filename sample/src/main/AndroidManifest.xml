@@ -46,7 +46,12 @@
             android:name=".view.UserVerificationDetailActivity"
             android:label="@string/user_verification"
             >
+        </activity>
 
+        <activity
+            android:name=".view.UploadDocumentActivity"
+            android:label="@string/user_verification_document"
+            >
         </activity>
 
     </application>

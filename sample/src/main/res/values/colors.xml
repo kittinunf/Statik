@@ -8,5 +8,6 @@
     <color name="charcoal_gray">#efefef</color>
     <color name="choco_black">#333333</color>
     <color name="dolphin_gray">#666666</color>
+    <color name="dim_gray">#999999</color>
     <color name="coral_red">#dc0030</color>
 </resources>

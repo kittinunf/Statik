@@ -1,15 +1,15 @@
 package com.github.kittinunf.statik.sample
 
 import android.os.Bundle
-import android.support.v4.widget.TextViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.TextView
 import com.github.kittinunf.statik.dsl.statik
 import com.github.kittinunf.statik.dsl.textRow
+import com.github.kittinunf.statik.sample.util.configureTitleText
 import com.github.kittinunf.statik.sample.util.configureWhiteRow
 import com.github.kittinunf.statik.sample.util.navigate
 import com.github.kittinunf.statik.sample.view.TermsOfServiceActivity
+import com.github.kittinunf.statik.sample.view.UploadDocumentActivity
 import com.github.kittinunf.statik.sample.view.UserVerificationActivity
 import com.github.kittinunf.statik.sample.view.UserVerificationDetailActivity
 import kotlinx.android.synthetic.main.activity_list.list
@@ -27,7 +27,8 @@ class SampleActivity : AppCompatActivity() {
         val labelAndActivity = mapOf(
                 R.string.user_verification to UserVerificationActivity::class,
                 R.string.terms_of_service to TermsOfServiceActivity::class,
-                R.string.user_verification2 to UserVerificationDetailActivity::class
+                R.string.user_verification2 to UserVerificationDetailActivity::class,
+                R.string.user_verification_document to UploadDocumentActivity::class
                 )
 
         val rows = labelAndActivity.map { (label, clazz) ->
@@ -49,9 +50,5 @@ class SampleActivity : AppCompatActivity() {
             it.layoutManager = LinearLayoutManager(this)
             it.adapter = adapter
         }
-    }
-
-    private fun configureTitleText() = { textView: TextView ->
-        TextViewCompat.setTextAppearance(textView, R.style.TextAppearance_Row_Title)
     }
 }

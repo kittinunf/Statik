@@ -16,15 +16,18 @@ import com.github.kittinunf.statik.dsl.viewFooter
 import com.github.kittinunf.statik.dsl.viewRow
 import com.github.kittinunf.statik.sample.R
 import com.github.kittinunf.statik.sample.behavior.ChildActionBarBehavior
-import com.github.kittinunf.statik.sample.behavior.HomeOptionsItemSelectedBehavior
+import com.github.kittinunf.statik.sample.behavior.HomeAsBackPressedOptionsItemSelectedBehavior
+import com.github.kittinunf.statik.sample.util.configureDetailText
 import com.github.kittinunf.statik.sample.util.find
 import com.github.kittinunf.statik.sample.util.toast
 import kotlinx.android.synthetic.main.activity_kyc_list_template.list
 import kotlinx.android.synthetic.main.activity_kyc_list_template.toolbar
 import kotlinx.android.synthetic.main.layout_scrollable_text.view.tosContent
-import kotlinx.android.synthetic.main.layout_tos_button.view.tosButton
+import kotlinx.android.synthetic.main.layout_tos_button.view.agreeButton
 
-class TermsOfServiceActivity : AppCompatActivity(), ChildActionBarBehavior, HomeOptionsItemSelectedBehavior {
+class TermsOfServiceActivity : AppCompatActivity(),
+        ChildActionBarBehavior,
+        HomeAsBackPressedOptionsItemSelectedBehavior {
 
     private lateinit var statikAdapter: StatikAdapter
 
@@ -41,9 +44,7 @@ class TermsOfServiceActivity : AppCompatActivity(), ChildActionBarBehavior, Home
     private fun configureRecyclerView() {
         val infoRow = textHeader {
             text = getString(R.string.account_terms_of_service)
-            onTextSetupListener = {
-                TextViewCompat.setTextAppearance(it, R.style.TextAppearance_Row_Detail)
-            }
+            onTextSetupListener = configureDetailText()
         }
 
         val contentRow = viewRow {
@@ -67,9 +68,9 @@ class TermsOfServiceActivity : AppCompatActivity(), ChildActionBarBehavior, Home
         val buttonRow = viewFooter {
             layoutRes = R.layout.layout_tos_button
             onViewSetupListener = {
-                it.tosButton.isEnabled = hasReachBottom
+                it.agreeButton.isEnabled = hasReachBottom
                 if (hasReachBottom) {
-                    it.find<View>(R.id.tosButton).setOnClickListener {
+                    it.find<View>(R.id.agreeButton).setOnClickListener {
                         toast("Yey!")
                     }
                 }

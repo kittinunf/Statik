@@ -16,13 +16,17 @@ import com.github.kittinunf.statik.dsl.textRow
 import com.github.kittinunf.statik.dsl.twoTextRow
 import com.github.kittinunf.statik.sample.R
 import com.github.kittinunf.statik.sample.behavior.ChildActionBarBehavior
-import com.github.kittinunf.statik.sample.behavior.HomeOptionsItemSelectedBehavior
+import com.github.kittinunf.statik.sample.behavior.HomeAsBackPressedOptionsItemSelectedBehavior
+import com.github.kittinunf.statik.sample.util.configureDetailText
+import com.github.kittinunf.statik.sample.util.configureTitleText
 import com.github.kittinunf.statik.sample.util.configureWhiteRow
 import com.github.kittinunf.statik.sample.util.toast
 import kotlinx.android.synthetic.main.activity_kyc_list_template.list
 import kotlinx.android.synthetic.main.activity_kyc_list_template.toolbar
 
-class UserVerificationActivity : AppCompatActivity(), ChildActionBarBehavior, HomeOptionsItemSelectedBehavior {
+class UserVerificationActivity : AppCompatActivity(),
+        ChildActionBarBehavior,
+        HomeAsBackPressedOptionsItemSelectedBehavior {
 
     private lateinit var statikAdapter: StatikAdapter
 
@@ -38,9 +42,7 @@ class UserVerificationActivity : AppCompatActivity(), ChildActionBarBehavior, Ho
         val mainRow = twoTextRow {
             titleText = getString(R.string.upload_documents)
             onViewSetupListener = configureWhiteRow()
-            onTitleTextSetupListener = {
-                TextViewCompat.setTextAppearance(it, R.style.TextAppearance_Row_Title)
-            }
+            onTitleTextSetupListener = configureTitleText()
             onClickListener = { _, _ ->
                 toast("Yey!")
             }
@@ -48,9 +50,7 @@ class UserVerificationActivity : AppCompatActivity(), ChildActionBarBehavior, Ho
 
         val descriptionRow = textRow {
             text = getString(R.string.upload_documents_detail)
-            onTextSetupListener = {
-                TextViewCompat.setTextAppearance(it, R.style.TextAppearance_Row_Detail)
-            }
+            onTextSetupListener = configureDetailText()
         }
 
         val aboutFooter = textFooter {

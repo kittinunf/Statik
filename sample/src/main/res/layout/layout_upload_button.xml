@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Button
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/agreeButton"
+    android:id="@+id/nextButton"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="@string/agree"
+    android:text="@string/next"
     android:layout_margin="@dimen/dp_8"
     />

@@ -20,4 +20,9 @@ After uploading, we will be sending documents with regards to the transaction to
     <string name="health_insurance_card">Health Insurance Card</string>
     <string name="passport">Passport</string>
     <string name="certificate_residence">Certificate of Residency</string>
+    <string name="user_verification_document">Upload documents</string>
+    <string name="submit_verification_document">Please submit clear photos</string>
+    <string name="next">Next</string>
+    <string name="front">Front</string>
+    <string name="back">Back</string>
 </resources>
