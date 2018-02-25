@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="statik_two_lines_margin_top">8dp</dimen>
-    <dimen name="statik_two_lines_margin_bottom">8dp</dimen>
-    <dimen name="statik_two_lines_margin_start">16dp</dimen>
-    <dimen name="statik_two_lines_margin_end">8dp</dimen>
+    <dimen name="statik_two_lines_margin_top">@dimen/statik_margin_8dp</dimen>
+    <dimen name="statik_two_lines_margin_bottom">@dimen/statik_margin_8dp</dimen>
+    <dimen name="statik_two_lines_margin_start">@dimen/statik_margin_16dp</dimen>
+    <dimen name="statik_two_lines_margin_end">@dimen/statik_margin_8dp</dimen>
 
-    <dimen name="statik_two_lines_icon_margin">8dp</dimen>
+    <dimen name="statik_two_lines_icon_margin">@dimen/statik_margin_8dp</dimen>
 
     <dimen name="statik_two_lines_widget_min_width">60dp</dimen>
+
+    <dimen name="statik_margin_8dp">8dp</dimen>
+    <dimen name="statik_margin_16dp">16dp</dimen>
 </resources>
