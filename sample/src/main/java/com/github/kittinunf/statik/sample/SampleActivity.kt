@@ -9,6 +9,9 @@ import com.github.kittinunf.statik.dsl.statik
 import com.github.kittinunf.statik.dsl.textRow
 import com.github.kittinunf.statik.sample.util.configureWhiteRow
 import com.github.kittinunf.statik.sample.util.navigate
+import com.github.kittinunf.statik.sample.view.TermsOfServiceActivity
+import com.github.kittinunf.statik.sample.view.UserVerificationActivity
+import com.github.kittinunf.statik.sample.view.UserVerificationDetailActivity
 import kotlinx.android.synthetic.main.activity_list.list
 import kotlinx.android.synthetic.main.activity_list.toolbar
 
@@ -21,27 +24,24 @@ class SampleActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
-        val userVerificationRow = textRow {
-            text = getString(R.string.user_verification)
-            onViewSetupListener = configureWhiteRow()
-            onTextSetupListener = configureTitleText()
-            onClickListener = { _, _ ->
-                navigate<UserVerificationActivity>()
-            }
-        }
+        val labelAndActivity = mapOf(
+                R.string.user_verification to UserVerificationActivity::class,
+                R.string.terms_of_service to TermsOfServiceActivity::class,
+                R.string.user_verification2 to UserVerificationDetailActivity::class
+                )
 
-        val tosRow = textRow {
-            text = getString(R.string.terms_of_service)
-            onViewSetupListener = configureWhiteRow()
-            onTextSetupListener = configureTitleText()
-            onClickListener = { _, _ ->
-                navigate<TermsOfServiceActivity>()
+        val rows = labelAndActivity.map { (label, clazz) ->
+            textRow {
+                text = getString(label)
+                onViewSetupListener = configureWhiteRow()
+                onTextSetupListener = configureTitleText()
+                onClickListener = { _, _ -> navigate(clazz) }
             }
         }
 
         val adapter = statik {
             section {
-                rows(userVerificationRow, tosRow)
+                rows(rows)
             }
         }
 
@@ -51,7 +51,7 @@ class SampleActivity : AppCompatActivity() {
         }
     }
 
-    fun configureTitleText() = { textView: TextView ->
+    private fun configureTitleText() = { textView: TextView ->
         TextViewCompat.setTextAppearance(textView, R.style.TextAppearance_Row_Title)
     }
 }

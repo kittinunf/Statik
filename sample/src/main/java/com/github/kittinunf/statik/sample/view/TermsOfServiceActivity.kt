@@ -1,4 +1,4 @@
-package com.github.kittinunf.statik.sample
+package com.github.kittinunf.statik.sample.view
 
 import android.os.Bundle
 import android.support.v4.widget.NestedScrollView
@@ -6,6 +6,7 @@ import android.support.v4.widget.TextViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
+import android.view.View
 import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.dsl.section
 import com.github.kittinunf.statik.dsl.statik
@@ -13,8 +14,11 @@ import com.github.kittinunf.statik.dsl.textFooter
 import com.github.kittinunf.statik.dsl.textHeader
 import com.github.kittinunf.statik.dsl.viewFooter
 import com.github.kittinunf.statik.dsl.viewRow
+import com.github.kittinunf.statik.sample.R
 import com.github.kittinunf.statik.sample.behavior.ChildActionBarBehavior
 import com.github.kittinunf.statik.sample.behavior.HomeOptionsItemSelectedBehavior
+import com.github.kittinunf.statik.sample.util.find
+import com.github.kittinunf.statik.sample.util.toast
 import kotlinx.android.synthetic.main.activity_kyc_list_template.list
 import kotlinx.android.synthetic.main.activity_kyc_list_template.toolbar
 import kotlinx.android.synthetic.main.layout_scrollable_text.view.tosContent
@@ -38,7 +42,7 @@ class TermsOfServiceActivity : AppCompatActivity(), ChildActionBarBehavior, Home
         val infoRow = textHeader {
             text = getString(R.string.account_terms_of_service)
             onTextSetupListener = {
-                TextViewCompat.setTextAppearance(it, R.style.TextAppearance_Row_Header_Small)
+                TextViewCompat.setTextAppearance(it, R.style.TextAppearance_Row_Detail)
             }
         }
 
@@ -64,6 +68,11 @@ class TermsOfServiceActivity : AppCompatActivity(), ChildActionBarBehavior, Home
             layoutRes = R.layout.layout_tos_button
             onViewSetupListener = {
                 it.tosButton.isEnabled = hasReachBottom
+                if (hasReachBottom) {
+                    it.find<View>(R.id.tosButton).setOnClickListener {
+                        toast("Yey!")
+                    }
+                }
             }
         }
 

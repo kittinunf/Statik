@@ -1,4 +1,4 @@
-package com.github.kittinunf.statik.sample
+package com.github.kittinunf.statik.sample.view
 
 import android.content.Intent
 import android.net.Uri
@@ -14,9 +14,11 @@ import com.github.kittinunf.statik.dsl.statik
 import com.github.kittinunf.statik.dsl.textFooter
 import com.github.kittinunf.statik.dsl.textRow
 import com.github.kittinunf.statik.dsl.twoTextRow
+import com.github.kittinunf.statik.sample.R
 import com.github.kittinunf.statik.sample.behavior.ChildActionBarBehavior
 import com.github.kittinunf.statik.sample.behavior.HomeOptionsItemSelectedBehavior
 import com.github.kittinunf.statik.sample.util.configureWhiteRow
+import com.github.kittinunf.statik.sample.util.toast
 import kotlinx.android.synthetic.main.activity_kyc_list_template.list
 import kotlinx.android.synthetic.main.activity_kyc_list_template.toolbar
 
@@ -38,6 +40,9 @@ class UserVerificationActivity : AppCompatActivity(), ChildActionBarBehavior, Ho
             onViewSetupListener = configureWhiteRow()
             onTitleTextSetupListener = {
                 TextViewCompat.setTextAppearance(it, R.style.TextAppearance_Row_Title)
+            }
+            onClickListener = { _, _ ->
+                toast("Yey!")
             }
         }
 
@@ -71,7 +76,6 @@ class UserVerificationActivity : AppCompatActivity(), ChildActionBarBehavior, Ho
 
         list.also {
             it.layoutManager = LinearLayoutManager(this)
-            it.addItemDecoration(TopSpaceDecoration(resources.getDimensionPixelOffset(R.dimen.dp_16)))
             it.adapter = statikAdapter
         }
     }

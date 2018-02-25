@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import com.squareup.picasso.Picasso
+import kotlin.reflect.KClass
 
 fun <T : View> View.find(@IdRes id: Int): T = findViewById(id)
 
@@ -18,7 +19,11 @@ fun Context.toast(text: String) {
 }
 
 inline fun <reified T : AppCompatActivity> Context.navigate() {
-    val intent = Intent(this, T::class.java)
+    navigate(T::class)
+}
+
+fun <T : Any> Context.navigate(clazz: KClass<T>) {
+    val intent = Intent(this, clazz.java)
     startActivity(intent)
 }
 

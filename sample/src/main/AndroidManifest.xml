@@ -31,15 +31,22 @@
         </activity>
 
         <activity
-            android:name=".UserVerificationActivity"
+            android:name=".view.UserVerificationActivity"
             android:label="@string/user_verification"
             >
         </activity>
 
         <activity
-            android:name=".TermsOfServiceActivity"
+            android:name=".view.TermsOfServiceActivity"
             android:label="@string/terms_of_service"
             >
+        </activity>
+
+        <activity
+            android:name=".view.UserVerificationDetailActivity"
+            android:label="@string/user_verification"
+            >
+
         </activity>
 
     </application>
