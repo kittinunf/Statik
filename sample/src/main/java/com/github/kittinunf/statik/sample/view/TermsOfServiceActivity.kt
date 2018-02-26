@@ -6,7 +6,6 @@ import android.support.v4.widget.TextViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
-import android.view.View
 import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.dsl.section
 import com.github.kittinunf.statik.dsl.statik
@@ -18,7 +17,6 @@ import com.github.kittinunf.statik.sample.R
 import com.github.kittinunf.statik.sample.behavior.ChildActionBarBehavior
 import com.github.kittinunf.statik.sample.behavior.HomeAsBackPressedOptionsItemSelectedBehavior
 import com.github.kittinunf.statik.sample.util.configureDetailText
-import com.github.kittinunf.statik.sample.util.find
 import com.github.kittinunf.statik.sample.util.toast
 import kotlinx.android.synthetic.main.activity_kyc_list_template.list
 import kotlinx.android.synthetic.main.activity_kyc_list_template.toolbar
@@ -29,7 +27,7 @@ class TermsOfServiceActivity : AppCompatActivity(),
         ChildActionBarBehavior,
         HomeAsBackPressedOptionsItemSelectedBehavior {
 
-    private lateinit var statikAdapter: StatikAdapter
+    private lateinit var adapter: StatikAdapter
 
     private var hasReachBottom = false
 
@@ -58,7 +56,7 @@ class TermsOfServiceActivity : AppCompatActivity(),
                     tosContent.setOnScrollChangeListener { scrollView: NestedScrollView, _: Int, scrollY: Int, _: Int, _: Int ->
                         if (scrollY >= scrollView.height) {
                             hasReachBottom = true
-                            statikAdapter.update()
+                            adapter.update()
                         }
                     }
                 }
@@ -70,7 +68,7 @@ class TermsOfServiceActivity : AppCompatActivity(),
             onViewSetupListener = {
                 it.agreeButton.isEnabled = hasReachBottom
                 if (hasReachBottom) {
-                    it.find<View>(R.id.agreeButton).setOnClickListener {
+                    it.agreeButton.setOnClickListener {
                         toast("Yey!")
                     }
                 }
@@ -90,13 +88,13 @@ class TermsOfServiceActivity : AppCompatActivity(),
             footer(buttonRow)
         }
 
-        statikAdapter = statik {
+        adapter = statik {
             sections(section)
         }
 
         list.also {
             it.layoutManager = LinearLayoutManager(this)
-            it.adapter = statikAdapter
+            it.adapter = adapter
         }
     }
 

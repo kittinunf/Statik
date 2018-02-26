@@ -28,7 +28,7 @@ class UserVerificationActivity : AppCompatActivity(),
         ChildActionBarBehavior,
         HomeAsBackPressedOptionsItemSelectedBehavior {
 
-    private lateinit var statikAdapter: StatikAdapter
+    private lateinit var adapter: StatikAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,13 +70,13 @@ class UserVerificationActivity : AppCompatActivity(),
             footer(aboutFooter)
         }
 
-        statikAdapter = statik {
+        adapter = statik {
             sections(section)
         }
 
         list.also {
             it.layoutManager = LinearLayoutManager(this)
-            it.adapter = statikAdapter
+            it.adapter = adapter
         }
     }
 

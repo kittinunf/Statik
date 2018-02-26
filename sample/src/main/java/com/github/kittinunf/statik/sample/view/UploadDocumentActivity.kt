@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Gravity
 import android.view.MenuItem
-import android.view.View
+import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.dsl.section
 import com.github.kittinunf.statik.dsl.statik
 import com.github.kittinunf.statik.dsl.textFooter
@@ -18,17 +18,30 @@ import com.github.kittinunf.statik.sample.R
 import com.github.kittinunf.statik.sample.behavior.ChildActionBarBehavior
 import com.github.kittinunf.statik.sample.behavior.HomeAsBackPressedOptionsItemSelectedBehavior
 import com.github.kittinunf.statik.sample.util.configureDetailText
-import com.github.kittinunf.statik.sample.util.find
+import com.github.kittinunf.statik.sample.util.load
 import com.github.kittinunf.statik.sample.util.toast
 import kotlinx.android.synthetic.main.activity_kyc_list_template.list
 import kotlinx.android.synthetic.main.activity_kyc_list_template.toolbar
 import kotlinx.android.synthetic.main.layout_upload_button.view.nextButton
+import kotlinx.android.synthetic.main.layout_upload_document.view.backContainer
+import kotlinx.android.synthetic.main.layout_upload_document.view.backImage
+import kotlinx.android.synthetic.main.layout_upload_document.view.frontContainer
+import kotlinx.android.synthetic.main.layout_upload_document.view.frontImage
 
 class UploadDocumentActivity : AppCompatActivity(),
         ChildActionBarBehavior,
         HomeAsBackPressedOptionsItemSelectedBehavior {
 
-    private val hasSubmittedDocument = false
+    private lateinit var adapter: StatikAdapter
+
+    private var hasFrontImageUploaded = false
+
+    private var hasBackImageUploaded = false
+
+    private val hasSubmittedDocument: Boolean
+        get() {
+            return hasFrontImageUploaded && hasBackImageUploaded
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,20 +59,35 @@ class UploadDocumentActivity : AppCompatActivity(),
 
         val uploadDocumentRow = viewRow {
             layoutRes = R.layout.layout_upload_document
-            onViewSetupListener = {
-
+            onViewSetupListener = { view ->
+                view.apply {
+                    frontContainer.setOnClickListener {
+                        if (!hasFrontImageUploaded) {
+                            frontImage.load("https://source.unsplash.com/200x200/?nature")
+                            frontContainer.showNext()
+                            hasFrontImageUploaded = true
+                            adapter.update()
+                        }
+                    }
+                    backContainer.setOnClickListener {
+                        if (!hasBackImageUploaded) {
+                            backImage.load("https://source.unsplash.com/200x200/?building")
+                            backContainer.showNext()
+                            hasBackImageUploaded = true
+                            adapter.update()
+                        }
+                    }
+                }
             }
         }
 
         val buttonRow = viewRow {
             layoutRes = R.layout.layout_upload_button
             onViewSetupListener = {
-                it.nextButton.isEnabled = hasSubmittedDocument
-                if (hasSubmittedDocument) {
-                    it.find<View>(R.id.agreeButton).setOnClickListener {
-                        toast("Yey!")
-                    }
+                it.nextButton.setOnClickListener {
+                    toast("Yey!")
                 }
+                it.nextButton.isEnabled = hasSubmittedDocument
             }
         }
 
@@ -81,7 +109,7 @@ class UploadDocumentActivity : AppCompatActivity(),
             footer(aboutFooter)
         }
 
-        val adapter = statik {
+        adapter = statik {
             sections(section)
         }
 

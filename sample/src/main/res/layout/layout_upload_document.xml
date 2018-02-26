@@ -31,7 +31,7 @@
                 />
 
             <TextView
-                android:id="@+id/frontImage"
+                android:id="@+id/frontImageText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/uploadIconCamera"
@@ -43,6 +43,7 @@
         </RelativeLayout>
 
         <ImageView
+            android:id="@+id/frontImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
@@ -73,7 +74,7 @@
                 />
 
             <TextView
-                android:id="@+id/backImage"
+                android:id="@+id/backImageText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/uploadIconCamera"
@@ -85,6 +86,7 @@
         </RelativeLayout>
 
         <ImageView
+            android:id="@+id/backImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
