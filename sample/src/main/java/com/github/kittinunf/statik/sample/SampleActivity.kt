@@ -11,6 +11,7 @@ import com.github.kittinunf.statik.sample.util.navigate
 import com.github.kittinunf.statik.sample.view.SubmitAdditionalDocumentActivity
 import com.github.kittinunf.statik.sample.view.TermsOfServiceActivity
 import com.github.kittinunf.statik.sample.view.UploadDocumentActivity
+import com.github.kittinunf.statik.sample.view.UserInformationActivity
 import com.github.kittinunf.statik.sample.view.UserVerificationActivity
 import com.github.kittinunf.statik.sample.view.UserVerificationDetailActivity
 import kotlinx.android.synthetic.main.activity_list.list
@@ -30,7 +31,8 @@ class SampleActivity : AppCompatActivity() {
                 R.string.terms_of_service to TermsOfServiceActivity::class,
                 R.string.user_verification2 to UserVerificationDetailActivity::class,
                 R.string.user_verification_document to UploadDocumentActivity::class,
-                R.string.submit_additional_document to SubmitAdditionalDocumentActivity::class
+                R.string.submit_additional_document to SubmitAdditionalDocumentActivity::class,
+                R.string.user_information to UserInformationActivity::class
                 )
 
         val rows = labelAndActivity.map { (label, clazz) ->

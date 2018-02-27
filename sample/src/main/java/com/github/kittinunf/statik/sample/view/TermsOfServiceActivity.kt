@@ -20,8 +20,8 @@ import com.github.kittinunf.statik.sample.util.configureDetailText
 import com.github.kittinunf.statik.sample.util.toast
 import kotlinx.android.synthetic.main.activity_kyc_list_template.list
 import kotlinx.android.synthetic.main.activity_kyc_list_template.toolbar
-import kotlinx.android.synthetic.main.layout_scrollable_text.view.tosContent
 import kotlinx.android.synthetic.main.layout_next_button.view.agreeButton
+import kotlinx.android.synthetic.main.layout_scrollable_text.view.tosContent
 
 class TermsOfServiceActivity : AppCompatActivity(),
         ChildActionBarBehavior,
@@ -63,6 +63,13 @@ class TermsOfServiceActivity : AppCompatActivity(),
             }
         }
 
+        val warningRow = textFooter {
+            text = getString(R.string.warning_terms_of_service)
+            onTextSetupListener = {
+                TextViewCompat.setTextAppearance(it, R.style.TextAppearance_Row_About)
+            }
+        }
+
         val buttonRow = viewFooter {
             layoutRes = R.layout.layout_next_button
             onViewSetupListener = {
@@ -72,13 +79,6 @@ class TermsOfServiceActivity : AppCompatActivity(),
                         toast("Yey!")
                     }
                 }
-            }
-        }
-
-        val warningRow = textFooter {
-            text = getString(R.string.warning_terms_of_service)
-            onTextSetupListener = {
-                TextViewCompat.setTextAppearance(it, R.style.TextAppearance_Row_About)
             }
         }
 

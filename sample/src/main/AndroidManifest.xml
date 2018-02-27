@@ -58,6 +58,12 @@
             android:name=".view.SubmitAdditionalDocumentActivity"
             android:label="@string/submit_additional_document"
             >
+        </activity>
+
+        <activity
+            android:name=".view.UserInformationActivity"
+            android:label="@string/user_information"
+            >
 
         </activity>
 

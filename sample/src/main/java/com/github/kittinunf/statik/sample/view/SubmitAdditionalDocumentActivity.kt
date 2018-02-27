@@ -20,8 +20,8 @@ import com.github.kittinunf.statik.sample.util.load
 import com.github.kittinunf.statik.sample.util.toast
 import kotlinx.android.synthetic.main.activity_kyc_list_template.list
 import kotlinx.android.synthetic.main.activity_kyc_list_template.toolbar
-import kotlinx.android.synthetic.main.layout_next_cancel_button.view.cancelButton
-import kotlinx.android.synthetic.main.layout_next_cancel_button.view.nextButton
+import kotlinx.android.synthetic.main.layout_next_skip_button.view.nextButton
+import kotlinx.android.synthetic.main.layout_next_skip_button.view.skipButton
 import kotlinx.android.synthetic.main.layout_upload_additional_document.view.container
 
 class SubmitAdditionalDocumentActivity : AppCompatActivity(), ChildActionBarBehavior, HomeAsBackPressedOptionsItemSelectedBehavior {
@@ -70,14 +70,14 @@ class SubmitAdditionalDocumentActivity : AppCompatActivity(), ChildActionBarBeha
         }
 
         val actionRow = viewFooter {
-            layoutRes = R.layout.layout_next_cancel_button
+            layoutRes = R.layout.layout_next_skip_button
             onViewSetupListener = { view ->
                 view.nextButton.setOnClickListener {
                     toast("Yey!")
                 }
                 view.nextButton.isEnabled = hasImageUploaded
 
-                view.cancelButton.setOnClickListener {
+                view.skipButton.setOnClickListener {
                     toast("Neh")
                 }
             }

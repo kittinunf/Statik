@@ -10,6 +10,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="TextAppearance.Row.Section" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
     <style name="TextAppearance.Row.Title" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">@color/choco_black</item>
     </style>

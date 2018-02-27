@@ -29,5 +29,21 @@ After uploading, we will be sending documents with regards to the transaction to
     <string name="current_address_doesnt_match">If your current address does not match with the address that you have submitted, please submit either of the following below</string>
     <string name="additional_document_detail1">1. Utility bills\n\nBills of your phone company (only for landline phones), electric utility company, water utility company, gas utility company, NHK\n\n2. Receipt for national or local tax\n3. Certificate of tax payment\n4. Receipt for Social Insurance premium</string>
     <string name="additional_document_detail2">※ All documents submitted must be not be over 6 months from the issue date\n※ Please send the receipts for the utility bills and invoice that belongs to the person who is verifying. As long as your address and last name matches, it is also acceptable for family members who are living together to submit as well.</string>
-    <string name="cancel">Cancel</string>
+    <string name="skip">Skip</string>
+    <string name="user_information">User Information</string>
+    <string name="customer_information">Customer Information</string>
+    <string name="last_name_full">Last name (full width)</string>
+    <string name="first_name_full">First name (full width)</string>
+    <string name="last_name_kana_full">Last name (Katakana full width)</string>
+    <string name="first_name_kana_full">First name (Katakana full width)</string>
+    <string name="customer_address">Customer Address</string>
+    <string name="postal_code">Postal Code (numbers)</string>
+    <string name="prefecture">Prefecture</string>
+    <string name="city">City</string>
+    <string name="street_number">Street Number</string>
+    <string name="building_name">Building Name (Optional)</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="transaction_confirmation">Transaction Confirmation</string>
+    <string name="occupation">Occupation</string>
+    <string name="occupation_reason">Reasons for transaction fixed convention (Unable to select)</string>
 </resources>

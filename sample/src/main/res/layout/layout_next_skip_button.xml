@@ -17,11 +17,11 @@
 
     <Button
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/cancelButton"
+        android:id="@+id/skipButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dp_8"
-        android:text="@string/cancel"
+        android:text="@string/skip"
         />
 
 </LinearLayout>
