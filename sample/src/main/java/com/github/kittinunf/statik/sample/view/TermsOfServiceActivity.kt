@@ -21,7 +21,7 @@ import com.github.kittinunf.statik.sample.util.toast
 import kotlinx.android.synthetic.main.activity_kyc_list_template.list
 import kotlinx.android.synthetic.main.activity_kyc_list_template.toolbar
 import kotlinx.android.synthetic.main.layout_scrollable_text.view.tosContent
-import kotlinx.android.synthetic.main.layout_tos_button.view.agreeButton
+import kotlinx.android.synthetic.main.layout_next_button.view.agreeButton
 
 class TermsOfServiceActivity : AppCompatActivity(),
         ChildActionBarBehavior,
@@ -64,7 +64,7 @@ class TermsOfServiceActivity : AppCompatActivity(),
         }
 
         val buttonRow = viewFooter {
-            layoutRes = R.layout.layout_tos_button
+            layoutRes = R.layout.layout_next_button
             onViewSetupListener = {
                 it.agreeButton.isEnabled = hasReachBottom
                 if (hasReachBottom) {

@@ -54,5 +54,12 @@
             >
         </activity>
 
+        <activity
+            android:name=".view.SubmitAdditionalDocumentActivity"
+            android:label="@string/submit_additional_document"
+            >
+
+        </activity>
+
     </application>
 </manifest>

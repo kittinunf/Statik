@@ -24,9 +24,7 @@ import kotlinx.android.synthetic.main.activity_kyc_list_template.list
 import kotlinx.android.synthetic.main.activity_kyc_list_template.toolbar
 import kotlinx.android.synthetic.main.layout_upload_button.view.nextButton
 import kotlinx.android.synthetic.main.layout_upload_document.view.backContainer
-import kotlinx.android.synthetic.main.layout_upload_document.view.backImage
 import kotlinx.android.synthetic.main.layout_upload_document.view.frontContainer
-import kotlinx.android.synthetic.main.layout_upload_document.view.frontImage
 
 class UploadDocumentActivity : AppCompatActivity(),
         ChildActionBarBehavior,
@@ -60,22 +58,23 @@ class UploadDocumentActivity : AppCompatActivity(),
         val uploadDocumentRow = viewRow {
             layoutRes = R.layout.layout_upload_document
             onViewSetupListener = { view ->
-                view.apply {
-                    frontContainer.setOnClickListener {
-                        if (!hasFrontImageUploaded) {
-                            frontImage.load("https://source.unsplash.com/200x200/?nature")
-                            frontContainer.showNext()
-                            hasFrontImageUploaded = true
-                            adapter.update()
-                        }
+                view.frontContainer.apply {
+                    description = getString(R.string.front)
+                    setOnClickListener {
+                        uploadImageView.load("https://source.unsplash.com/200x200/?nature")
+                        showNext()
+                        hasFrontImageUploaded = true
+                        adapter.update()
                     }
-                    backContainer.setOnClickListener {
-                        if (!hasBackImageUploaded) {
-                            backImage.load("https://source.unsplash.com/200x200/?building")
-                            backContainer.showNext()
-                            hasBackImageUploaded = true
-                            adapter.update()
-                        }
+                }
+
+                view.backContainer.apply {
+                    description = getString(R.string.back)
+                    setOnClickListener {
+                        uploadImageView.load("https://source.unsplash.com/200x200/?building")
+                        showNext()
+                        hasBackImageUploaded = true
+                        adapter.update()
                     }
                 }
             }
