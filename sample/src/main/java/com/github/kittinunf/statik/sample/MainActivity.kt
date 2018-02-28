@@ -208,8 +208,8 @@ class MainActivity : AppCompatActivity() {
             val items = listOf("Tokyo", "Bangkok", "New York", "Shanghai", "London")
             list = items
             selected = 3
-            onItemSelectedListener = { position, item ->
-               toast("$item is selected")
+            onItemSelectedListener = { position->
+               toast("${items[position]} is selected")
             }
         }
 

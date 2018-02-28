@@ -26,7 +26,7 @@ class SpinnerRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHol
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
 
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    item.onItemSelectedListener?.invoke(position, item.list[position])
+                    item.onItemSelectedListener?.invoke(position)
                 }
             }
         }

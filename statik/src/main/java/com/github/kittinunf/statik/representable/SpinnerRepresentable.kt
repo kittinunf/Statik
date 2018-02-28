@@ -6,7 +6,7 @@ import com.github.kittinunf.statik.model.SpinnerRow
 
 class SpinnerRepresentable : BaseRepresentable<SpinnerRow, Pair<Int, List<String>>>(SpinnerRow()) {
 
-    var onItemSelectedListener: ((Int, String) -> Unit)? = null
+    var onItemSelectedListener: ((Int) -> Unit)? = null
 
     @LayoutRes
     val dropdownViewRes: Int? = null
