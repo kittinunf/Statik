@@ -19,7 +19,7 @@ class SpinnerRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHol
             setDropDownViewResource(item.dropdownViewRes ?: android.R.layout.simple_spinner_dropdown_item)
         }
 
-        itemView.findViewById<Spinner>(R.id.statik_row_spinner).apply {
+        val spinner= itemView.findViewById<Spinner>(R.id.statik_row_spinner).apply {
             adapter = arrayAdapter
             setSelection(item.selected)
             onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -27,8 +27,11 @@ class SpinnerRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHol
 
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                     item.onItemSelectedListener?.invoke(position)
+                    item.selected = position
                 }
             }
         }
+
+        item.onSpinnerSetupListener?.invoke(spinner)
     }
 }
