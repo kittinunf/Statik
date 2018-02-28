@@ -13,6 +13,7 @@ import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.dsl.checkRow
 import com.github.kittinunf.statik.dsl.inputRow
 import com.github.kittinunf.statik.dsl.section
+import com.github.kittinunf.statik.dsl.spinnerRow
 import com.github.kittinunf.statik.dsl.statik
 import com.github.kittinunf.statik.dsl.textFooter
 import com.github.kittinunf.statik.dsl.textHeader
@@ -203,8 +204,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val r13 = spinnerRow {
+            val items = listOf("Tokyo", "Bangkok", "New York", "Shanghai", "London")
+            list = items
+            selected = 3
+            onItemSelectedListener = { position, item ->
+               toast("$item is selected")
+            }
+        }
+
         val s3 = section {
-            rows(r9, r10, r11, r12)
+            rows(r9, r10, r11, r12, r13)
         }
 
         statikAdapter = statik {

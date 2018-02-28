@@ -9,6 +9,7 @@ import com.github.kittinunf.statik.representable.HeaderTextSupplementaryRepresen
 import com.github.kittinunf.statik.representable.HeaderViewSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.InputRowRepresentable
 import com.github.kittinunf.statik.representable.ItemRepresentable
+import com.github.kittinunf.statik.representable.SpinnerRepresentable
 import com.github.kittinunf.statik.representable.TextRowRepresentable
 import com.github.kittinunf.statik.representable.TextSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.TwoTextRowRepresentable
@@ -102,3 +103,6 @@ fun checkRow(block: CheckRowRepresentable.() -> Unit): CheckRowRepresentable =
 
 fun inputRow(block: InputRowRepresentable.() -> Unit): InputRowRepresentable =
         InputRowRepresentable().apply(block)
+
+fun spinnerRow(block: SpinnerRepresentable.() -> Unit): SpinnerRepresentable =
+        SpinnerRepresentable().apply(block)
