@@ -16,10 +16,11 @@ class SpinnerRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHol
         val arrayAdapter = ArrayAdapter(itemView.context,
                 item.spinnerItemRes ?: android.R.layout.simple_spinner_item,
                 item.list).apply {
-            setDropDownViewResource(item.dropdownViewRes ?: android.R.layout.simple_spinner_dropdown_item)
+            setDropDownViewResource(item.dropdownViewRes
+                    ?: android.R.layout.simple_spinner_dropdown_item)
         }
 
-        val spinner= itemView.findViewById<Spinner>(R.id.statik_row_spinner).apply {
+        val spinner = itemView.findViewById<Spinner>(R.id.statik_row_spinner).apply {
             adapter = arrayAdapter
             setSelection(item.selected)
             onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
