@@ -29,4 +29,6 @@ class CheckRow(checked: Boolean = false,
 class InputRow(input: String = "",
                stableId: Long? = null) : Row<String>(input, stableId)
 
-
+class SpinnerRow(selected: Int = 0,
+                 list: List<String> = emptyList(),
+                 stableId: Long? = null) : Row<Pair<Int, List<String>>>(selected to list, stableId)
