@@ -46,4 +46,31 @@ After uploading, we will be sending documents with regards to the transaction to
     <string name="transaction_confirmation">Transaction Confirmation</string>
     <string name="occupation">Occupation</string>
     <string name="occupation_reason">Reasons for transaction fixed convention (Unable to select)</string>
+
+    <string-array name="occupation_list">
+        <item>@string/not_selected</item>
+        <item>@string/employee</item>
+        <item>@string/executive</item>
+        <item>@string/public_employee</item>
+        <item>@string/self_employed</item>
+        <item>@string/contract_employee</item>
+        <item>@string/part_timer</item>
+        <item>@string/pensioner</item>
+        <item>@string/student</item>
+        <item>@string/not_in_employment</item>
+        <item>@string/others</item>
+    </string-array>
+
+    <string name="not_selected">NOT_SELECTED</string>
+    <string name="employee">EMPLOYEE</string>
+    <string name="executive">EXECUTIVE</string>
+    <string name="public_employee">PUBLIC_EMPLOYEE</string>
+    <string name="self_employed">SELF_EMPLOYED</string>
+    <string name="contract_employee">CONTRACT_EMPLOYEE</string>
+    <string name="part_timer">PART_TIMER</string>
+    <string name="pensioner">PENSIONER</string>
+    <string name="student">STUDENT</string>
+    <string name="not_in_employment">NOT_IN_EMPLOYMENT</string>
+    <string name="others">OTHERS</string>
+
 </resources>

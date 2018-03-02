@@ -39,3 +39,8 @@ fun String.isValidEmailAddress(): Boolean {
     val regex = "^[a-zA-Z0-9#_~!$&'()*+,;=:.\"(),:;<>@\\[\\]\\\\]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*$".toRegex()
     return regex.matches(this)
 }
+
+fun String.resString(context: Context): Int {
+    val resource = context.resources
+    return resource.getIdentifier(this.toLowerCase(), "string", context.packageName)
+}
