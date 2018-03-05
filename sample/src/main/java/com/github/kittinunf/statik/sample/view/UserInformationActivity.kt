@@ -5,22 +5,25 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.text.InputType
 import android.view.MenuItem
+import android.view.View
 import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.dsl.inputRow
 import com.github.kittinunf.statik.dsl.section
 import com.github.kittinunf.statik.dsl.spinnerRow
 import com.github.kittinunf.statik.dsl.statik
-import com.github.kittinunf.statik.dsl.textHeader
 import com.github.kittinunf.statik.dsl.viewFooter
+import com.github.kittinunf.statik.dsl.viewHeader
 import com.github.kittinunf.statik.sample.R
 import com.github.kittinunf.statik.sample.behavior.ChildActionBarBehavior
 import com.github.kittinunf.statik.sample.behavior.HomeAsBackPressedOptionsItemSelectedBehavior
-import com.github.kittinunf.statik.sample.util.configureSectionText
 import com.github.kittinunf.statik.sample.util.resString
 import com.github.kittinunf.statik.sample.util.toast
+import kotlinx.android.synthetic.main.activity_kyc_list_template.layoutContainer
 import kotlinx.android.synthetic.main.activity_kyc_list_template.list
 import kotlinx.android.synthetic.main.activity_kyc_list_template.toolbar
 import kotlinx.android.synthetic.main.layout_next_button.view.agreeButton
+import kotlinx.android.synthetic.main.layout_section_header.view.sectionSubtitle
+import kotlinx.android.synthetic.main.layout_section_header.view.sectionTitle
 
 class UserInformationActivity : AppCompatActivity(), ChildActionBarBehavior, HomeAsBackPressedOptionsItemSelectedBehavior {
 
@@ -49,9 +52,12 @@ class UserInformationActivity : AppCompatActivity(), ChildActionBarBehavior, Hom
     }
 
     private fun configureRecyclerView() {
-        val personalHeader = textHeader {
-            text = getString(R.string.customer_information)
-            onTextSetupListener = configureSectionText()
+        val personalHeader = viewHeader {
+            layoutRes = R.layout.layout_section_header
+            onViewSetupListener = {
+                it.sectionTitle.text = getString(R.string.customer_information)
+                it.sectionSubtitle.visibility = View.GONE
+            }
         }
 
         val personalRows = listOf(R.string.last_name_full,
@@ -73,9 +79,12 @@ class UserInformationActivity : AppCompatActivity(), ChildActionBarBehavior, Hom
             rows(personalRows)
         }
 
-        val addressHeader = textHeader {
-            text = getString(R.string.customer_address)
-            onTextSetupListener = configureSectionText()
+        val addressHeader = viewHeader {
+            layoutRes = R.layout.layout_section_header
+            onViewSetupListener = {
+                it.sectionTitle.text = getString(R.string.customer_address)
+                it.sectionSubtitle.text = getString(R.string.customer_address_detail)
+            }
         }
 
         val addressRows = listOf(
@@ -101,9 +110,12 @@ class UserInformationActivity : AppCompatActivity(), ChildActionBarBehavior, Hom
             rows(addressRows)
         }
 
-        val transactionHeader = textHeader {
-            text = getString(R.string.transaction_confirmation)
-            onTextSetupListener = configureSectionText()
+        val transactionHeader = viewHeader {
+            layoutRes = R.layout.layout_section_header
+            onViewSetupListener = {
+                it.sectionTitle.text = getString(R.string.transaction_confirmation)
+                it.sectionSubtitle.visibility = View.GONE
+            }
         }
 
         val occupationRow = spinnerRow {
@@ -112,10 +124,6 @@ class UserInformationActivity : AppCompatActivity(), ChildActionBarBehavior, Hom
             onValueChangedListener = {
                 println(it.value)
             }
-        }
-
-        val reasonRow = inputRow {
-            hint = getString(R.string.occupation_reason)
         }
 
         val buttonFooter = viewFooter {
@@ -129,7 +137,7 @@ class UserInformationActivity : AppCompatActivity(), ChildActionBarBehavior, Hom
 
         val transactionSection = section {
             header(transactionHeader)
-            rows(occupationRow, reasonRow)
+            rows(occupationRow)
             footer(buttonFooter)
         }
 
@@ -137,6 +145,7 @@ class UserInformationActivity : AppCompatActivity(), ChildActionBarBehavior, Hom
             sections(personalSection, addressSection, transactionSection)
         }
 
+        layoutContainer.setBackgroundResource(android.R.color.white)
         list.also {
             it.layoutManager = LinearLayoutManager(this)
             it.adapter = adapter

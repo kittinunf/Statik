@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            app:srcCompat="@drawable/ic_camera_alt_dim_gray_48dp"
+            app:srcCompat="@drawable/ic_camera_alt_dim_gray_36dp"
             />
 
         <TextView
