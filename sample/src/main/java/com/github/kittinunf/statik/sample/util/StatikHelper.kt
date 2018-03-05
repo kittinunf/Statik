@@ -9,10 +9,6 @@ fun configureWhiteRow() = { view: View ->
     view.setBackgroundResource(android.R.color.white)
 }
 
-fun configureSectionText() = { textView: TextView ->
-    TextViewCompat.setTextAppearance(textView, R.style.TextAppearance_Row_Section)
-}
-
 fun configureTitleText() = { textView: TextView ->
     TextViewCompat.setTextAppearance(textView, R.style.TextAppearance_Row_Title)
 }

@@ -14,6 +14,7 @@ import com.github.kittinunf.statik.dsl.statik
 import com.github.kittinunf.statik.dsl.textFooter
 import com.github.kittinunf.statik.dsl.textRow
 import com.github.kittinunf.statik.dsl.twoTextRow
+import com.github.kittinunf.statik.model.Section
 import com.github.kittinunf.statik.sample.R
 import com.github.kittinunf.statik.sample.behavior.ChildActionBarBehavior
 import com.github.kittinunf.statik.sample.behavior.HomeAsBackPressedOptionsItemSelectedBehavior
@@ -29,6 +30,7 @@ class UserVerificationActivity : AppCompatActivity(),
         HomeAsBackPressedOptionsItemSelectedBehavior {
 
     private lateinit var adapter: StatikAdapter
+    private lateinit var section: Section
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +67,7 @@ class UserVerificationActivity : AppCompatActivity(),
             }
         }
 
-        val section = section {
+        section = section {
             rows(mainRow, descriptionRow)
             footer(aboutFooter)
         }
