@@ -1,6 +1,6 @@
 # Statik
 
-[![Kotlin](https://img.shields.io/badge/Kotlin-1.2.21-blue.svg)](http://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.2.30-blue.svg)](http://kotlinlang.org)
 [![jcenter](https://api.bintray.com/packages/kittinunf/maven/Statik/images/download.svg)](https://bintray.com/kittinunf/maven/Statik/_latestVersion)
 [![Build Status](https://travis-ci.org/kittinunf/Statik.svg?branch=master)](https://travis-ci.org/kittinunf/Statik)
 
