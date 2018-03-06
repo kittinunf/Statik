@@ -10,23 +10,27 @@ import com.github.kittinunf.statik.viewholder.BindableViewHolder
 import com.github.kittinunf.statik.viewholder.StatikViewHolder
 import kotlin.properties.Delegates
 
+typealias OnSectionUpdateListener = (List<Section>) -> Unit
+
 open class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFactory) : RecyclerView.Adapter<StatikViewHolder>() {
 
     var sections by Delegates.observable(emptyList<Section>()) { _, _, value ->
         //calculate items
         update()
+        onSectionUpdate?.invoke(value)
     }
 
     private var items = emptyList<ItemRepresentable>()
+
+    var onSectionUpdate: OnSectionUpdateListener? = null
 
     init {
         setHasStableIds(true)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): StatikViewHolder {
-        val view = LayoutInflater.from(parent?.context).inflate(viewType, parent, false)
-        val viewHolder = typeFactory.viewHolder(viewType, view)
-        return viewHolder
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StatikViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
+        return typeFactory.viewHolder(viewType, view)
     }
 
     @Suppress("unchecked_cast")
@@ -60,8 +64,8 @@ open class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFacto
         notifyDataSetChanged()
     }
 
-    override fun onViewRecycled(holder: StatikViewHolder?) {
+    override fun onViewRecycled(holder: StatikViewHolder) {
         super.onViewRecycled(holder)
-        holder?.onViewRecycled()
+        holder.onViewRecycled()
     }
 }
