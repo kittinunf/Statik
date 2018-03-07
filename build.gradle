@@ -6,7 +6,7 @@ buildscript {
 
         kotlinVersion = '1.2.30'
         supportLibVersion = '27.1.0'
-        minVersion = 17
+        minVersion = 16
         targetVersion = 27
     }
 
