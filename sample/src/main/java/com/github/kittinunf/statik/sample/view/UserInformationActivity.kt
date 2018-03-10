@@ -74,9 +74,14 @@ class UserInformationActivity : AppCompatActivity(), ChildActionBarBehavior, Hom
                     }
                 }
 
+        val genderRow = spinnerRow {
+            list = listOf("Male", "Female")
+        }
+
         val personalSection = section {
             header(personalHeader)
-            rows(personalRows)
+            val allRows = personalRows + genderRow
+            rows(allRows)
         }
 
         val addressHeader = viewHeader {
@@ -119,6 +124,7 @@ class UserInformationActivity : AppCompatActivity(), ChildActionBarBehavior, Hom
         }
 
         val occupationRow = spinnerRow {
+            hint = "OCCUPATION"
             list = Occupation.values().map { it.name.resString(this@UserInformationActivity) }
                     .map(::getString)
             onValueChangedListener = {
