@@ -206,8 +206,9 @@ class MainActivity : AppCompatActivity() {
 
         val r13 = spinnerRow {
             val items = listOf("Tokyo", "Bangkok", "New York", "Shanghai", "London")
+            hint = "Select City"
             list = items
-            selected = 3
+            selected = 2 //new york
             onItemSelectedListener = { position->
                toast("${items[position]} is selected")
             }

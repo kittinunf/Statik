@@ -17,6 +17,8 @@ class SpinnerRepresentable : BaseRepresentable<SpinnerRow, Pair<Int, List<String
     @LayoutRes
     val spinnerItemRes: Int? = null
 
+    var hint: String? = null
+
     var selected: Int
         set(value) {
             _value = value to _value.second
