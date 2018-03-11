@@ -222,7 +222,7 @@ class MainActivity : AppCompatActivity() {
             dateFormatter = SimpleDateFormat("yyyy/MM/dd", Locale.US)
 //            startingDate = Calendar.getInstance().apply { set(1970, 1, 1) }
             onDateSelectedListener = { result, year, month, date ->
-                println(month)
+                //you can do last-minute ad-hoc stuffs after the date is set
                 result.setTextColor(resources.getColor(R.color.colorAccent))
             }
             onValueChangedListener = {
