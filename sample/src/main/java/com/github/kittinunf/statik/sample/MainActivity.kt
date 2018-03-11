@@ -216,14 +216,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val formatter = SimpleDateFormat("yyyy/MM/dd", Locale.US)
         val r14 = dateRow {
             text = "Tell me your birthday"
             hint = "yyyy/MM/dd"
+            dateFormatter = SimpleDateFormat("yyyy/MM/dd", Locale.US)
 //            startingDate = Calendar.getInstance().apply { set(1970, 1, 1) }
             onDateSelectedListener = { result, year, month, date ->
-                val c = Calendar.getInstance().apply { set(year, month, date) }
-                result.text = formatter.format(c.time)
+                println(month)
+                result.setTextColor(resources.getColor(R.color.colorAccent))
+            }
+            onValueChangedListener = {
+                println(it.value)
             }
         }
 

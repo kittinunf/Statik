@@ -37,17 +37,10 @@ class DateRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder
             val fragmentActivity = (itemView.context as? FragmentActivity)
             setOnClickListener {
                 fragmentActivity?.let { activity ->
-                    val startingDate = item.startingDate ?: Calendar.getInstance().apply { set(item.year, item.month, item.dayOfMonth) }
-                    DatePickerFragment.newInstance(startingDate)
-                            .apply {
-                                dateSelectedListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                                    item.year = year
-                                    item.month = month
-                                    item.dayOfMonth = dayOfMonth
-                                    item.onDateSelectedListener?.invoke(dateEditText, year, month, dayOfMonth)
-                                }
-                            }
-                            .show(activity.supportFragmentManager, DatePickerFragment::class.java.simpleName)
+                    val startingDate = item.startingDate
+                            ?: Calendar.getInstance().apply { set(item.year, item.month, item.dayOfMonth) }
+                    val datePickerDialog = createDatePickerFragment(startingDate, dateEditText, item)
+                    datePickerDialog.show(activity.supportFragmentManager, DatePickerFragment::class.java.simpleName)
                 }
             }
         }
@@ -59,6 +52,24 @@ class DateRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder
             }
         }
     }
+
+    private fun createDatePickerFragment(startingDate: Calendar?,
+                                         dateEditText: EditText,
+                                         item: DateRowRepresentable): AppCompatDialogFragment =
+            DatePickerFragment.newInstance(startingDate)
+                    .apply {
+                        dateSelectedListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                            item.also {
+                                it.year = year
+                                it.month = month
+                                it.dayOfMonth = dayOfMonth
+                                it.dateFormatter?.let {
+                                    dateEditText.setText(it.format(Calendar.getInstance()
+                                            .apply { set(year, month, dayOfMonth) }.time))
+                                }
+                            }.run { onDateSelectedListener?.invoke(dateEditText, year, month, dayOfMonth) }
+                        }
+                    }
 
     class DatePickerFragment : AppCompatDialogFragment() {
 

@@ -3,6 +3,7 @@ package com.github.kittinunf.statik.representable
 import android.widget.TextView
 import com.github.kittinunf.statik.adapter.TypeFactory
 import com.github.kittinunf.statik.model.DateRow
+import java.text.SimpleDateFormat
 import java.util.*
 
 typealias Year = Int
@@ -12,9 +13,11 @@ typealias OnDateSelectedListener = (TextView, Int, Int, Int) -> Unit
 
 class DateRowRepresentable : BaseRepresentable<DateRow, Triple<Year, Month, DayOfMonth>>(DateRow()) {
 
+    var text: String = ""
+
     var hint: String = ""
 
-    var text: String = ""
+    var dateFormatter: SimpleDateFormat? = null
 
     var startingDate: Calendar? = null
 
