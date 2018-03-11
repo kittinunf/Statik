@@ -37,7 +37,8 @@ class DateRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder
             val fragmentActivity = (itemView.context as? FragmentActivity)
             setOnClickListener {
                 fragmentActivity?.let { activity ->
-                    DatePickerFragment.newInstance(item.startingDate)
+                    val startingDate = item.startingDate ?: Calendar.getInstance().apply { set(item.year, item.month, item.dayOfMonth) }
+                    DatePickerFragment.newInstance(startingDate)
                             .apply {
                                 dateSelectedListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                                     item.year = year

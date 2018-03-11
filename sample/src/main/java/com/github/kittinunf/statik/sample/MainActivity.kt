@@ -220,7 +220,7 @@ class MainActivity : AppCompatActivity() {
         val r14 = dateRow {
             text = "Tell me your birthday"
             hint = "yyyy/MM/dd"
-            startingDate = Calendar.getInstance().apply { set(1970, 1, 1) }
+//            startingDate = Calendar.getInstance().apply { set(1970, 1, 1) }
             onDateSelectedListener = { result, year, month, date ->
                 val c = Calendar.getInstance().apply { set(year, month, date) }
                 result.text = formatter.format(c.time)
