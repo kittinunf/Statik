@@ -5,7 +5,7 @@ import android.widget.Spinner
 import com.github.kittinunf.statik.adapter.TypeFactory
 import com.github.kittinunf.statik.model.SpinnerRow
 
-class SpinnerRepresentable : BaseRepresentable<SpinnerRow, Pair<Int, List<String>>>(SpinnerRow()) {
+class SpinnerRowRepresentable : BaseRepresentable<SpinnerRow, Pair<Int, List<String>>>(SpinnerRow()) {
 
     var onItemSelectedListener: ((Int) -> Unit)? = null
 

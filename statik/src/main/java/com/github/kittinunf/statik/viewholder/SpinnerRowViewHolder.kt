@@ -9,11 +9,11 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import com.github.kittinunf.statik.R
-import com.github.kittinunf.statik.representable.SpinnerRepresentable
+import com.github.kittinunf.statik.representable.SpinnerRowRepresentable
 
-class SpinnerRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<SpinnerRepresentable> {
+class SpinnerRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<SpinnerRowRepresentable> {
 
-    override fun bind(item: SpinnerRepresentable) {
+    override fun bind(item: SpinnerRowRepresentable) {
         item.onViewSetupListener?.invoke(itemView)
 
         val hintEnabled = (item.hint != null)
