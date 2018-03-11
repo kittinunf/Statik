@@ -11,6 +11,7 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.dsl.checkRow
+import com.github.kittinunf.statik.dsl.dateRow
 import com.github.kittinunf.statik.dsl.inputRow
 import com.github.kittinunf.statik.dsl.section
 import com.github.kittinunf.statik.dsl.spinnerRow
@@ -26,6 +27,7 @@ import com.github.kittinunf.statik.sample.util.isValidEmailAddress
 import com.github.kittinunf.statik.sample.util.load
 import com.github.kittinunf.statik.sample.util.toast
 import kotlinx.android.synthetic.main.activity_list.list
+import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -214,8 +216,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val r14 = dateRow {
+            text = "Tell me your birthday"
+            hint = "yyyy/MM/dd"
+            dateFormatter = SimpleDateFormat("yyyy/MM/dd", Locale.US)
+//            startingDate = Calendar.getInstance().apply { set(1970, 1, 1) }
+            onDateSelectedListener = { result, year, month, date ->
+                //you can do last-minute ad-hoc stuffs after the date is set
+                result.setTextColor(resources.getColor(R.color.colorAccent))
+            }
+            onValueChangedListener = {
+                println(it.value)
+            }
+        }
+
         val s3 = section {
-            rows(r9, r10, r11, r12, r13)
+            rows(r9, r10, r11, r12, r13, r14)
         }
 
         statikAdapter = statik {

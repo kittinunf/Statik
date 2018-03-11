@@ -3,16 +3,18 @@ package com.github.kittinunf.statik.adapter
 import android.view.View
 import com.github.kittinunf.statik.R
 import com.github.kittinunf.statik.representable.CheckRowRepresentable
+import com.github.kittinunf.statik.representable.DateRowRepresentable
 import com.github.kittinunf.statik.representable.FooterTextSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.FooterViewSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.HeaderTextSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.HeaderViewSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.InputRowRepresentable
-import com.github.kittinunf.statik.representable.SpinnerRepresentable
+import com.github.kittinunf.statik.representable.SpinnerRowRepresentable
 import com.github.kittinunf.statik.representable.TextRowRepresentable
 import com.github.kittinunf.statik.representable.TwoTextRowRepresentable
 import com.github.kittinunf.statik.representable.ViewRowRepresentable
 import com.github.kittinunf.statik.viewholder.CheckRowViewHolder
+import com.github.kittinunf.statik.viewholder.DateRowViewHolder
 import com.github.kittinunf.statik.viewholder.FooterTextSupplementaryViewHolder
 import com.github.kittinunf.statik.viewholder.HeaderTextSupplementaryViewHolder
 import com.github.kittinunf.statik.viewholder.InputRowViewHolder
@@ -35,7 +37,8 @@ interface TypeFactory {
     fun type(checkRow: CheckRowRepresentable): Int
     fun type(viewRow: ViewRowRepresentable): Int
     fun type(inputRow: InputRowRepresentable): Int
-    fun type(spinnerRow: SpinnerRepresentable): Int
+    fun type(spinnerRow: SpinnerRowRepresentable): Int
+    fun type(dateRow: DateRowRepresentable): Int
 
     fun viewHolder(type: Int, view: View): StatikViewHolder
 }
@@ -52,7 +55,8 @@ internal val defaultTypeFactory = object : TypeFactory {
     override fun type(checkRow: CheckRowRepresentable): Int = R.layout.statik_check_two_line_row
     override fun type(inputRow: InputRowRepresentable): Int = R.layout.statik_text_input_row
     override fun type(viewRow: ViewRowRepresentable): Int = R.layout.statik_view_row
-    override fun type(spinnerRow: SpinnerRepresentable): Int = R.layout.statik_spinner_row
+    override fun type(spinnerRow: SpinnerRowRepresentable): Int = R.layout.statik_spinner_row
+    override fun type(dateRow: DateRowRepresentable): Int = R.layout.statik_date_row
 
     override fun viewHolder(type: Int, view: View): StatikViewHolder {
         return when (type) {
@@ -67,6 +71,8 @@ internal val defaultTypeFactory = object : TypeFactory {
             R.layout.statik_text_input_row -> InputRowViewHolder(view)
             R.layout.statik_view_row -> ViewRowViewHolder(view)
             R.layout.statik_spinner_row -> SpinnerRowViewHolder(view)
+            R.layout.statik_date_row -> DateRowViewHolder(view)
+
             else -> error("You should not reach here")
         }
     }

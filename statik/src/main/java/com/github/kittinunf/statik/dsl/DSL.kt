@@ -3,13 +3,14 @@ package com.github.kittinunf.statik.dsl
 import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.model.Section
 import com.github.kittinunf.statik.representable.CheckRowRepresentable
+import com.github.kittinunf.statik.representable.DateRowRepresentable
 import com.github.kittinunf.statik.representable.FooterTextSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.FooterViewSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.HeaderTextSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.HeaderViewSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.InputRowRepresentable
 import com.github.kittinunf.statik.representable.ItemRepresentable
-import com.github.kittinunf.statik.representable.SpinnerRepresentable
+import com.github.kittinunf.statik.representable.SpinnerRowRepresentable
 import com.github.kittinunf.statik.representable.TextRowRepresentable
 import com.github.kittinunf.statik.representable.TextSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.TwoTextRowRepresentable
@@ -104,5 +105,8 @@ fun checkRow(block: CheckRowRepresentable.() -> Unit): CheckRowRepresentable =
 fun inputRow(block: InputRowRepresentable.() -> Unit): InputRowRepresentable =
         InputRowRepresentable().apply(block)
 
-fun spinnerRow(block: SpinnerRepresentable.() -> Unit): SpinnerRepresentable =
-        SpinnerRepresentable().apply(block)
+fun spinnerRow(block: SpinnerRowRepresentable.() -> Unit): SpinnerRowRepresentable =
+        SpinnerRowRepresentable().apply(block)
+
+fun dateRow(block: DateRowRepresentable.() -> Unit): DateRowRepresentable =
+        DateRowRepresentable().apply(block)

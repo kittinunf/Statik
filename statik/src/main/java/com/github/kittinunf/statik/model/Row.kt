@@ -32,3 +32,8 @@ class InputRow(input: String = "",
 class SpinnerRow(selected: Int = -1,
                  list: List<String> = emptyList(),
                  stableId: Long? = null) : Row<Pair<Int, List<String>>>(selected to list, stableId)
+
+class DateRow(year: Int = 1970,
+              month: Int = 1,
+              dayOfMonth: Int = 1,
+              stableId: Long? = null) : Row<Triple<Int, Int, Int>>(Triple(year, month, dayOfMonth), stableId)
