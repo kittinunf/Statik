@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground"
     android:gravity="center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeight"
     >
@@ -12,6 +11,7 @@
     <TextView
         android:id="@+id/statik_row_text"
         style="@style/Widget.Statik.Base.PrimaryTextItem"
+        android:layout_width="0dp"
         android:layout_marginBottom="@dimen/statik_two_lines_margin_bottom"
         android:layout_marginEnd="@dimen/statik_two_lines_margin_end"
         android:layout_marginStart="@dimen/statik_two_lines_margin_start"
@@ -19,16 +19,17 @@
         android:layout_weight="1"
         tools:text="Date"
         />
-    
+
     <EditText
         android:id="@+id/statik_date_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="@dimen/statik_two_lines_widget_min_width"
         android:layout_marginEnd="@dimen/statik_margin_16dp"
-        android:gravity="center|bottom"
         android:focusable="false"
+        android:gravity="center|bottom"
         android:maxLines="1"
+        android:minWidth="@dimen/statik_two_lines_widget_min_width"
+        android:inputType="date"
         tools:hint="--/--/--"
         />
 
