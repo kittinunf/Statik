@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground"
     android:gravity="center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeight"
     >
@@ -14,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/statik_two_lines_margin_start"
         android:layout_marginStart="@dimen/statik_two_lines_margin_start"
         tools:src="@android:drawable/ic_input_add"
         />
@@ -23,6 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/statik_two_lines_margin_bottom"
         android:layout_marginEnd="@dimen/statik_two_lines_margin_end"
+        android:layout_marginLeft="@dimen/statik_two_lines_margin_start"
+        android:layout_marginRight="@dimen/statik_two_lines_margin_end"
         android:layout_marginStart="@dimen/statik_two_lines_margin_start"
         android:layout_marginTop="@dimen/statik_two_lines_margin_top"
         android:layout_weight="1"
@@ -38,6 +40,7 @@
         <TextView
             android:id="@+id/statik_row_text_secondary"
             style="@style/Widget.Statik.Base.SecondaryTextItem"
+            android:layout_alignLeft="@id/statik_row_text_primary"
             android:layout_alignStart="@id/statik_row_text_primary"
             android:layout_below="@id/statik_row_text_primary"
             android:maxLines="10"
@@ -51,6 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginEnd="@dimen/statik_two_lines_margin_end"
+        android:layout_marginRight="@dimen/statik_two_lines_margin_end"
         android:gravity="center"
         android:minWidth="@dimen/statik_two_lines_widget_min_width"
         android:orientation="vertical"

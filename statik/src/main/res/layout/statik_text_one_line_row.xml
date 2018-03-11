@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground"
     android:gravity="center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeight"
     >
@@ -15,15 +14,19 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="@dimen/statik_two_lines_margin_start"
+        android:layout_marginLeft="@dimen/statik_two_lines_margin_start"
         tools:src="@android:drawable/ic_input_add"
         />
 
     <TextView
         android:id="@+id/statik_row_text"
         style="@style/Widget.Statik.Base.PrimaryTextItem"
+        android:layout_width="0dp"
         android:layout_marginBottom="@dimen/statik_two_lines_margin_bottom"
         android:layout_marginEnd="@dimen/statik_two_lines_margin_end"
+        android:layout_marginRight="@dimen/statik_two_lines_margin_end"
         android:layout_marginStart="@dimen/statik_two_lines_margin_start"
+        android:layout_marginLeft="@dimen/statik_two_lines_margin_start"
         android:layout_marginTop="@dimen/statik_two_lines_margin_top"
         android:layout_weight="1"
         tools:text="Primary"
