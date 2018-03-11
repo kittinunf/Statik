@@ -35,17 +35,19 @@ class DateRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder
         dateEditText.apply {
             hint = item.hint
             val fragmentActivity = (itemView.context as? FragmentActivity)
-            fragmentActivity?.let { activity ->
-                DatePickerFragment.newInstance(item.startingDate)
-                        .apply {
-                            dateSelectedListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                                item.year = year
-                                item.month = month
-                                item.dayOfMonth = dayOfMonth
-                                item.onDateSelectedListener?.invoke(dateEditText, year, month, dayOfMonth)
+            setOnClickListener {
+                fragmentActivity?.let { activity ->
+                    DatePickerFragment.newInstance(item.startingDate)
+                            .apply {
+                                dateSelectedListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                                    item.year = year
+                                    item.month = month
+                                    item.dayOfMonth = dayOfMonth
+                                    item.onDateSelectedListener?.invoke(dateEditText, year, month, dayOfMonth)
+                                }
                             }
-                        }
-                        .show(activity.supportFragmentManager, DatePickerFragment::class.java.simpleName)
+                            .show(activity.supportFragmentManager, DatePickerFragment::class.java.simpleName)
+                }
             }
         }
 
