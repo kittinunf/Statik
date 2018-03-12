@@ -12,10 +12,10 @@ class SpinnerRowRepresentable : BaseRepresentable<SpinnerRow, Pair<Int, List<Str
     var onSpinnerSetupListener: ((Spinner) -> Unit)? = null
 
     @LayoutRes
-    val dropdownViewRes: Int? = null
+    var dropdownViewRes: Int? = null
 
     @LayoutRes
-    val spinnerItemRes: Int? = null
+    var spinnerItemRes: Int? = null
 
     var hint: String? = null
 
