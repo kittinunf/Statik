@@ -211,6 +211,9 @@ class MainActivity : AppCompatActivity() {
             hint = "Select City"
             list = items
             selected = 2 //new york
+            onSpinnerSetupListener = { spinner, underlineView ->
+                underlineView.setBackgroundResource(android.R.color.darker_gray)
+            }
             onItemSelectedListener = { position->
                toast("${items[position]} is selected")
             }

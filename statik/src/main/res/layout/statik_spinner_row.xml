@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Spinner
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/statik_row_spinner"
     style="@style/Widget.Statik.Base.RowItem"
+    android:gravity="center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeight"
-    />
+    android:orientation="vertical"
+    >
+
+    <Spinner
+        android:id="@+id/statik_row_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?android:attr/listPreferredItemHeight"
+        />
+
+    <View
+        android:id="@+id/statik_underline"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/colorBackground"
+        android:layout_marginBottom="@dimen/statik_margin_8dp"
+        />
+
+</LinearLayout>
