@@ -46,7 +46,7 @@ class SpinnerRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHol
             setSelection(if (hintEnabled) item.selected + 1 else item.selected)
         }
 
-        item.onSpinnerSetupListener?.invoke(spinner)
+        item.onSpinnerSetupListener?.invoke(spinner, itemView.findViewById(R.id.statik_underline))
     }
 
     private class HintEnabledSpinnerAdapter(context: Context, @LayoutRes spinnerItemRes: Int, data: List<String>, val textHint: String? = null)
