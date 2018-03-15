@@ -10,6 +10,13 @@ import com.github.kittinunf.statik.representable.InputRowRepresentable
 
 class InputRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<InputRowRepresentable> {
 
+    private val onTextChangedTextWatcher = OnTextChangedTextWatcher()
+
+    init {
+        itemView.findViewById<TextView>(R.id.statik_row_input_edit)
+                .addTextChangedListener(onTextChangedTextWatcher)
+    }
+
     override fun bind(item: InputRowRepresentable) {
         item.onViewSetupListener?.invoke(itemView)
 
@@ -26,28 +33,36 @@ class InputRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolde
 
         item.onInputLayoutSetupListener?.invoke(inputLayout)
 
-        val editText = itemView.findViewById<TextView>(R.id.statik_row_input_edit)
-        editText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {}
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (item.position != adapterPosition) return
-
-                val isValid = item.onValidateInput?.invoke(s) ?: true
-                inputLayout.isErrorEnabled = !isValid
-                if (!isValid) {
-                    inputLayout.error = item.error
-                }
-                item.text = s.toString()
+        onTextChangedTextWatcher.predicate = { item.position == adapterPosition }
+        onTextChangedTextWatcher.onTextChanged = { s, _, _, _  ->
+            val isValid = item.onValidateInput?.invoke(s) ?: true
+            inputLayout.isErrorEnabled = !isValid
+            if (!isValid) {
+                inputLayout.error = item.error
             }
-        })
+            item.text = s.toString()
+        }
 
         item.onClickListener?.let { listener ->
             itemView.setOnClickListener {
                 listener.invoke(it, adapterPosition)
             }
+        }
+    }
+
+    private class OnTextChangedTextWatcher : TextWatcher {
+
+        var predicate: (() -> Boolean)? = null
+
+        var onTextChanged: ((s: CharSequence?, start: Int, before: Int, count: Int) -> Unit)? = null
+
+        override fun afterTextChanged(s: Editable?) {}
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            if (predicate?.invoke() == false) return
+            onTextChanged?.invoke(s, start, before, count)
         }
     }
 }
