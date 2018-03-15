@@ -7,6 +7,8 @@ interface ItemRepresentable {
     fun type(typeFactory: TypeFactory): Int
 
     val stableId: Long
+
+    var position: Int
 }
 
 typealias OnValueChangedListener<T> = (T) -> Unit

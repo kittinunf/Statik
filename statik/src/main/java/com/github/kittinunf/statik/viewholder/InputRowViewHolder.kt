@@ -33,6 +33,8 @@ class InputRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolde
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (item.position != adapterPosition) return
+
                 val isValid = item.onValidateInput?.invoke(s) ?: true
                 inputLayout.isErrorEnabled = !isValid
                 if (!isValid) {
