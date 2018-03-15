@@ -44,7 +44,7 @@ open class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFacto
 
     override fun getItemId(position: Int): Long = items[position].stableId
 
-    private fun createRepresentable(section: Section): List<ItemRepresentable> {
+    private fun createRepresentable(section: Section, previousSectionCount: Int): List<ItemRepresentable> {
         val items = mutableListOf<ItemRepresentable>()
 
         if (section.header != null) {
@@ -56,13 +56,26 @@ open class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFacto
         if (section.footer != null) {
             items.add(section.footer)
         }
-        return items.onEach { (it as? BaseItemRepresentable)?.section = section }
+
+        items.withIndex().onEach { (index, item) ->
+            (item as? BaseItemRepresentable)?.also {
+                it.section = section
+                it.position = index + previousSectionCount
+            }
+        }
+
+        return items
     }
 
     fun update() {
-        items = sections.flatMap(::createRepresentable)
+        items = sections.withIndex().flatMap { (index, section) ->
+            createRepresentable(section, if (index == 0) 0 else calculateSectionSize(sections[index - 1]))
+        }
         notifyDataSetChanged()
     }
+
+    private fun calculateSectionSize(section: Section): Int =
+            (if (section.header != null) 1 else 0) + section.rows.size + (if (section.footer != null) 1 else 0)
 
     override fun onViewRecycled(holder: StatikViewHolder) {
         super.onViewRecycled(holder)

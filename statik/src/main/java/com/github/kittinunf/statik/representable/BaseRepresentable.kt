@@ -12,6 +12,8 @@ abstract class BaseRepresentable<T : Row<U>, U>(protected val item: T) : ItemRep
 
     lateinit var section: Section
 
+    override var position: Int = -1
+
     override var stableId: Long = item.stableId ?: IdGenerator.generate()
 
     override var onViewSetupListener: OnViewSetupListener? = null
