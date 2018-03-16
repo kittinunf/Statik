@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.layout_next_skip_button.view.nextButton
 import kotlinx.android.synthetic.main.layout_next_skip_button.view.skipButton
 import kotlinx.android.synthetic.main.layout_upload_additional_document.view.container
 
-class SubmitAdditionalDocumentActivity : AppCompatActivity(), ChildActionBarBehavior, HomeAsBackPressedOptionsItemSelectedBehavior {
+class UploadAdditionalDocumentActivity : AppCompatActivity(), ChildActionBarBehavior, HomeAsBackPressedOptionsItemSelectedBehavior {
 
     private lateinit var adapter: StatikAdapter
 

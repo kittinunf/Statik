@@ -8,7 +8,7 @@ import com.github.kittinunf.statik.dsl.textRow
 import com.github.kittinunf.statik.sample.util.configureTitleText
 import com.github.kittinunf.statik.sample.util.configureWhiteRow
 import com.github.kittinunf.statik.sample.util.navigate
-import com.github.kittinunf.statik.sample.view.SubmitAdditionalDocumentActivity
+import com.github.kittinunf.statik.sample.view.UploadAdditionalDocumentActivity
 import com.github.kittinunf.statik.sample.view.TermsOfServiceActivity
 import com.github.kittinunf.statik.sample.view.UploadDocumentActivity
 import com.github.kittinunf.statik.sample.view.UserInformationActivity
@@ -31,7 +31,7 @@ class SampleActivity : AppCompatActivity() {
                 R.string.terms_of_service to TermsOfServiceActivity::class,
                 R.string.user_verification2 to UserVerificationDetailActivity::class,
                 R.string.user_verification_document to UploadDocumentActivity::class,
-                R.string.submit_additional_document to SubmitAdditionalDocumentActivity::class,
+                R.string.submit_additional_document to UploadAdditionalDocumentActivity::class,
                 R.string.user_information to UserInformationActivity::class
                 )
 

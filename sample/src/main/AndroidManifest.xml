@@ -55,7 +55,7 @@
         </activity>
 
         <activity
-            android:name=".view.SubmitAdditionalDocumentActivity"
+            android:name=".view.UploadAdditionalDocumentActivity"
             android:label="@string/submit_additional_document"
             >
         </activity>
