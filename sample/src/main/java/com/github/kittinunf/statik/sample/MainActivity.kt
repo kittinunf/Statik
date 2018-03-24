@@ -224,7 +224,7 @@ class MainActivity : AppCompatActivity() {
             text = "Tell me your birthday"
             hint = "yyyy/MM/dd"
             dateFormatter = SimpleDateFormat("yyyy/MM/dd", Locale.US)
-            startingDate = Calendar.getInstance().apply { set(1970, 1, 1) }
+            startingDate = Calendar.getInstance().apply { set(2000, 12, 14) }
             onDateSelectedListener = { result, year, month, date ->
                 //you can do last-minute ad-hoc stuffs after the date is set
                 result.setTextColor(resources.getColor(R.color.colorAccent))
