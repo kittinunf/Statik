@@ -69,7 +69,8 @@ open class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFacto
 
     fun update() {
         items = sections.withIndex().flatMap { (index, section) ->
-            createRepresentable(section, if (index == 0) 0 else calculateSectionSize(sections[index - 1]))
+            createRepresentable(section,
+                    sections.subList(0, index).fold(0) { acc, each -> acc + calculateSectionSize(each) })
         }
         notifyDataSetChanged()
     }
