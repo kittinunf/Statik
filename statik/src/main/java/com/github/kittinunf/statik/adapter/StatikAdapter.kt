@@ -12,7 +12,7 @@ import kotlin.properties.Delegates
 
 typealias OnSectionUpdateListener = (List<Section>) -> Unit
 
-open class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFactory) : RecyclerView.Adapter<StatikViewHolder>() {
+class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFactory) : RecyclerView.Adapter<StatikViewHolder>() {
 
     var sections by Delegates.observable(emptyList<Section>()) { _, _, value ->
         //calculate items
