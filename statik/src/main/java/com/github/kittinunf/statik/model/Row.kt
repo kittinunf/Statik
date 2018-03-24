@@ -12,6 +12,9 @@ class TextSupplementary(text: String = "",
 class ViewSupplementary(@LayoutRes layoutRes: Int = 0,
                         stableId: Long? = null) : Row<Int>(layoutRes, stableId)
 
+class ButtonSupplementary(text: String = "",
+                          stableId: Long? = null) : Row<String>(text, stableId)
+
 // Row
 class TextRow(text: String = "",
               stableId: Long? = null) : Row<String>(text, stableId)
@@ -37,3 +40,6 @@ class DateRow(year: Int = 1970,
               month: Int = 1,
               dayOfMonth: Int = 1,
               stableId: Long? = null) : Row<Triple<Int, Int, Int>>(Triple(year, month, dayOfMonth), stableId)
+
+class ButtonRow(text: String = "",
+                stableId: Long? = null) : Row<String>(text, stableId)

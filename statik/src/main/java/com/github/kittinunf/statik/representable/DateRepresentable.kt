@@ -21,7 +21,7 @@ class DateRowRepresentable : BaseRepresentable<DateRow, Triple<Year, Month, DayO
 
     var startingDate: Calendar? = null
 
-    var onTextSetupListener: ((TextView) -> Unit)? = null
+    var onTextSetupListener: OnTextViewSetupListener? = null
 
     var onDateSelectedListener: OnDateSelectedListener? = null
 

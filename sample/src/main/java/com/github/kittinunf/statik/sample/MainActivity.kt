@@ -1,15 +1,16 @@
 package com.github.kittinunf.statik.sample
 
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v4.widget.TextViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.text.InputType
 import android.view.Gravity
-import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
 import com.github.kittinunf.statik.adapter.StatikAdapter
+import com.github.kittinunf.statik.dsl.buttonFooter
 import com.github.kittinunf.statik.dsl.checkRow
 import com.github.kittinunf.statik.dsl.dateRow
 import com.github.kittinunf.statik.dsl.inputRow
@@ -20,7 +21,6 @@ import com.github.kittinunf.statik.dsl.textFooter
 import com.github.kittinunf.statik.dsl.textHeader
 import com.github.kittinunf.statik.dsl.textRow
 import com.github.kittinunf.statik.dsl.twoTextRow
-import com.github.kittinunf.statik.dsl.viewFooter
 import com.github.kittinunf.statik.dsl.viewRow
 import com.github.kittinunf.statik.sample.util.find
 import com.github.kittinunf.statik.sample.util.isValidEmailAddress
@@ -146,12 +146,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val f2 = viewFooter {
-            layoutRes = R.layout.widget_button
-            onViewSetupListener = {
-                it.find<Button>(android.R.id.button1).setOnClickListener {
-                    toast("Button is clicked")
-                }
+        val f2 = buttonFooter {
+            onButtonSetupListener = {
+                it.setBackgroundResource(R.drawable.widget_button)
+                it.text = getString(R.string.app_name)
+            }
+            onClickListener = { _, _ ->
+                toast("Button is clicked")
             }
         }
 
@@ -223,10 +224,13 @@ class MainActivity : AppCompatActivity() {
             text = "Tell me your birthday"
             hint = "yyyy/MM/dd"
             dateFormatter = SimpleDateFormat("yyyy/MM/dd", Locale.US)
-//            startingDate = Calendar.getInstance().apply { set(1970, 1, 1) }
+            startingDate = Calendar.getInstance().apply { set(1970, 1, 1) }
             onDateSelectedListener = { result, year, month, date ->
                 //you can do last-minute ad-hoc stuffs after the date is set
                 result.setTextColor(resources.getColor(R.color.colorAccent))
+            }
+            onTextSetupListener = {
+                it.setTextColor(ContextCompat.getColor(this@MainActivity, R.color.colorPrimary))
             }
             onValueChangedListener = {
                 println(it.value)
