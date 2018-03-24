@@ -1,6 +1,5 @@
 package com.github.kittinunf.statik.representable
 
-import android.widget.TextView
 import com.github.kittinunf.statik.adapter.TypeFactory
 import com.github.kittinunf.statik.model.TextRow
 import com.github.kittinunf.statik.model.TextSupplementary
@@ -9,7 +8,7 @@ import com.github.kittinunf.statik.model.TwoTextRow
 abstract class TextSupplementaryRepresentable :
         BaseRepresentable<TextSupplementary, String>(TextSupplementary()) {
 
-    var onTextSetupListener: ((TextView) -> Unit)? = null
+    var onTextSetupListener: OnTextViewSetupListener? = null
 
     var text: String
         set(value) {
@@ -35,7 +34,7 @@ class FooterTextSupplementaryRepresentable : TextSupplementaryRepresentable() {
 //Row
 class TextRowRepresentable : BaseRepresentable<TextRow, String>(TextRow()) {
 
-    var onTextSetupListener: ((TextView) -> Unit)? = null
+    var onTextSetupListener: OnTextViewSetupListener? = null
 
     var text: String
         set(value) {
@@ -50,9 +49,9 @@ class TextRowRepresentable : BaseRepresentable<TextRow, String>(TextRow()) {
 
 class TwoTextRowRepresentable : BaseRepresentable<TwoTextRow, Pair<String, String?>>(TwoTextRow()) {
 
-    var onTitleTextSetupListener: ((TextView) -> Unit)? = null
+    var onTitleTextSetupListener: OnTextViewSetupListener? = null
 
-    var onSummaryTextSetupListener: ((TextView) -> Unit)? = null
+    var onSummaryTextSetupListener: OnTextViewSetupListener? = null
 
     var titleText: String
         set(value) {

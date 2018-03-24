@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Button
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/button1"
+    android:id="@+id/statik_button"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="@string/app_name"
-    android:layout_margin="8dp"
-    >
-
-</Button>
+    android:layout_margin="@dimen/statik_margin_8dp"
+    />

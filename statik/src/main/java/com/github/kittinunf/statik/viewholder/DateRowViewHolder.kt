@@ -18,6 +18,8 @@ import java.util.Calendar.YEAR
 
 class DateRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<DateRowRepresentable> {
 
+    private var isFirstTime = true
+
     override fun bind(item: DateRowRepresentable) {
         item.onViewSetupListener?.invoke(itemView)
 
@@ -37,8 +39,17 @@ class DateRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder
             val fragmentActivity = (itemView.context as? FragmentActivity)
             setOnClickListener {
                 fragmentActivity?.let { activity ->
-                    val startingDate = item.startingDate
-                            ?: Calendar.getInstance().apply { set(item.year, item.month, item.dayOfMonth) }
+                    val dateValue = Calendar.getInstance().apply { set(item.year, item.month, item.dayOfMonth) }
+                    val startingDate =
+                            //First time, we check starting date configuration, if any.
+                            //Subsequently, we always use current value
+                            if (isFirstTime) {
+                                isFirstTime = false
+                                item.startingDate ?: dateValue
+                            } else {
+                                dateValue
+                            }
+
                     val datePickerDialog = createDatePickerFragment(startingDate, dateEditText, item)
                     datePickerDialog.show(activity.supportFragmentManager, DatePickerFragment::class.java.simpleName)
                 }

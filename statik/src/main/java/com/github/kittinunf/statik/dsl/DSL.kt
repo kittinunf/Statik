@@ -2,6 +2,8 @@ package com.github.kittinunf.statik.dsl
 
 import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.model.Section
+import com.github.kittinunf.statik.representable.ButtonRowRepresentable
+import com.github.kittinunf.statik.representable.ButtonSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.CheckRowRepresentable
 import com.github.kittinunf.statik.representable.DateRowRepresentable
 import com.github.kittinunf.statik.representable.FooterTextSupplementaryRepresentable
@@ -90,6 +92,12 @@ fun viewHeader(block: ViewSupplementaryRepresentable.() -> Unit): HeaderViewSupp
 fun viewFooter(block: ViewSupplementaryRepresentable.() -> Unit): FooterViewSupplementaryRepresentable =
         FooterViewSupplementaryRepresentable().apply(block)
 
+fun buttonHeader(block: ButtonSupplementaryRepresentable.() -> Unit): ButtonSupplementaryRepresentable =
+        ButtonSupplementaryRepresentable().apply(block)
+
+fun buttonFooter(block: ButtonSupplementaryRepresentable.() -> Unit): ButtonSupplementaryRepresentable =
+        ButtonSupplementaryRepresentable().apply(block)
+
 fun textRow(block: TextRowRepresentable.() -> Unit): TextRowRepresentable =
         TextRowRepresentable().apply(block)
 
@@ -110,3 +118,6 @@ fun spinnerRow(block: SpinnerRowRepresentable.() -> Unit): SpinnerRowRepresentab
 
 fun dateRow(block: DateRowRepresentable.() -> Unit): DateRowRepresentable =
         DateRowRepresentable().apply(block)
+
+fun buttonRow(block: ButtonRowRepresentable.() -> Unit): ButtonRowRepresentable =
+        ButtonRowRepresentable().apply(block)
