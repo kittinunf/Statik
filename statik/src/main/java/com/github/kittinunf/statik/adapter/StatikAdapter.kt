@@ -12,7 +12,7 @@ import kotlin.properties.Delegates
 
 typealias OnSectionUpdateListener = (List<Section>) -> Unit
 
-open class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFactory) : RecyclerView.Adapter<StatikViewHolder>() {
+class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFactory) : RecyclerView.Adapter<StatikViewHolder>() {
 
     var sections by Delegates.observable(emptyList<Section>()) { _, _, value ->
         //calculate items
@@ -69,7 +69,8 @@ open class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFacto
 
     fun update() {
         items = sections.withIndex().flatMap { (index, section) ->
-            createRepresentable(section, if (index == 0) 0 else calculateSectionSize(sections[index - 1]))
+            createRepresentable(section,
+                    sections.subList(0, index).fold(0) { acc, each -> acc + calculateSectionSize(each) })
         }
         notifyDataSetChanged()
     }
