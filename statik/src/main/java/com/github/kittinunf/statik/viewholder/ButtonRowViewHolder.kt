@@ -9,7 +9,10 @@ class ButtonRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHold
     override fun bind(item: ButtonRowRepresentable) {
         item.onViewSetupListener?.invoke(itemView)
 
-        item.onButtonSetupListener?.invoke(itemView as TextView)
+        val button = itemView as TextView
+        button.text = item.text
+
+        item.onButtonSetupListener?.invoke(button)
 
         //click
         item.onClickListener?.let { listener ->
