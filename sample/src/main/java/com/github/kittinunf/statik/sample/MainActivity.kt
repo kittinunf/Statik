@@ -1,5 +1,6 @@
 package com.github.kittinunf.statik.sample
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.TextViewCompat
@@ -147,9 +148,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         val f2 = buttonFooter {
+            text = getString(R.string.app_name)
             onButtonSetupListener = {
+                it.setTextColor(Color.WHITE)
                 it.setBackgroundResource(R.drawable.rounded_button_red)
-                it.text = getString(R.string.app_name)
             }
             onClickListener = { _, _ ->
                 toast("Button is clicked")

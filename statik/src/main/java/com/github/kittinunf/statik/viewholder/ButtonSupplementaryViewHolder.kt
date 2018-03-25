@@ -9,7 +9,10 @@ class ButtonSupplementaryViewHolder(view: View) : StatikViewHolder(view), Bindab
     override fun bind(item: ButtonSupplementaryRepresentable) {
         item.onViewSetupListener?.invoke(itemView)
 
-        item.onButtonSetupListener?.invoke(itemView as TextView)
+        val button = itemView as TextView
+        button.text = item.text
+
+        item.onButtonSetupListener?.invoke(button)
 
         //click
         item.onClickListener?.let { listener ->
