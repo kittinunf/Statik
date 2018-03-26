@@ -34,6 +34,11 @@ class DateRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder
         }
 
         val dateEditText = itemView.findViewById<EditText>(R.id.statik_date_text)
+        val resultTextSetup = item.onResultTextSetupListener
+        if (resultTextSetup != null) {
+            resultTextSetup(dateEditText)
+        }
+
         dateEditText.apply {
             hint = item.hint
 

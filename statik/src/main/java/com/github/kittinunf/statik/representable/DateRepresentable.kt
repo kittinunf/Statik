@@ -23,6 +23,8 @@ class DateRowRepresentable : BaseRepresentable<DateRow, Triple<Year, Month, DayO
 
     var onTextSetupListener: OnTextViewSetupListener? = null
 
+    var onResultTextSetupListener: OnTextViewSetupListener? = null
+
     var onDateSelectedListener: OnDateSelectedListener? = null
 
     var year: Year

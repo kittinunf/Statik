@@ -230,12 +230,12 @@ class MainActivity : AppCompatActivity() {
 //            year = 2000
 //            month = 11
 //            dayOfMonth = 14
-            onDateSelectedListener = { result, year, month, date ->
-                //you can do last-minute ad-hoc stuffs after the date is set
-                result.setTextColor(resources.getColor(R.color.colorAccent))
-            }
             onTextSetupListener = {
-                it.setTextColor(ContextCompat.getColor(this@MainActivity, R.color.colorPrimary))
+                it.setTextColor(ContextCompat.getColor(this@MainActivity, R.color.colorPrimaryDark))
+            }
+            onResultTextSetupListener = {
+                //you can do last-minute ad-hoc stuffs
+                it.setTextColor(resources.getColor(R.color.colorAccent))
             }
             onValueChangedListener = {
                 println(it.value)
