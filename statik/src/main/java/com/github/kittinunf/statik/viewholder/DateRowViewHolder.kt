@@ -36,24 +36,24 @@ class DateRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder
         val dateEditText = itemView.findViewById<EditText>(R.id.statik_date_text)
         dateEditText.apply {
             hint = item.hint
+
+            val initialDateValue = Calendar.getInstance()
+            //if there is default value being set, we also update our UI to reflect that
+            if (item.year != -1 && item.month != -1 && item.dayOfMonth != -1) {
+                initialDateValue.apply { set(item.year, item.month, item.dayOfMonth) }
+                item.dateFormatter?.let {
+                    setText(it.format(initialDateValue.time))
+                }
+            }
+
             setOnClickListener {
                 (itemView.context as? FragmentActivity)?.let { activity ->
-                    val initialDateValue = Calendar.getInstance()
-
-                    //if there is default value being set, we also update our UI to reflect that
-                    if (item.year != -1 && item.month != -1 && item.dayOfMonth != -1) {
-                        initialDateValue.apply { set(item.year, item.month, item.dayOfMonth) }
-                        item.dateFormatter?.let {
-                            setText(it.format(initialDateValue.time))
-                        }
-                    }
-
                     val startingDate =
                     //First time, we check starting date configuration, if any.
                     //Subsequently, we always use current value
                             if (isFirstTime) {
                                 isFirstTime = false
-                                item.startingDate ?: initialDateValue
+                                item.dialogStartingDate ?: initialDateValue
                             } else {
                                 initialDateValue
                             }

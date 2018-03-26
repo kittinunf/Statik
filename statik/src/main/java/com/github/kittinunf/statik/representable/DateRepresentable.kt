@@ -19,7 +19,7 @@ class DateRowRepresentable : BaseRepresentable<DateRow, Triple<Year, Month, DayO
 
     var dateFormatter: SimpleDateFormat? = null
 
-    var startingDate: Calendar? = null
+    var dialogStartingDate: Calendar? = null
 
     var onTextSetupListener: OnTextViewSetupListener? = null
 
