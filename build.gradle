@@ -2,7 +2,7 @@
 
 buildscript {
     ext {
-        publishVersion = '0.8.3'
+        publishVersion = '0.8.4'
 
         kotlinVersion = '1.2.30'
         supportLibVersion = '27.1.0'
