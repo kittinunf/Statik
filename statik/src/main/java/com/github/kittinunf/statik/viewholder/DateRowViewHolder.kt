@@ -36,21 +36,29 @@ class DateRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder
         val dateEditText = itemView.findViewById<EditText>(R.id.statik_date_text)
         dateEditText.apply {
             hint = item.hint
-            val fragmentActivity = (itemView.context as? FragmentActivity)
+
+            val initialDateValue = Calendar.getInstance()
+            //if there is default value being set, we also update our UI to reflect that
+            if (item.year != -1 && item.month != -1 && item.dayOfMonth != -1) {
+                initialDateValue.apply { set(item.year, item.month, item.dayOfMonth) }
+                item.dateFormatter?.let {
+                    setText(it.format(initialDateValue.time))
+                }
+            }
+
             setOnClickListener {
-                fragmentActivity?.let { activity ->
-                    val dateValue = Calendar.getInstance().apply { set(item.year, item.month, item.dayOfMonth) }
+                (itemView.context as? FragmentActivity)?.let { activity ->
                     val startingDate =
-                            //First time, we check starting date configuration, if any.
-                            //Subsequently, we always use current value
+                    //First time, we check starting date configuration, if any.
+                    //Subsequently, we always use current value
                             if (isFirstTime) {
                                 isFirstTime = false
-                                item.startingDate ?: dateValue
+                                item.dialogStartingDate ?: initialDateValue
                             } else {
-                                dateValue
+                                initialDateValue
                             }
 
-                    val datePickerDialog = createDatePickerFragment(startingDate, dateEditText, item)
+                    val datePickerDialog = createDatePickerFragment(startingDate, this, item)
                     datePickerDialog.show(activity.supportFragmentManager, DatePickerFragment::class.java.simpleName)
                 }
             }
