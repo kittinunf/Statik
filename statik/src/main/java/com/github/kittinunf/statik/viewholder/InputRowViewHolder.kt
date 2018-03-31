@@ -29,17 +29,18 @@ class InputRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolde
                 setText(item.text)
                 setSelection(item.text.length)
             }
+
+            //evaluate once if text is not empty
+            if (item.text.isNotEmpty()) {
+                validateInputTextLayout(this, item.onValidateInput, item.text, item.error)
+            }
         }
 
         item.onInputLayoutSetupListener?.invoke(inputLayout)
 
         onTextChangedTextWatcher.predicate = { item.position == adapterPosition }
-        onTextChangedTextWatcher.onTextChanged = { s, _, _, _  ->
-            val isValid = item.onValidateInput?.invoke(s) ?: true
-            inputLayout.isErrorEnabled = !isValid
-            if (!isValid) {
-                inputLayout.error = item.error
-            }
+        onTextChangedTextWatcher.onTextChanged = { s, _, _, _ ->
+            validateInputTextLayout(inputLayout, item.onValidateInput, s, item.error)
             item.text = s.toString()
         }
 
@@ -47,6 +48,17 @@ class InputRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolde
             itemView.setOnClickListener {
                 listener.invoke(it, adapterPosition)
             }
+        }
+    }
+
+    private fun validateInputTextLayout(inputLayout: TextInputLayout,
+                                        validate: ((CharSequence?) -> Boolean)?,
+                                        s: CharSequence?,
+                                        error: CharSequence?) {
+        val isValid = validate?.invoke(s) ?: true
+        inputLayout.isErrorEnabled = !isValid
+        if (!isValid) {
+            inputLayout.error = error
         }
     }
 
