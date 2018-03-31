@@ -69,9 +69,16 @@ After uploading, we will be sending documents with regards to the transaction to
     <string name="self_employed">SELF_EMPLOYED</string>
     <string name="contract_employee">CONTRACT_EMPLOYEE</string>
     <string name="part_timer">PART_TIMER</string>
+    <string name="stay_at_home">STAY_AT_HOME</string>
     <string name="pensioner">PENSIONER</string>
     <string name="student">STUDENT</string>
     <string name="not_in_employment">NOT_IN_EMPLOYMENT</string>
     <string name="others">OTHERS</string>
+
+    <string name="error_please_enter">Please enter %1$s</string>
+    <string name="error_zip_code">Postal code must be exactly 7 digits</string>
+    <string name="gender">Gender</string>
+    <string name="register">Register</string>
+    <string name="change_user_information">Change User Information</string>
 
 </resources>

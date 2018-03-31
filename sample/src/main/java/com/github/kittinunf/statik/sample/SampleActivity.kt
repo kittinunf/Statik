@@ -8,8 +8,8 @@ import com.github.kittinunf.statik.dsl.textRow
 import com.github.kittinunf.statik.sample.util.configureTitleText
 import com.github.kittinunf.statik.sample.util.configureWhiteRow
 import com.github.kittinunf.statik.sample.util.navigate
-import com.github.kittinunf.statik.sample.view.UploadAdditionalDocumentActivity
 import com.github.kittinunf.statik.sample.view.TermsOfServiceActivity
+import com.github.kittinunf.statik.sample.view.UploadAdditionalDocumentActivity
 import com.github.kittinunf.statik.sample.view.UploadDocumentActivity
 import com.github.kittinunf.statik.sample.view.UserInformationActivity
 import com.github.kittinunf.statik.sample.view.UserVerificationActivity
