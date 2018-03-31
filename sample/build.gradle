@@ -5,12 +5,14 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion targetVersion
+
     defaultConfig {
         applicationId "com.github.kittinunf.statik.sample"
         minSdkVersion minVersion
         targetSdkVersion targetVersion
         versionCode 1
-        versionName "1.0"
+        versionName publishVersion
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
