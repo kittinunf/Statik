@@ -27,6 +27,8 @@ class SectionBuilder {
 
     private var footer: ItemRepresentable? = null
 
+    private var valuesInSectionChangedListener: ((ItemRepresentable) -> Unit)? = null
+
     fun rows(vararg item: ItemRepresentable) {
         rows += item.asList()
     }
@@ -43,7 +45,14 @@ class SectionBuilder {
         footer = item
     }
 
-    fun build(): Section = Section(header, rows, footer)
+    fun onValuesInSectionChangedListener(listener: (ItemRepresentable) -> Unit) {
+        valuesInSectionChangedListener = listener
+    }
+
+    fun build(): Section =
+            Section(header, rows, footer).apply {
+                onValuesInSectionChangedListener = valuesInSectionChangedListener
+            }
 }
 
 class StatikBuilder {

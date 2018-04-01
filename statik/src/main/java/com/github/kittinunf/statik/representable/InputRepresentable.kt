@@ -23,5 +23,10 @@ class InputRowRepresentable : BaseRepresentable<InputRow, String>(InputRow()) {
 
     var error: String? = null
 
+    val isValid: Boolean
+        get() {
+            return onValidateInput?.invoke(text) ?: true
+        }
+
     override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }
