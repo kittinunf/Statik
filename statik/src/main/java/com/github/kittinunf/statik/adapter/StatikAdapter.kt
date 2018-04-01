@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.github.kittinunf.statik.model.Section
-import com.github.kittinunf.statik.representable.BaseItemRepresentable
+import com.github.kittinunf.statik.representable.AnyRepresentable
 import com.github.kittinunf.statik.representable.ItemRepresentable
 import com.github.kittinunf.statik.viewholder.BindableViewHolder
 import com.github.kittinunf.statik.viewholder.StatikViewHolder
@@ -20,9 +20,9 @@ class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFactory) :
         onSectionUpdate?.invoke(value)
     }
 
-    private var items = emptyList<ItemRepresentable>()
-
     var onSectionUpdate: OnSectionUpdateListener? = null
+
+    private var items = emptyList<ItemRepresentable>()
 
     init {
         setHasStableIds(true)
@@ -44,34 +44,38 @@ class StatikAdapter(private val typeFactory: TypeFactory = defaultTypeFactory) :
 
     override fun getItemId(position: Int): Long = items[position].stableId
 
-    private fun createRepresentable(section: Section, previousSectionCount: Int): List<ItemRepresentable> {
+    private fun createRepresentable(currentSection: Section, previousSectionCount: Int): List<ItemRepresentable> {
         val items = mutableListOf<ItemRepresentable>()
 
-        if (section.header != null) {
-            items.add(section.header)
+        if (currentSection.header != null) {
+            items.add(currentSection.header)
         }
 
-        items.addAll(section.rows)
+        items.addAll(currentSection.rows)
 
-        if (section.footer != null) {
-            items.add(section.footer)
+        if (currentSection.footer != null) {
+            items.add(currentSection.footer)
         }
 
-        items.withIndex().onEach { (index, item) ->
-            (item as? BaseItemRepresentable)?.also {
-                it.section = section
-                it.position = index + previousSectionCount
-            }
-        }
+        items.withIndex()
+                .onEach { (index, item) ->
+                    (item as? AnyRepresentable)?.apply {
+                        section = currentSection
+                        position = index + previousSectionCount
+                    }
+                }
 
         return items
     }
 
     fun update() {
-        items = sections.withIndex().flatMap { (index, section) ->
-            createRepresentable(section,
-                    sections.subList(0, index).fold(0) { acc, each -> acc + calculateSectionSize(each) })
-        }
+        items = sections.withIndex()
+                .flatMap { (index, section) ->
+                    createRepresentable(section,
+                            sections.subList(0, index)
+                                    .fold(0) { acc, each -> acc + calculateSectionSize(each) })
+                }
+
         notifyDataSetChanged()
     }
 
