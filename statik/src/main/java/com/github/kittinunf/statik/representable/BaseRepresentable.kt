@@ -50,7 +50,7 @@ abstract class BaseRepresentable<T : Row<U>, U>(protected val item: T) : ItemRep
             onValueChangedListener?.invoke(item)
 
             if (::section.isInitialized)
-                section.onValueInSectionChangedListener?.invoke(this)
+                section.onValuesInSectionChangedListener?.invoke(this)
         }
     }
 }

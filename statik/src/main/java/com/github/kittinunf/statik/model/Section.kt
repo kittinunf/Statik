@@ -6,5 +6,5 @@ data class Section(val header: ItemRepresentable? = null,
                    val rows: MutableList<ItemRepresentable>,
                    val footer: ItemRepresentable? = null) {
 
-    var onValueInSectionChangedListener: ((ItemRepresentable) -> Unit)? = null
+    var onValuesInSectionChangedListener: ((ItemRepresentable) -> Unit)? = null
 }
