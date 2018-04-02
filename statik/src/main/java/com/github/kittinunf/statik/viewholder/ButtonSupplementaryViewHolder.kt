@@ -17,7 +17,7 @@ class ButtonSupplementaryViewHolder(view: View) : StatikViewHolder(view), Bindab
         //click
         item.onClickListener?.let { listener ->
             itemView.setOnClickListener { view ->
-                listener.invoke(view, adapterPosition)
+                listener.invoke(view)
             }
         }
     }

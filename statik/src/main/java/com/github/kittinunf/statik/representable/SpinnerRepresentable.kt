@@ -20,6 +20,11 @@ class SpinnerRowRepresentable : BaseRepresentable<SpinnerRow, Pair<Int, List<Str
 
     var hint: String? = null
 
+    override val isValid: Boolean
+        get() {
+            return selected != -1
+        }
+
     var selected: Int
         set(value) {
             _value = value to _value.second

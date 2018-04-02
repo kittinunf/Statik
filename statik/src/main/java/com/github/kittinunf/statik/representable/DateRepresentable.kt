@@ -27,6 +27,11 @@ class DateRowRepresentable : BaseRepresentable<DateRow, Triple<Year, Month, DayO
 
     var onDateSelectedListener: OnDateSelectedListener? = null
 
+    override val isValid: Boolean
+        get() {
+            return year != -1 && month != -1 && dayOfMonth != -1
+        }
+
     var year: Year
         set(value) {
             _value = Triple(value, _value.second, _value.third)

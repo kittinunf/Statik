@@ -18,7 +18,7 @@ class ViewSupplementaryViewHolder(view: View) : StatikViewHolder(view), Bindable
         //click
         item.onClickListener?.let { listener ->
             itemView.setOnClickListener { view ->
-                listener.invoke(view, adapterPosition)
+                listener.invoke(view)
             }
         }
     }

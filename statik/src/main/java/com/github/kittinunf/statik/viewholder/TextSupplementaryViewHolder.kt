@@ -31,7 +31,7 @@ open class TextSupplementaryViewHolder(view: View) : StatikViewHolder(view), Bin
         //click
         item.onClickListener?.let { listener ->
             itemView.setOnClickListener { view ->
-                listener.invoke(view, adapterPosition)
+                listener.invoke(view)
             }
         }
     }

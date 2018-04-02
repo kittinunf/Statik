@@ -72,7 +72,7 @@ class DateRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder
         //click
         item.onClickListener?.let { listener ->
             itemView.setOnClickListener { view ->
-                listener.invoke(view, adapterPosition)
+                listener.invoke(view)
             }
         }
     }

@@ -62,7 +62,7 @@ class CheckRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolde
         //click
         item.onClickListener?.let { listener ->
             itemView.setOnClickListener { view ->
-                listener.invoke(view, adapterPosition)
+                listener.invoke(view)
             }
         }
     }
