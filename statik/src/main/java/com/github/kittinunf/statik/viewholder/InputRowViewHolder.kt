@@ -33,6 +33,8 @@ class InputRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolde
             //evaluate once if text is not empty
             if (item.text.isNotEmpty()) {
                 validateInputTextLayout(this, item.onValidateInput, item.text, item.error)
+            } else {
+                error = null
             }
         }
 
