@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
             titleText = "Also, you can try to click this row"
             summaryText = "Click"
             iconRes = android.R.drawable.ic_input_add
-            onClickListener = { _, position ->
+            onClickListener = {
                 summaryText = "${++count} times"
                 iconRes = if (count % 2 == 0) android.R.drawable.ic_input_add
                 else android.R.drawable.ic_delete
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
 
         val r8 = textRow {
             text = "You can observe changes, click here"
-            onClickListener = { _, position ->
+            onClickListener = {
                 text = "Next random: ${Random().nextInt(10)}"
                 updateList(position)
             }
@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity() {
                 it.gravity = Gravity.END
                 TextViewCompat.setTextAppearance(it, R.style.TextAppearance_AppCompat_Custom3)
             }
-            onClickListener = { _, _ ->
+            onClickListener = {
                 println("Footer is clicked")
             }
         }
@@ -153,7 +153,7 @@ class MainActivity : AppCompatActivity() {
                 it.setTextColor(Color.WHITE)
                 it.setBackgroundResource(R.drawable.rounded_button_red)
             }
-            onClickListener = { _, _ ->
+            onClickListener = {
                 toast("Button is clicked")
             }
         }
