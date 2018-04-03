@@ -11,7 +11,7 @@ typealias OnValueChangedListener<T> = (T) -> Unit
 
 typealias OnViewSetupListener = (View) -> Unit
 
-typealias OnClickListener = (View, Int) -> Unit
+typealias OnClickListener = (View) -> Unit
 
 typealias OnTextViewSetupListener = (TextView) -> Unit
 
@@ -37,6 +37,8 @@ abstract class BaseRepresentable<T : Row<U>, U>(protected val item: T) : ItemRep
     override var position: Int = -1
 
     override var stableId: Long = item.stableId ?: IdGenerator.generate()
+
+    open val isValid: Boolean = true
 
     override var onViewSetupListener: OnViewSetupListener? = null
 

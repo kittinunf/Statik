@@ -17,7 +17,7 @@ class ButtonRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHold
         //click
         item.onClickListener?.let { listener ->
             itemView.setOnClickListener { view ->
-                listener.invoke(view, adapterPosition)
+                listener.invoke(view)
             }
         }
     }

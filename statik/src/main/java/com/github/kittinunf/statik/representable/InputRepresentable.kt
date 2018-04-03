@@ -15,18 +15,18 @@ class InputRowRepresentable : BaseRepresentable<InputRow, String>(InputRow()) {
 
     var inputType: Int = InputType.TYPE_CLASS_TEXT
 
+    var error: String? = null
+
+    override val isValid: Boolean
+        get() {
+            return onValidateInput?.invoke(text) ?: true
+        }
+
     var text: String
         set(value) {
             _value = value
         }
         get() = _value
-
-    var error: String? = null
-
-    val isValid: Boolean
-        get() {
-            return onValidateInput?.invoke(text) ?: true
-        }
 
     override fun type(typeFactory: TypeFactory): Int = typeFactory.type(this)
 }

@@ -30,12 +30,8 @@ class InputRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolde
                 setSelection(item.text.length)
             }
 
-            //evaluate once if text is not empty
-            if (item.text.isNotEmpty()) {
-                validateInputTextLayout(this, item.onValidateInput, item.text, item.error)
-            } else {
-                error = null
-            }
+            //evaluate once
+            validateInputTextLayout(this, item.onValidateInput, item.text, item.error)
         }
 
         item.onInputLayoutSetupListener?.invoke(inputLayout)
@@ -47,8 +43,8 @@ class InputRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolde
         }
 
         item.onClickListener?.let { listener ->
-            itemView.setOnClickListener {
-                listener.invoke(it, adapterPosition)
+            itemView.setOnClickListener { view ->
+                listener.invoke(view)
             }
         }
     }
