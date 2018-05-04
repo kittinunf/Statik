@@ -16,13 +16,13 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:paddingTop">@dimen/statik_margin_8dp</item>
-        <item name="android:paddingBottom">@dimen/statik_margin_16dp</item>
+        <item name="android:paddingBottom">@dimen/statik_margin_8dp</item>
     </style>
 
     <style name="Widget.Statik.Base.FooterTextItem" parent="Widget.Statik.Base.RowItem">
         <item name="android:textColor">?attr/colorPrimary</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:paddingTop">@dimen/statik_margin_16dp</item>
+        <item name="android:paddingTop">@dimen/statik_margin_8dp</item>
         <item name="android:paddingBottom">@dimen/statik_margin_8dp</item>
     </style>
 
