@@ -187,7 +187,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val r11 = switchRow {
-            titleText = "This is a switch box row"
+            titleText = "This is a switch row"
             summaryText = "Camera"
             iconRes = android.R.drawable.ic_menu_camera
             checked = true
