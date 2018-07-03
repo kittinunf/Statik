@@ -6,11 +6,11 @@ import android.widget.ImageView
 import android.widget.Switch
 import android.widget.TextView
 import com.github.kittinunf.statik.R
-import com.github.kittinunf.statik.representable.CheckRowRepresentable
+import com.github.kittinunf.statik.representable.SwitchRowRepresentable
 
-class SwitchRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<CheckRowRepresentable> {
+class SwitchRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder<SwitchRowRepresentable> {
 
-    override fun bind(item: CheckRowRepresentable) {
+    override fun bind(item: SwitchRowRepresentable) {
         item.onViewSetupListener?.invoke(itemView)
 
         //primary
@@ -55,7 +55,7 @@ class SwitchRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHold
         val switch = itemView.findViewById<Switch>(R.id.statik_row_switch)
         switch.isChecked = item.checked
         switch.setOnCheckedChangeListener { buttonView, isChecked ->
-            item.onCheckBoxCheckedChangeListener?.invoke(buttonView, isChecked)
+            item.onSwitchCheckedChangeListener?.invoke(buttonView, isChecked)
             item.checked = isChecked
         }
 

@@ -13,6 +13,7 @@ import android.widget.ImageView
 import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.dsl.buttonFooter
 import com.github.kittinunf.statik.dsl.checkRow
+import com.github.kittinunf.statik.dsl.switchRow
 import com.github.kittinunf.statik.dsl.dateRow
 import com.github.kittinunf.statik.dsl.inputRow
 import com.github.kittinunf.statik.dsl.section
