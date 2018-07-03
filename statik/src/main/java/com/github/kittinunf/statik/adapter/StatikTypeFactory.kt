@@ -2,8 +2,34 @@ package com.github.kittinunf.statik.adapter
 
 import android.view.View
 import com.github.kittinunf.statik.R
-import com.github.kittinunf.statik.representable.*
-import com.github.kittinunf.statik.viewholder.*
+import com.github.kittinunf.statik.representable.ButtonRowRepresentable
+import com.github.kittinunf.statik.representable.ButtonSupplementaryRepresentable
+import com.github.kittinunf.statik.representable.CheckRowRepresentable
+import com.github.kittinunf.statik.representable.SwitchRowRepresentable
+import com.github.kittinunf.statik.representable.DateRowRepresentable
+import com.github.kittinunf.statik.representable.FooterTextSupplementaryRepresentable
+import com.github.kittinunf.statik.representable.FooterViewSupplementaryRepresentable
+import com.github.kittinunf.statik.representable.HeaderTextSupplementaryRepresentable
+import com.github.kittinunf.statik.representable.HeaderViewSupplementaryRepresentable
+import com.github.kittinunf.statik.representable.InputRowRepresentable
+import com.github.kittinunf.statik.representable.SpinnerRowRepresentable
+import com.github.kittinunf.statik.representable.TextRowRepresentable
+import com.github.kittinunf.statik.representable.TwoTextRowRepresentable
+import com.github.kittinunf.statik.representable.ViewRowRepresentable
+import com.github.kittinunf.statik.viewholder.ButtonRowViewHolder
+import com.github.kittinunf.statik.viewholder.ButtonSupplementaryViewHolder
+import com.github.kittinunf.statik.viewholder.CheckRowViewHolder
+import com.github.kittinunf.statik.viewholder.SwitchRowViewHolder
+import com.github.kittinunf.statik.viewholder.DateRowViewHolder
+import com.github.kittinunf.statik.viewholder.FooterTextSupplementaryViewHolder
+import com.github.kittinunf.statik.viewholder.HeaderTextSupplementaryViewHolder
+import com.github.kittinunf.statik.viewholder.InputRowViewHolder
+import com.github.kittinunf.statik.viewholder.SpinnerRowViewHolder
+import com.github.kittinunf.statik.viewholder.StatikViewHolder
+import com.github.kittinunf.statik.viewholder.TextRowViewHolder
+import com.github.kittinunf.statik.viewholder.TwoTextRowViewHolder
+import com.github.kittinunf.statik.viewholder.ViewRowViewHolder
+import com.github.kittinunf.statik.viewholder.ViewSupplementaryViewHolder
 
 interface TypeFactory {
 
