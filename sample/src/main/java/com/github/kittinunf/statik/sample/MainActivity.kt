@@ -176,7 +176,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val r10 = checkRow {
-            titleText = "This is check box row"
+            titleText = "This is a check box row"
             summaryText = "Camera"
             iconRes = android.R.drawable.ic_menu_camera
             checked = true
@@ -185,7 +185,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val r11 = inputRow {
+        val r11 = switchRow {
+            titleText = "This is a switch box row"
+            summaryText = "Camera"
+            iconRes = android.R.drawable.ic_menu_camera
+            checked = true
+            onValueChangedListener = {
+                println(it.value)
+            }
+        }
+
+        val r12 = inputRow {
             hint = "Username"
             error = "Must be a valid email address"
             onValidateInput = {
@@ -193,7 +203,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val r12 = inputRow {
+        val r13 = inputRow {
             hint = "Password"
             error = "Must be at least 6 characters"
             inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD or InputType.TYPE_CLASS_TEXT
@@ -209,7 +219,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val r13 = spinnerRow {
+        val r14 = spinnerRow {
             val items = listOf("Tokyo", "Bangkok", "New York", "Shanghai", "London")
             hint = "Select City"
             list = items
@@ -222,7 +232,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val r14 = dateRow {
+        val r15 = dateRow {
             text = "Tell me your birthday"
             hint = "yyyy/MM/dd"
             dateFormatter = SimpleDateFormat("yyyy/MM/dd", Locale.US)
@@ -243,7 +253,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val s3 = section {
-            rows(r9, r10, r11, r12, r13, r14)
+            rows(r9, r10, r11, r12, r13, r14, r15)
         }
 
         statikAdapter = statik {
