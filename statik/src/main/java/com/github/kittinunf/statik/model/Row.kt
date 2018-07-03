@@ -29,6 +29,9 @@ class ViewRow(@LayoutRes layoutRes: Int = 0,
 class CheckRow(checked: Boolean = false,
                stableId: Long? = null) : Row<Boolean>(checked, stableId)
 
+                class SwitchRow(checked: Boolean = false,
+                stableId: Long? = null) : Row<Boolean>(checked, stableId)
+
 class InputRow(input: String = "",
                stableId: Long? = null) : Row<String>(input, stableId)
 

@@ -2,9 +2,11 @@ package com.github.kittinunf.statik.dsl
 
 import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.model.Section
+
 import com.github.kittinunf.statik.representable.ButtonRowRepresentable
 import com.github.kittinunf.statik.representable.ButtonSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.CheckRowRepresentable
+import com.github.kittinunf.statik.representable.SwitchRowRepresentable
 import com.github.kittinunf.statik.representable.DateRowRepresentable
 import com.github.kittinunf.statik.representable.FooterTextSupplementaryRepresentable
 import com.github.kittinunf.statik.representable.FooterViewSupplementaryRepresentable
@@ -118,6 +120,9 @@ fun viewRow(block: ViewRowRepresentable.() -> Unit): ViewRowRepresentable =
 
 fun checkRow(block: CheckRowRepresentable.() -> Unit): CheckRowRepresentable =
         CheckRowRepresentable().apply(block)
+
+fun switchRow(block: SwitchRowRepresentable.() -> Unit): SwitchRowRepresentable =
+        SwitchRowRepresentable().apply(block)
 
 fun inputRow(block: InputRowRepresentable.() -> Unit): InputRowRepresentable =
         InputRowRepresentable().apply(block)
