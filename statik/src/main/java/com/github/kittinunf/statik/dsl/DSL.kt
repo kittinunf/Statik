@@ -2,7 +2,24 @@ package com.github.kittinunf.statik.dsl
 
 import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.model.Section
-import com.github.kittinunf.statik.representable.*
+
+import com.github.kittinunf.statik.representable.ButtonRowRepresentable
+import com.github.kittinunf.statik.representable.ButtonSupplementaryRepresentable
+import com.github.kittinunf.statik.representable.CheckRowRepresentable
+import com.github.kittinunf.statik.representable.SwitchRowRepresentable
+import com.github.kittinunf.statik.representable.DateRowRepresentable
+import com.github.kittinunf.statik.representable.FooterTextSupplementaryRepresentable
+import com.github.kittinunf.statik.representable.FooterViewSupplementaryRepresentable
+import com.github.kittinunf.statik.representable.HeaderTextSupplementaryRepresentable
+import com.github.kittinunf.statik.representable.HeaderViewSupplementaryRepresentable
+import com.github.kittinunf.statik.representable.InputRowRepresentable
+import com.github.kittinunf.statik.representable.ItemRepresentable
+import com.github.kittinunf.statik.representable.SpinnerRowRepresentable
+import com.github.kittinunf.statik.representable.TextRowRepresentable
+import com.github.kittinunf.statik.representable.TextSupplementaryRepresentable
+import com.github.kittinunf.statik.representable.TwoTextRowRepresentable
+import com.github.kittinunf.statik.representable.ViewRowRepresentable
+import com.github.kittinunf.statik.representable.ViewSupplementaryRepresentable
 
 class SectionBuilder {
 
