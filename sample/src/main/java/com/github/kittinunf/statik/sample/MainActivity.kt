@@ -12,6 +12,7 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import com.github.kittinunf.statik.adapter.StatikAdapter
 import com.github.kittinunf.statik.dsl.buttonFooter
+import com.github.kittinunf.statik.dsl.buttonRow
 import com.github.kittinunf.statik.dsl.checkRow
 import com.github.kittinunf.statik.dsl.switchRow
 import com.github.kittinunf.statik.dsl.dateRow
@@ -228,8 +229,8 @@ class MainActivity : AppCompatActivity() {
             onSpinnerSetupListener = { spinner, underlineView ->
                 underlineView.setBackgroundResource(android.R.color.darker_gray)
             }
-            onItemSelectedListener = { position->
-               toast("${items[position]} is selected")
+            onItemSelectedListener = { position ->
+                toast("${items[position]} is selected")
             }
         }
 
@@ -257,8 +258,29 @@ class MainActivity : AppCompatActivity() {
             rows(r9, r10, r11, r12, r13, r14, r15)
         }
 
+        // Dynamik
+
+        val r16 = buttonRow {
+            text = "Add a Row in Section"
+            onButtonSetupListener = {
+                it.setTextColor(Color.WHITE)
+                it.setBackgroundResource(R.drawable.rounded_button_red)
+            }
+            onClickListener = {
+                val rowToAdd = textRow {
+                    text = "Row added dynamically to section"
+                }
+                val sectionRef = statikAdapter.sections[3]
+                sectionRef.rows.add(rowToAdd)
+                statikAdapter.update()
+                list.scrollToPosition(position + sectionRef.rows.size - 1)
+            }
+        }
+
+        val s4 = section { rows(r16) }
+
         statikAdapter = statik {
-            sections(s1, s2, s3)
+            sections(s1, s2, s3, s4)
         }
 
         list.also {
