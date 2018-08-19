@@ -1,6 +1,7 @@
 package com.github.kittinunf.statik.representable
 
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import com.github.kittinunf.statik.model.Row
 import com.github.kittinunf.statik.model.Section
@@ -14,6 +15,8 @@ typealias OnViewSetupListener = (View) -> Unit
 typealias OnClickListener = (View) -> Unit
 
 typealias OnTextViewSetupListener = (TextView) -> Unit
+
+typealias OnImageViewSetupListener = (ImageView) -> Unit
 
 interface ViewSetupListener {
     var onViewSetupListener: OnViewSetupListener?

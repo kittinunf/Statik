@@ -34,6 +34,8 @@ class FooterTextSupplementaryRepresentable : TextSupplementaryRepresentable() {
 //Row
 class TextRowRepresentable : BaseRepresentable<TextRow, String>(TextRow()) {
 
+    var onImageSetupListener: OnImageViewSetupListener? = null
+
     var onTextSetupListener: OnTextViewSetupListener? = null
 
     var text: String
@@ -48,6 +50,8 @@ class TextRowRepresentable : BaseRepresentable<TextRow, String>(TextRow()) {
 }
 
 class TwoTextRowRepresentable : BaseRepresentable<TwoTextRow, Pair<String, String?>>(TwoTextRow()) {
+
+    var onImageSetupListener: OnImageViewSetupListener? = null
 
     var onTitleTextSetupListener: OnTextViewSetupListener? = null
 

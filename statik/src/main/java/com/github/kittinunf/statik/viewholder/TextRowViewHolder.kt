@@ -24,15 +24,20 @@ class TextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHolder
         }
 
         //image
+        val imageViewSetup = item.onImageSetupListener
         val iconImageView = itemView.findViewById<ImageView>(R.id.statik_row_icon)
-        val iconRes = item.iconRes
-        if (iconRes == null) {
-            iconImageView.visibility = View.GONE
-        } else {
-            iconImageView.apply {
-                visibility = View.VISIBLE
-                setImageResource(iconRes)
+        if (imageViewSetup == null) {
+            val iconRes = item.iconRes
+            if (iconRes == null) {
+                iconImageView.visibility = View.GONE
+            } else {
+                iconImageView.apply {
+                    visibility = View.VISIBLE
+                    setImageResource(iconRes)
+                }
             }
+        } else {
+            imageViewSetup(iconImageView)
         }
 
         //click
