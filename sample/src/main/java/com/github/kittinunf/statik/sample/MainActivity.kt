@@ -25,6 +25,7 @@ import com.github.kittinunf.statik.dsl.textHeader
 import com.github.kittinunf.statik.dsl.textRow
 import com.github.kittinunf.statik.dsl.twoTextRow
 import com.github.kittinunf.statik.dsl.viewRow
+import com.github.kittinunf.statik.sample.R.id.list
 import com.github.kittinunf.statik.sample.util.find
 import com.github.kittinunf.statik.sample.util.isValidEmailAddress
 import com.github.kittinunf.statik.sample.util.load
@@ -54,6 +55,9 @@ class MainActivity : AppCompatActivity() {
         val r3 = twoTextRow {
             titleText = "Two Lines"
             summaryText = "This is two-line text"
+            onImageSetupListener = {
+                it.load("https://ui-avatars.com/api/?name=Tanaka+Nakamura", android.R.drawable.ic_lock_idle_low_battery)
+            }
         }
 
         val r4 = twoTextRow {
@@ -172,8 +176,8 @@ class MainActivity : AppCompatActivity() {
                 val image1 = it.find<ImageView>(android.R.id.icon1)
                 val image2 = it.find<ImageView>(android.R.id.icon2)
 
-                image1.load("https://source.unsplash.com/200x200/?nature")
-                image2.load("https://source.unsplash.com/200x200/?building")
+                image1.load("https://source.unsplash.com/200x200/?nature", android.R.drawable.ic_menu_report_image)
+                image2.load("https://source.unsplash.com/200x200/?building", android.R.drawable.ic_menu_report_image)
             }
         }
 

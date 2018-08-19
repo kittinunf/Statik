@@ -1,7 +1,7 @@
 package com.github.kittinunf.statik.viewholder
 
-import android.support.v4.widget.TextViewCompat
 import android.view.View
+import android.support.v4.widget.TextViewCompat
 import android.widget.ImageView
 import android.widget.TextView
 import com.github.kittinunf.statik.R
@@ -42,15 +42,20 @@ class TwoTextRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHol
         }
 
         //image
+        val imageViewSetup = item.onImageSetupListener
         val iconImageView = itemView.findViewById<ImageView>(R.id.statik_row_icon)
-        val iconRes = item.iconRes
-        if (iconRes == null) {
-            iconImageView.visibility = View.GONE
-        } else {
-            iconImageView.apply {
-                visibility = View.VISIBLE
-                setImageResource(iconRes)
+        if (imageViewSetup == null) {
+            val iconRes = item.iconRes
+            if (iconRes == null) {
+                iconImageView.visibility = View.GONE
+            } else {
+                iconImageView.apply {
+                    visibility = View.VISIBLE
+                    setImageResource(iconRes)
+                }
             }
+        } else {
+            imageViewSetup(iconImageView)
         }
 
         //click
