@@ -287,10 +287,7 @@ class MainActivity : AppCompatActivity() {
             sections(s1, s2, s3, s4)
         }
 
-        list.also {
-            it.layoutManager = LinearLayoutManager(this)
-            it.adapter = statikAdapter
-        }
+        list.adapter = statikAdapter
     }
 
     private fun updateList(at: Int) {
