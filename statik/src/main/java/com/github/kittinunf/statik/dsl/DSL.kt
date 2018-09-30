@@ -57,7 +57,7 @@ class SectionBuilder {
             }
 }
 
-class StatikBuilder {
+class AdapterBuilder {
 
     private val sections = mutableListOf<Section>()
 
@@ -80,13 +80,13 @@ fun section(block: SectionBuilder.() -> Unit): Section {
     return builder.build()
 }
 
-fun statik(block: StatikBuilder.() -> Unit): StatikAdapter =
+fun adapter(block: AdapterBuilder.() -> Unit): StatikAdapter =
         StatikAdapter().apply {
             sections = sections(block)
         }
 
-private fun sections(block: StatikBuilder.() -> Unit): List<Section> {
-    val builder = StatikBuilder()
+private fun sections(block: AdapterBuilder.() -> Unit): List<Section> {
+    val builder = AdapterBuilder()
     builder.block()
     return builder.build()
 }
