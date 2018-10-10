@@ -89,7 +89,7 @@ val s1 = section {
 
 Set the section(s) into the adapter    
 ```kotlin
-val statikAdapter = statik { 
+val statikAdapter = adapter {
                         sections(s1)
                     }    
 ```    
