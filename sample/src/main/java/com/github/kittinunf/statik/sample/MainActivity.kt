@@ -18,7 +18,7 @@ import com.github.kittinunf.statik.dsl.dateRow
 import com.github.kittinunf.statik.dsl.inputRow
 import com.github.kittinunf.statik.dsl.section
 import com.github.kittinunf.statik.dsl.spinnerRow
-import com.github.kittinunf.statik.dsl.statik
+import com.github.kittinunf.statik.dsl.adapter
 import com.github.kittinunf.statik.dsl.textFooter
 import com.github.kittinunf.statik.dsl.textHeader
 import com.github.kittinunf.statik.dsl.textRow
@@ -34,7 +34,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var statikAdapter: StatikAdapter
+    lateinit var adapter: StatikAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -144,7 +144,7 @@ class MainActivity : AppCompatActivity() {
                         } else {
                             section.rows.addAll(rs)
                         }
-                        statikAdapter.update()
+                        adapter.update()
                     }
                 }
 
@@ -272,16 +272,16 @@ class MainActivity : AppCompatActivity() {
                 val rowToAdd = textRow {
                     text = "Row added dynamically to section"
                 }
-                val sectionRef = statikAdapter.sections[3]
+                val sectionRef = adapter.sections[3]
                 sectionRef.rows.add(rowToAdd)
-                statikAdapter.update()
+                adapter.update()
                 statikView.scrollToPosition(position + sectionRef.rows.size - 1)
             }
         }
 
         val s4 = section { rows(r16) }
 
-        statikAdapter = statik {
+        adapter = adapter {
             sections(s1, s2, s3, s4)
         }
 
