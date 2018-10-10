@@ -285,7 +285,7 @@ class MainActivity : AppCompatActivity() {
             sections(s1, s2, s3, s4)
         }
 
-        statikView.adapter = statikAdapter
+        statikView.adapter = adapter
     }
 
     private fun updateList(at: Int) {
