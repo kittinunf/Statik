@@ -28,7 +28,7 @@ import com.github.kittinunf.statik.sample.util.find
 import com.github.kittinunf.statik.sample.util.isValidEmailAddress
 import com.github.kittinunf.statik.sample.util.load
 import com.github.kittinunf.statik.sample.util.toast
-import kotlinx.android.synthetic.main.activity_list.list
+import kotlinx.android.synthetic.main.activity_list.statikView
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -275,7 +275,7 @@ class MainActivity : AppCompatActivity() {
                 val sectionRef = adapter.sections[3]
                 sectionRef.rows.add(rowToAdd)
                 adapter.update()
-                list.scrollToPosition(position + sectionRef.rows.size - 1)
+                statikView.scrollToPosition(position + sectionRef.rows.size - 1)
             }
         }
 
@@ -285,10 +285,10 @@ class MainActivity : AppCompatActivity() {
             sections(s1, s2, s3, s4)
         }
 
-        list.adapter = adapter
+        statikView.adapter = adapter
     }
 
     private fun updateList(at: Int) {
-        list.adapter.notifyItemChanged(at)
+        statikView.adapter.notifyItemChanged(at)
     }
 }
