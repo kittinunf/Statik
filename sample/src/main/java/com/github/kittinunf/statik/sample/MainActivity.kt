@@ -289,6 +289,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateList(at: Int) {
-        list.adapter.notifyItemChanged(at)
+        list.adapter?.notifyItemChanged(at)
     }
 }
