@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion targetVersion
+    compileSdkVersion compileVersion
 
     defaultConfig {
         minSdkVersion minVersion
