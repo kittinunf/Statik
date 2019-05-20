@@ -1,7 +1,7 @@
 # Statik
 
-[![Kotlin](https://img.shields.io/badge/Kotlin-1.3.10-blue.svg)](http://kotlinlang.org)
 [![jcenter](https://api.bintray.com/packages/kittinunf/maven/Statik/images/download.svg)](https://bintray.com/kittinunf/maven/Statik/_latestVersion)
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.3.10-blue.svg)](http://kotlinlang.org)
 [![Build Status](https://travis-ci.org/kittinunf/Statik.svg?branch=master)](https://travis-ci.org/kittinunf/Statik)
 
 A Kotlin DSL for Android made to display a collection of data-backed views concisely and elegantly.
@@ -28,7 +28,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.kittinunf.statik:statik:<latest-version>'
+    implementation 'com.github.kittinunf.statik:statik:<latest-version>'
 }
 ```
 
