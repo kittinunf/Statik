@@ -10,7 +10,7 @@ android {
         minSdkVersion minVersion
         targetSdkVersion targetVersion
         versionCode 1
-        versionName publishVersion
+        versionName mainVersion
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -61,7 +61,8 @@ publish {
     desc = 'A simple static list information backed by RecyclerView for Android in Kotlin'
     groupId = 'com.github.kittinunf.statik'
     licences = ['MIT']
-    publishVersion = publishVersion
+    publishVersion = mainVersion
     uploadName = 'Statik'
     website = 'https://github.com/kittinunf/Statik'
+    userOrg = 'kittinunf'
 }

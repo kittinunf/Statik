@@ -11,7 +11,7 @@ android {
         minSdkVersion minVersion
         targetSdkVersion targetVersion
         versionCode 1
-        versionName publishVersion
+        versionName mainVersion
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -32,7 +32,7 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:$supportLibVersion"
     implementation "com.android.support:design:$supportLibVersion"
 
-    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation project(':statik')
 
