@@ -1,13 +1,13 @@
 package com.github.kittinunf.statik.viewholder
 
 import android.content.Context
-import android.support.annotation.LayoutRes
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.annotation.LayoutRes
 import com.github.kittinunf.statik.R
 import com.github.kittinunf.statik.representable.SpinnerRowRepresentable
 
@@ -58,13 +58,13 @@ class SpinnerRowViewHolder(view: View) : StatikViewHolder(view), BindableViewHol
             return if (isHintEnabled) position != 0 else true
         }
 
-        override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
             val view = super.getDropDownView(position, convertView, parent)
             setHintForTextView(position, view)
             return view
         }
 
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             val view = super.getView(position, convertView, parent)
             setHintForTextView(position, view)
             return view

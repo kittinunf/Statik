@@ -1,6 +1,6 @@
 package com.github.kittinunf.statik.viewholder
 
-import android.support.v4.widget.TextViewCompat
+import androidx.core.widget.TextViewCompat
 import android.view.View
 import android.widget.CheckBox
 import android.widget.ImageView

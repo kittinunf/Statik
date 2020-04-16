@@ -1,6 +1,6 @@
 package com.github.kittinunf.statik.adapter
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.github.kittinunf.statik.model.Section

@@ -1,8 +1,8 @@
 package com.github.kittinunf.statik.representable
 
-import android.support.annotation.LayoutRes
 import android.view.View
 import android.widget.Spinner
+import androidx.annotation.LayoutRes
 import com.github.kittinunf.statik.adapter.TypeFactory
 import com.github.kittinunf.statik.model.SpinnerRow
 
