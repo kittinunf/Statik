@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
-apply plugin: 'com.novoda.bintray-release'
+//apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion compileVersion
@@ -12,8 +12,7 @@ android {
         versionCode 1
         versionName mainVersion
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
     buildTypes {
@@ -44,25 +43,25 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
-    implementation "com.android.support:appcompat-v7:$supportLibVersion"
-    implementation "com.android.support:recyclerview-v7:$supportLibVersion"
-    implementation "com.android.support:design:$supportLibVersion"
+    implementation "androidx.appcompat:appcompat:$androidXVersion"
+    implementation "androidx.recyclerview:recyclerview:$androidXVersion"
+    implementation "com.google.android.material:material:$androidXVersion"
 
-    testImplementation 'junit:junit:4.12'
-    testImplementation "org.robolectric:robolectric:4.1"
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.robolectric:robolectric:$robolectricVersion"
 
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
 
-publish {
-    artifactId = 'statik'
-    autoPublish = true
-    desc = 'A simple static list information backed by RecyclerView for Android in Kotlin'
-    groupId = 'com.github.kittinunf.statik'
-    licences = ['MIT']
-    publishVersion = mainVersion
-    uploadName = 'Statik'
-    website = 'https://github.com/kittinunf/Statik'
-    userOrg = 'kittinunf'
-}
+//publish {
+//    artifactId = 'statik'
+//    autoPublish = true
+//    desc = 'A simple static list information backed by RecyclerView for Android in Kotlin'
+//    groupId = 'com.github.kittinunf.statik'
+//    licences = ['MIT']
+//    publishVersion = mainVersion
+//    uploadName = 'Statik'
+//    website = 'https://github.com/kittinunf/Statik'
+//    userOrg = 'kittinunf'
+//}

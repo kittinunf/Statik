@@ -1,7 +1,7 @@
 package com.github.kittinunf.statik.viewholder
 
 import android.view.View
-import android.support.v4.widget.TextViewCompat
+import androidx.core.widget.TextViewCompat
 import android.widget.ImageView
 import android.widget.TextView
 import com.github.kittinunf.statik.R

@@ -1,6 +1,6 @@
 package com.github.kittinunf.statik.model
 
-import android.support.annotation.LayoutRes
+import androidx.annotation.LayoutRes
 
 sealed class Row<T>(var value: T,
                     var stableId: Long? = null)
@@ -29,7 +29,7 @@ class ViewRow(@LayoutRes layoutRes: Int = 0,
 class CheckRow(checked: Boolean = false,
                stableId: Long? = null) : Row<Boolean>(checked, stableId)
 
-                class SwitchRow(checked: Boolean = false,
+class SwitchRow(checked: Boolean = false,
                 stableId: Long? = null) : Row<Boolean>(checked, stableId)
 
 class InputRow(input: String = "",

@@ -3,9 +3,9 @@ package com.github.kittinunf.statik.viewholder
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
-import android.support.v4.widget.TextViewCompat
-import android.support.v7.app.AppCompatDialogFragment
+import androidx.fragment.app.FragmentActivity
+import androidx.core.widget.TextViewCompat
+import androidx.appcompat.app.AppCompatDialogFragment
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
