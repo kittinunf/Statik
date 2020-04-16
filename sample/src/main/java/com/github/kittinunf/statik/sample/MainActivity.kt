@@ -34,7 +34,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var adapter: StatikAdapter
+    private lateinit var adapter: StatikAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
